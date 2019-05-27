@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:id="@+id/tv_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp15"
+            android:paddingRight="@dimen/dp30"
+            android:text="退出"
+            android:visibility="gone"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/sp18" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/dp5"
+            android:text="2018年5月30日 12:34"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp20"
+            android:visibility="gone"
+            android:src="@drawable/setting_icon" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/user_icon"
+                android:drawablePadding="@dimen/dp5"
+                android:drawableStart="@drawable/user_icon"
+                android:text="用户姓名: "
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp21"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/address_icon"
+                android:drawablePadding="@dimen/dp5"
+                android:drawableStart="@drawable/address_icon"
+                android:text="用户地址: "
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="- -"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp160"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp21"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/jifen_icon"
+                    android:drawablePadding="@dimen/dp5"
+                    android:drawableStart="@drawable/jifen_icon"
+                    android:text="当前积分: "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_jifen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp25"
+                    android:text="总积分: "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_total_jifen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/test"
+        android:layout_marginTop="@dimen/dp21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:drawableLeft="@drawable/delect_icon"
+        android:drawablePadding="@dimen/dp5"
+        android:drawableStart="@drawable/delect_icon"
+        android:text="重量"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp15" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0kg"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/sp45"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp25"
+                android:text="用户当前投放重量"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp12"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_total_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0kg"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/sp45"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp25"
+                android:text="用户历史投放重量"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp14" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/iv_door1"
+                        android:layout_marginLeft="@dimen/dp6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp55"
+                        android:src="@drawable/tong_ic11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_door1"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:text="纸张"
+                        android:layout_marginLeft="@dimen/dp28"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/tv_door1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:layout_marginTop="@dimen/dp30"
+                        android:layout_toRightOf="@id/iv_door1"
+                        android:text="0%"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/sp12" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+
+                    <ImageView
+                        android:id="@+id/iv_door3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp55"
+                        android:layout_marginLeft="@dimen/dp18"
+                        android:src="@drawable/tong_ic31" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_door3"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:layout_marginLeft="@dimen/dp40"
+                        android:text="金属"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/tv_door3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:layout_marginTop="@dimen/dp30"
+                        android:layout_toRightOf="@id/iv_door3"
+                        android:text="0%"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/sp12" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_door2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp55"
+                        android:src="@drawable/tong_ic21" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_door2"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:layout_marginLeft="@dimen/dp22"
+                        android:text="塑料"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/tv_door2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:layout_marginTop="@dimen/dp30"
+                        android:layout_toRightOf="@id/iv_door2"
+                        android:text="0%"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/sp12" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_door4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp55"
+                        android:src="@drawable/tong_ic41" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_door4"
+                        android:layout_marginTop="@dimen/dp2"
+                        android:text="有毒有害"
+                        android:layout_marginLeft="@dimen/dp13"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12" />
+
+                    <TextView
+                        android:id="@+id/tv_door4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:layout_marginTop="@dimen/dp30"
+                        android:layout_toRightOf="@id/iv_door4"
+                        android:text="0%"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/sp12" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/test2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:drawableLeft="@drawable/temp_icon"
+        android:drawablePadding="@dimen/dp5"
+        android:drawableStart="@drawable/temp_icon"
+        android:text="内部温度"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp16" />
+
+
+    <padd.qlckh.cn.tempad.TmepView
+        android:id="@+id/iv_temp"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp45"
+        android:layout_marginRight="@dimen/dp45"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp3"
+        android:paddingTop="@dimen/dp2"
+        android:text="当前箱体内部温度正常"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14" />
+</LinearLayout>
