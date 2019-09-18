@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:background="@drawable/bg_theme_shape"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/dp150"
+        android:layout_height="@dimen/dp150"
+        android:src="@drawable/app_icons"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp36"
+        android:layout_marginTop="@dimen/sp20"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:text="请您先点击下面按钮,再刷卡领取垃圾袋"/>
+
+
+    <Button
+        android:id="@+id/btRestart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_marginTop="@dimen/sp20"
+        android:text="点我领取"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp18"
+        android:layout_marginRight="@dimen/dp35"
+        android:layout_marginLeft="@dimen/dp35"
+        android:background="@drawable/bg_conner_theme_color_selector"/>
+
+    <TextView
+        android:id="@+id/btErrDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sp20"
+        android:text="错误详情"
+        android:gravity="center"
+        android:textColor="#2962FF"
+        android:textSize="@dimen/sp15"
+        android:layout_marginRight="@dimen/dp35"
+        android:layout_marginLeft="@dimen/dp35"
+        />
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp320"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_card"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp18"
+        android:text="如上图 :请输入卡片背面的芯片内码激动卡片,激活成功之后再次刷卡领取垃圾袋"
+        android:lineSpacingMultiplier="1.5"
+        android:textColor="@color/black"
+        android:padding="@dimen/dp6"/>
+
+    <EditText
+        android:id="@+id/etCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:hint="请输入"
+        android:padding="@dimen/dp18"
+        android:inputType="number"
+        android:maxLength="10"
+        android:digits="1234567890"
+        android:imeOptions="actionDone"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/btSumbit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="激活"
+        android:padding="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp36"
+        android:layout_marginRight="@dimen/dp36"
+        android:layout_marginTop="@dimen/dp30"
+        android:textSize="@dimen/sp18"
+        android:background="@drawable/bg_theme_shape"/>
+
+
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp14"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp6"
+        android:text="请在80秒内完成"
+        android:lineSpacingMultiplier="1.5"
+        android:textColor="#f00"
+        android:padding="@dimen/dp6"/>
+
+</LinearLayout>

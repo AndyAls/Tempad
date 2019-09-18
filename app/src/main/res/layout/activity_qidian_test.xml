@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:orientation="vertical">
+        <Button
+
+            android:id="@+id/bt0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="返回"/>
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF6D00"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:text="下面是扫码用户获取的数据:"/>
+
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#FF6D00"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:text="下面是扫码用户获取的数据:"/>
+
+
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#C51162"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp30"
+            android:text="下面是扫码用户获取的数据:"/>
+
+
+        <Button
+
+            android:id="@+id/bt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp5"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold"
+            android:text="点击发送清除结果的数据"/>
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#C51162"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:text="下面是扫码用户获取的数据:"/>
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#C51162"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="下面是扫码用户获取的数据:"/>
+
+
+
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp30"
+            android:text="20 00 02 04 01 00 00 32 15"/>
+
+
+        <Button
+
+            android:id="@+id/bt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="点击发送出货"/>
+
+        <TextView
+            android:id="@+id/tv7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:text="下面是扫码用户获取的数据:"/>
+
+        <TextView
+            android:id="@+id/tv8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00C853"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="下面是扫码用户获取的数据:"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#6200EA"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp50"
+            android:text="===========下面是不断读取状态的数据========="/>
+
+
+        <TextView
+            android:id="@+id/tv9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#6200EA"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="ssss"/>
+
+        <TextView
+            android:id="@+id/tv10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#6200EA"
+            android:textSize="@dimen/dp16"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="="/>
+
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

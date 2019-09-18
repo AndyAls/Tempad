@@ -23,14 +23,20 @@ import java.security.InvalidParameterException;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import android_serialport_api.SerialPort;
 import android_serialport_api.SerialPortFinder;
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 import cat.ereza.customactivityoncrash.activity.DefaultErrorActivity;
 import cat.ereza.customactivityoncrash.config.CaocConfig;
 import padd.qlckh.cn.tempad.ApiService;
+import padd.qlckh.cn.tempad.CommUtils;
 import padd.qlckh.cn.tempad.Constant;
+import padd.qlckh.cn.tempad.CustomErrorActivity;
+import padd.qlckh.cn.tempad.QidianActivity;
 import padd.qlckh.cn.tempad.R;
+import padd.qlckh.cn.tempad.TestActivity;
 import padd.qlckh.cn.tempad.WelcomeActivity;
 import padd.qlckh.cn.tempad.XLog;
 import padd.qlckh.cn.tempad.http.RxHttpUtils;
@@ -57,7 +63,10 @@ public class App extends Application {
         super.onCreate();
         initHttp();
         initCarsh();
-
+        CrashReport.UserStrategy userStrategy = new CrashReport.UserStrategy(this);
+        userStrategy.setDeviceID(CommUtils.getIMEI(this));
+        CrashReport.setUserId(CommUtils.getIMEI(this));
+        CrashReport.initCrashReport(getApplicationContext(), "6f38b53273", false,userStrategy);
     }
 
     private void initCarsh() {
@@ -68,15 +77,15 @@ public class App extends Application {
                 //BackgroundMode.BACKGROUND_MODE_SHOW_CUSTOM: //当应用程序处于后台时崩溃，也会启动错误页面，
                 //BackgroundMode.BACKGROUND_MODE_CRASH:      //当应用程序处于后台崩溃时显示默认系统错误（一个系统提示的错误对话框），
                 //BackgroundMode.BACKGROUND_MODE_SILENT:     //当应用程序处于后台时崩溃，默默地关闭程序！
-                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT)
+                .backgroundMode(CaocConfig.BACKGROUND_MODE_CRASH)
                 .enabled(true)     //false表示对崩溃的拦截阻止。用它来禁用customactivityoncrash框架
                 .showErrorDetails(true) //这将隐藏错误活动中的“错误详细信息”按钮，从而隐藏堆栈跟踪,—》针对框架自带程序崩溃后显示的页面有用(DefaultErrorActivity)。。
                 .showRestartButton(true)    //是否可以重启页面,针对框架自带程序崩溃后显示的页面有用(DefaultErrorActivity)。
                 .trackActivities(true)     //错误页面中显示错误详细信息；针对框架自带程序崩溃后显示的页面有用(DefaultErrorActivity)。
-                .minTimeBetweenCrashesMs(2000)      //定义应用程序崩溃之间的最短时间，以确定我们不在崩溃循环中。比如：在规定的时间内再次崩溃，框架将不处理，让系统处理！
+                .minTimeBetweenCrashesMs(500)      //定义应用程序崩溃之间的最短时间，以确定我们不在崩溃循环中。比如：在规定的时间内再次崩溃，框架将不处理，让系统处理！
                 .errorDrawable(R.mipmap.ic_launcher)     //崩溃页面显示的图标
-                .restartActivity(WelcomeActivity.class)      //重新启动后的页面
-                .errorActivity(DefaultErrorActivity.class) //程序崩溃后显示的页面
+                .restartActivity(TestActivity.class)      //重新启动后的页面
+                .errorActivity(CustomErrorActivity.class) //程序崩溃后显示的页面
                 .apply();
     }
 
@@ -133,6 +142,9 @@ public class App extends Application {
             SharedPreferences ssp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String scanNode = ssp.getString(Constant.SCAN_NODE, "");
             int scanRate = Integer.decode(ssp.getString(Constant.SCAN_RATE, "-1"));
+//            String scanNode ="/dev/ttyO4";
+//            //9600
+//            int scanRate = 9600;
             mScanManager.openSerialPort(new File(scanNode), scanRate);
         }
         return mScanManager;
@@ -156,6 +168,8 @@ public class App extends Application {
             SharedPreferences psp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String panelNode = psp.getString(Constant.PANEL_NODE, "");
             int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
+//            String panelNode ="/dev/ttyO3";
+//            int panelRate = 38400;
             mPanelManager.openSerialPort(new File(panelNode), panelRate);
         }
         return mPanelManager;

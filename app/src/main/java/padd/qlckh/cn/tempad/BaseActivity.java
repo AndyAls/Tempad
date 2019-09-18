@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import padd.qlckh.cn.tempad.manager.SerialPortManager;
 import padd.qlckh.cn.tempad.serial.App;
+import padd.qlckh.cn.tempad.view.IToast;
 
 import static android.os.Build.getSerial;
 
@@ -54,7 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //横屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getContentView());
         // 全屏显示
@@ -149,12 +150,14 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     //<editor-fold desc="基类抽取">
     protected void showShort(String msg) {
-
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+        IToast.Config build = new IToast.Builder().setTextSize(28).build();
+        IToast.showShort(msg,build);
     }
 
     protected void showLong(String msg) {
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+
+        IToast.Config build = new IToast.Builder().setTextSize(28).build();
+        IToast.showLong(msg,build);
     }
 
     protected boolean isEmpty(Object msg){

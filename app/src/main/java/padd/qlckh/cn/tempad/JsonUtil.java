@@ -1,6 +1,8 @@
 package padd.qlckh.cn.tempad;
 
 import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 
 import java.util.List;
@@ -37,5 +39,16 @@ public class JsonUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public static boolean isJsonValid(String json){
+        try {
+            Object parse = JSON.parse(json);
+            return json.contains("{");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

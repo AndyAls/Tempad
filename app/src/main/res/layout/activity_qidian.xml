@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_theme_shape"
+    android:orientation="vertical">
+
+    <padd.qlckh.cn.tempad.view.ShimmerTextView
+        android:id="@+id/tvComp"
+        android:textColor="@color/white"
+        android:text="杭州淇点智能环保科技有限公司"
+        android:textSize="@dimen/sp23"
+        android:drawableLeft="@drawable/app_icons"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:drawablePadding="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp23"
+        android:text="垃圾分类,家园更美"
+        android:layout_below="@id/tvComp"
+        android:layout_marginTop="@dimen/dp10"
+        android:textColor="#1B9E1B"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp35"
+        android:text=""
+        android:layout_below="@id/tvD"
+        android:layout_marginTop="@dimen/dp80"
+        android:textColor="#ff33cc"
+        android:gravity="center"/>
+
+
+    <TextView
+        android:id="@+id/tv_statu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp40"
+        android:text="欢迎领取垃圾袋!!"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dp60"
+        android:textColor="@color/white"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_statu"
+        android:visibility="visible"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/tv7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

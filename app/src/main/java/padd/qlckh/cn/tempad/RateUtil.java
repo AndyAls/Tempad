@@ -138,6 +138,25 @@ public class RateUtil {
         return arr;
     }
 
+
+    /**
+     * 每两个分一组
+     * @param datas
+     * @return
+     */
+    public static String[] group2(String datas) {
+        String[] arr = new String[datas.length() % 2 == 0 ? datas.length() / 2 : datas.length() / 2 + 1];
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (index + 2 > datas.length()) {
+                arr[i] = datas.substring(index);
+            } else {
+                arr[i] = datas.substring(index, (index = index + 2));
+            }
+        }
+        return arr;
+    }
+
     /**
      * 选出一个称重和上次提交的总重量最大的
      */

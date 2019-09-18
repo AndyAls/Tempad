@@ -44,4 +44,21 @@ public interface Constant {
      */
     String PRINT_NODE="PRINT_NODE";
     String PRINT_RATE="PRINT_RATE";
+
+
+    /*===============================================================================================*/
+
+
+    /**
+     * 读取机器状态的指令
+     */
+    String QIAN_READ_STATUS="2000010021";
+    /**
+     * 清除运行结果指令
+     */
+    String QIAN_CLEAR="2000030023";
+    /**
+     * 双反馈 5秒超时
+     */
+    String QIAN_TURN="20000204****0032";
 }

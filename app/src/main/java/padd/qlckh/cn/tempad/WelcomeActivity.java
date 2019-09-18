@@ -33,7 +33,7 @@ public class WelcomeActivity extends BaseActivity {
                 1.0f, 1.5f, 1.0f, 1.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
         );
-        animation.setRepeatCount(0);
+        animation.setRepeatMode(Animation.RESTART);
         animation.setDuration(2000);
         animation.setFillAfter(true);
         iv.startAnimation(animation);

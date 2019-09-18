@@ -140,17 +140,19 @@ public class TestActivity extends BaseActivity {
     private void handScan(Message msg) {
         byte[]bytes = (byte[]) msg.obj;
         qing1.append(Arrays.toString(bytes));
-        b.append(ConvertUtils.bytes2HexString(bytes));
-        if (b.length()==20){
+        qing2.append(new String(bytes));
+        qing3.append(ConvertUtils.bytes2HexString(bytes));
+       /* b.append(ConvertUtils.bytes2HexString(bytes));
+        if (b.length()==24){
             String conver = b.toString();
             qing3.setText(conver);
-            b.delete(0,20);
+            b.delete(0,24);
         }
         b1.append(new String(bytes));
         if (b1.length()==10){
             qing2.setText(b1.toString());
             b1.delete(0,10);
-        }
+        }*/
     }
 
     @Override
