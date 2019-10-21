@@ -22,7 +22,7 @@ public interface ApiService {
 
 //    String BASE_URL="http://chunlv.hanziyi.cn/";
     String BASE_URL="http://qidian.365igc.cn/api/";
-    long DEFAULT_TIME=20;
+    long DEFAULT_TIME=30;
 
     /**
      * 投放

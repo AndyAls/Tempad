@@ -306,7 +306,12 @@ public class QidianActivity extends BaseActivity {
                     if (s.length() == 9) {
                         s = "0" + s;
                     } else if (s.length() < 9) {
-                        s = "00" + s;
+                        int i = 10 - s.length();
+                        StringBuilder sb = new StringBuilder();
+                        for (int k = 0; k < i; k++) {
+                            sb.append("0");
+                        }
+                        s=sb.toString()+s;
                     }
                     scanResult(s, "");
 

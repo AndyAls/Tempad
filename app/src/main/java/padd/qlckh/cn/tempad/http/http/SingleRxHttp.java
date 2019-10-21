@@ -270,11 +270,11 @@ public class SingleRxHttp {
                     .addInterceptor(new ReceivedCookiesInterceptor());
         }
 
-        singleOkHttpBuilder.readTimeout(readTimeout > 0 ? readTimeout : 10, TimeUnit.SECONDS);
+        singleOkHttpBuilder.readTimeout(readTimeout > 0 ? readTimeout : 30, TimeUnit.SECONDS);
 
-        singleOkHttpBuilder.writeTimeout(writeTimeout > 0 ? writeTimeout : 10, TimeUnit.SECONDS);
+        singleOkHttpBuilder.writeTimeout(writeTimeout > 0 ? writeTimeout : 30, TimeUnit.SECONDS);
 
-        singleOkHttpBuilder.connectTimeout(connectTimeout > 0 ? connectTimeout : 10, TimeUnit.SECONDS);
+        singleOkHttpBuilder.connectTimeout(connectTimeout > 0 ? connectTimeout : 30, TimeUnit.SECONDS);
 
         if (sslParams != null) {
             singleOkHttpBuilder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
