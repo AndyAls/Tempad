@@ -14,6 +14,9 @@ public interface OnOpenSerialPortListener {
     void onFail(File device, Status status);
 
     enum Status {
+        /**
+         * 打开串口监听
+         */
         NO_READ_WRITE_PERMISSION,
         OPEN_FAIL
     }
