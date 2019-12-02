@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/sp30"
-        android:text="andy"
+        android:text="--"
         android:layout_marginTop="@dimen/dp60"
         android:textColor="#ff33cc"
         android:gravity="center"/>

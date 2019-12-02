@@ -84,7 +84,7 @@ public class App extends Application {
                 .trackActivities(true)     //错误页面中显示错误详细信息；针对框架自带程序崩溃后显示的页面有用(DefaultErrorActivity)。
                 .minTimeBetweenCrashesMs(500)      //定义应用程序崩溃之间的最短时间，以确定我们不在崩溃循环中。比如：在规定的时间内再次崩溃，框架将不处理，让系统处理！
                 .errorDrawable(R.mipmap.ic_launcher)     //崩溃页面显示的图标
-                .restartActivity(TestActivity.class)      //重新启动后的页面
+                .restartActivity(QidianActivity.class)      //重新启动后的页面
                 .errorActivity(CustomErrorActivity.class) //程序崩溃后显示的页面
                 .apply();
     }
@@ -140,11 +140,11 @@ public class App extends Application {
         if (mScanManager == null) {
             mScanManager = new SerialPortManager();
             SharedPreferences ssp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
-            String scanNode = ssp.getString(Constant.SCAN_NODE, "");
-            int scanRate = Integer.decode(ssp.getString(Constant.SCAN_RATE, "-1"));
-//            String scanNode ="/dev/ttyO4";
-//            //9600
-//            int scanRate = 9600;
+//            String scanNode = ssp.getString(Constant.SCAN_NODE, "");
+//            int scanRate = Integer.decode(ssp.getString(Constant.SCAN_RATE, "-1"));
+            String scanNode ="/dev/ttyO4";
+            //9600
+            int scanRate = 9600;
             mScanManager.openSerialPort(new File(scanNode), scanRate);
         }
         return mScanManager;
@@ -166,10 +166,10 @@ public class App extends Application {
         if (mPanelManager == null) {
             mPanelManager = new SerialPortManager();
             SharedPreferences psp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
-            String panelNode = psp.getString(Constant.PANEL_NODE, "");
-            int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
-//            String panelNode ="/dev/ttyO3";
-//            int panelRate = 38400;
+//            String panelNode = psp.getString(Constant.PANEL_NODE, "");
+//            int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
+            String panelNode ="/dev/ttyO3";
+            int panelRate = 38400;
             mPanelManager.openSerialPort(new File(panelNode), panelRate);
         }
         return mPanelManager;
