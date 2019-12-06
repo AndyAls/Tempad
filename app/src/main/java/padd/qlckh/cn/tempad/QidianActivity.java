@@ -230,6 +230,7 @@ public class QidianActivity extends BaseActivity {
 
     private void postData(int status) {
         loading();
+        if (scanDao==null){return;}
         tv3.setText("提交传参" + "id=" + scanDao.getId() + "status=" + status + "code=" + CommUtils.getIMEI(this) + "h_code=" + scanDao.getH_code());
         RxHttpUtils.createApi(ApiService.class)
                 .bindUser(scanDao.getId(), status, CommUtils.getIMEI(this), scanDao.getH_code())
