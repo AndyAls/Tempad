@@ -2,7 +2,6 @@ package padd.qlckh.cn.tempad;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
@@ -14,10 +13,10 @@ import java.io.File;
 import java.util.TimerTask;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import padd.qlckh.cn.tempad.http.RxHttpUtils;
 import padd.qlckh.cn.tempad.http.interceptor.Transformer;
 import padd.qlckh.cn.tempad.http.observer.CommonObserver;
+import padd.qlckh.cn.tempad.http.utils.SPUtils;
 import padd.qlckh.cn.tempad.manager.OnOpenSerialPortListener;
 import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener;
 
@@ -56,7 +55,7 @@ public class QidianActivity extends BaseActivity {
     private int scanRate;
     private MyTimeTask task;
     private boolean canScan = true;
-    private int scanCount=0;
+    private int scanCount = 0;
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -74,7 +73,7 @@ public class QidianActivity extends BaseActivity {
                     } else {
                         showLong("正在出货,请稍后刷卡重试...");
                         scanCount++;
-                        if (scanCount==2){
+                        if (scanCount == 2) {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -172,6 +171,7 @@ public class QidianActivity extends BaseActivity {
                             public void run() {
 
                                 postData(1);
+                                SPUtils.put(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, String.valueOf(System.currentTimeMillis()));
                             }
                         }, 1000);
 
@@ -229,14 +229,19 @@ public class QidianActivity extends BaseActivity {
     }
 
     private void postData(int status) {
+        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, status);
         loading();
+        if (scanDao == null) {
+            return;
+        }
         tv3.setText("提交传参" + "id=" + scanDao.getId() + "status=" + status + "code=" + CommUtils.getIMEI(this) + "h_code=" + scanDao.getH_code());
         RxHttpUtils.createApi(ApiService.class)
-                .bindUser(scanDao.getId(), status, CommUtils.getIMEI(this), scanDao.getH_code())
+                .bindUser(scanDao.getId(), status, CommUtils.getIMEI(this), scanDao.getH_code(), scanDao.getH_code_id())
                 .compose(Transformer.<Object>switchSchedulers())
                 .subscribe(new CommonObserver<Object>() {
                     @Override
                     protected void onError(String errorMsg) {
+//                        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, 0);
                         if (j != 0) {
                             j = 0;
                         }
@@ -253,6 +258,7 @@ public class QidianActivity extends BaseActivity {
 
                     @Override
                     protected void onSuccess(Object responeDao) {
+//                        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, 1);
                         cancelLoading();
                         if (j != 0) {
                             j = 0;
@@ -284,6 +290,7 @@ public class QidianActivity extends BaseActivity {
     StringBuffer buffer1 = new StringBuffer();
 
     private void handScan(byte[] obj) {
+
         i += 1;
         String result = new String(obj);
 //        tvName.append(result+i+ConvertUtils.bytes2HexString(obj));
@@ -311,7 +318,7 @@ public class QidianActivity extends BaseActivity {
                         for (int k = 0; k < i; k++) {
                             sb.append("0");
                         }
-                        s=sb.toString()+s;
+                        s = sb.toString() + s;
                     }
                     scanResult(s, "");
 
@@ -343,10 +350,18 @@ public class QidianActivity extends BaseActivity {
     }
 
     private void scanResult(final String id, String ids) {
-        tv1.setText("扫描传参" + "id=" + id + "----ids=" + ids + "------getIMEI=" + CommUtils.getIMEI(this));
+        tv1.setText("扫描传参" + "id=" + id + "----ids=" + ids + "------getIMEI=" + CommUtils.getIMEI(this)
+                + "----qrenId=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ID_KEY, "")
+                + "----flag=" + (int) SPUtils.get(QidianActivity.this, Constant.QIREN_FLAG_KEY, 1)
+                + "----h_code_id=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_HCODE_ID_KEY, "")
+                + "----addtime=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, ""));
         loading();
         RxHttpUtils.createApi(ApiService.class)
-                .scanResult(id, ids, CommUtils.getIMEI(this))
+                .scanResult(id, ids, CommUtils.getIMEI(this),
+                        (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ID_KEY, ""),
+                        (int) SPUtils.get(QidianActivity.this, Constant.QIREN_FLAG_KEY, 1),
+                        (String) SPUtils.get(QidianActivity.this, Constant.QIREN_HCODE_ID_KEY, ""),
+                        (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, ""))
 //                .scanResult("4017515658", ids, "867012039777450")
                 .compose(Transformer.<ScanDao>switchSchedulers())
                 .subscribe(new CommonObserver<ScanDao>() {
@@ -387,6 +402,8 @@ public class QidianActivity extends BaseActivity {
 //                        tvStatu.setText(JsonUtil.object2Json(responeDao));
                             if ("0".equals(scanDao.getStatus())) {
                                 mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(Constant.QIAN_CLEAR));
+                                SPUtils.put(QidianActivity.this, Constant.QIREN_ID_KEY, scanDao.getId());
+//                                SPUtils.put(QidianActivity.this, Constant.QIREN_HCODE_ID_KEY, scanDao.getH_code_id());
                             }
                             //用户没关联上去
                             else if ("3".equals(scanDao.getStatus())) {

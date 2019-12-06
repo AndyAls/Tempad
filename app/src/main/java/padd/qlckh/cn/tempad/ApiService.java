@@ -20,31 +20,34 @@ import retrofit2.http.Query;
 public interface ApiService {
 
 
-//    String BASE_URL="http://chunlv.hanziyi.cn/";
-    String BASE_URL="http://qidian.365igc.cn/api/";
-    long DEFAULT_TIME=60;
+    //    String BASE_URL="http://chunlv.hanziyi.cn/";
+    String BASE_URL = "http://qidian.365igc.cn/api/";
+    long DEFAULT_TIME = 60;
 
     /**
      * 投放
      */
     @FormUrlEncoded
     @POST("index.php/api/suggest/zhong")
-    Observable<RequestDao> push(@FieldMap Map<String,String>parms);
+    Observable<RequestDao> push(@FieldMap Map<String, String> parms);
 
     @GET("index.php/api/suggest/suoyou")
-    Observable<ResponeDao> query(@Query("id")String userId, @Query("wyid")String wyid);
+    Observable<ResponeDao> query(@Query("id") String userId, @Query("wyid") String wyid);
 
     @GET("index.php/api/suggest/xyg")
-    Observable<RateDao> queryRate(@Query("code")String userId);
+    Observable<RateDao> queryRate(@Query("code") String userId);
 
 
     @GET("jqi/index")
-    Observable<ScanDao> scanResult(@Query("id")String id,@Query("ids") String ids,@Query("code") String code);
+    Observable<ScanDao> scanResult(@Query("id") String id, @Query("ids") String ids, @Query("code") String code,
+                                   @Query("id_qren") String id_qren, @Query("flag") int flag,
+                                   @Query("h_code_id") String h_code_id,@Query("addtime") String addtime);
 
 
     @FormUrlEncoded
     @POST("jqi/fan")
-    Observable<Object> bindUser(@Field("id") String id, @Field("status") int status,  @Field("code") String code, @Field("h_code") String h_code);
+    Observable<Object> bindUser(@Field("id") String id, @Field("status") int status, @Field("code") String code, @Field("h_code") String h_code,
+                                @Field("h_code_id") String h_code_id );
 
     @FormUrlEncoded
     @POST("jqi/bding")

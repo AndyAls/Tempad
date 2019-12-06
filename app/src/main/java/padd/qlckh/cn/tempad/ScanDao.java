@@ -98,6 +98,15 @@ public class ScanDao {
         private String n_code;
         private String h_code;
         private String status;
+        private String h_code_id;
+
+        public String getH_code_id() {
+            return h_code_id;
+        }
+
+        public void setH_code_id(String h_code_id) {
+            this.h_code_id = h_code_id;
+        }
 
         public String getId() {
             return id;
