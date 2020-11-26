@@ -163,7 +163,7 @@ public class TestActivity extends BaseActivity {
     @Override
     public void initView() {
 
-        initNoteAndRote();
+//        initNoteAndRote();
         setSerialListener();
 
     }

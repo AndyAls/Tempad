@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/dp10"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/rlDianchi"
+            android:layout_width="396px"
+            android:layout_height="277px"
+            android:background="@drawable/garbage_background">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/ds" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_garbage_btn"
+                android:gravity="center"
+                android:text="电池"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlBoli"
+            android:layout_width="396px"
+            android:layout_height="277px"
+            android:layout_marginLeft="@dimen/dp10"
+            android:background="@drawable/garbage_background">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/bl" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_garbage_btn"
+                android:gravity="center"
+                android:text="玻璃"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/rlJinshu"
+            android:layout_width="396px"
+            android:layout_height="277px"
+            android:background="@drawable/garbage_background">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/js" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_garbage_btn"
+                android:gravity="center"
+                android:text="金属"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSuliao"
+            android:layout_width="396px"
+            android:layout_height="277px"
+            android:layout_marginLeft="@dimen/dp10"
+            android:background="@drawable/garbage_background">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/dp10"
+                android:src="@drawable/sl" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_garbage_btn"
+                android:gravity="center"
+                android:text="塑料"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="投放方法说明:"
+        android:textColor="#2E8579"
+        android:textSize="@dimen/sp16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp5"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:lineSpacingExtra="@dimen/dp2"
+        android:text="@string/home_msg"
+        android:textColor="@color/yi_text_color"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp12" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/dp10"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_service"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp14"
+            android:textColor="#2E8579"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="客服热线:    85070000"/>
+    </LinearLayout>
+
+
+</LinearLayout>

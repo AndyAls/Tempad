@@ -1,5 +1,6 @@
 package padd.qlckh.cn.tempad
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.telephony.TelephonyManager
 
@@ -15,6 +16,7 @@ object CommUtils {
      *
      * @return
      */
+    @SuppressLint("MissingPermission")
     @JvmStatic
     fun getIMEI(context: Context): String {
         val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager

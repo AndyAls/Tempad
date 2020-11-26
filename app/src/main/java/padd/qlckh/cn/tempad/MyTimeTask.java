@@ -24,7 +24,7 @@ public class MyTimeTask {
     }
 
     public void start(){
-        timer.schedule(task, 2000, time);//每隔time时间段就执行一次
+        timer.schedule(task, 1000, time);//每隔time时间段就执行一次
     }
 
     public void stop(){

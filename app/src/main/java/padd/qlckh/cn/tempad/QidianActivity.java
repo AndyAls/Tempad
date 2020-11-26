@@ -26,7 +26,7 @@ import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener;
  * Desc:
  */
 public class QidianActivity extends BaseActivity {
-    private static final long TASK_DELAY_TIME = 2500L;
+    private static final long TASK_DELAY_TIME = 100L;
     private static final int TIMER = 299993;
 
     private static final int SCAN_WHAT = 1010100;
@@ -35,7 +35,7 @@ public class QidianActivity extends BaseActivity {
     TextView tvName;
     @BindView(R.id.tv_statu)
     TextView tvStatu;
-    @BindView(R.id.tv1)
+    /*@BindView(R.id.tv1)
     TextView tv1;
     @BindView(R.id.tv2)
     TextView tv2;
@@ -49,6 +49,8 @@ public class QidianActivity extends BaseActivity {
     TextView tv6;
     @BindView(R.id.tv7)
     TextView tv7;
+    @BindView(R.id.tv8)
+    TextView tv8;*/
     private String panelNode;
     private int panelRate;
     private String scanNode;
@@ -56,6 +58,7 @@ public class QidianActivity extends BaseActivity {
     private MyTimeTask task;
     private boolean canScan = true;
     private int scanCount = 0;
+    private int k = 0;
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -77,7 +80,7 @@ public class QidianActivity extends BaseActivity {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    restart();
+//                                    restart();
                                 }
                             }, 10000);
                         }
@@ -102,13 +105,24 @@ public class QidianActivity extends BaseActivity {
         String result1 = ConvertUtils.bytes2HexString(obj);
         bufferPanl.append(result1);
 
+        if (scanDao == null) {
+            return;
+        }
+        k++;
         if (j == 2) {
             String result = bufferPanl.toString();
+//            tv8.setText("接收到了清除信号" + k + "==" + result);
             //清除结果
-            if (result.toUpperCase().substring(4, 6).equals("A3")) {
+//            if (result.toUpperCase().substring(4, 6).equals("A3")) {
+
+            if (result.toUpperCase().contains("A3") && "3".equals((result.toUpperCase().charAt(result.toUpperCase().indexOf("A") + 1)) + "")) {
                 //清除之后要发送电机转动
                 String h_code = scanDao.getH_code();
                 if (isEmpty(h_code)) {
+
+                    if (tvStatu==null){
+                        return;
+                    }
                     j = 0;
                     canScan = true;
                     bufferPanl.delete(0, bufferPanl.toString().length());
@@ -116,7 +130,12 @@ public class QidianActivity extends BaseActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+
+                            if (tvStatu==null){
+                                return;
+                            }
                             tvStatu.setText("欢迎领取垃圾袋!!");
+
                         }
                     }, 1000);
                     return;
@@ -124,19 +143,26 @@ public class QidianActivity extends BaseActivity {
                 String replace = Constant.QIAN_TURN.replace("****", h_code);
                 final String turn = CommUtils.addCheckNum(replace);
 
-                tv6.setText("出货-->" + turn + "\n--->" + h_code);
+//                tv6.setText("出货-->" + turn + "\n--->" + h_code);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
+                        if (tvStatu==null){
+                            return;
+                        }
                         mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(turn));
-                        tvStatu.setText("正在出货...");
+                        tvStatu.setText("正在出货..." );
                     }
-                }, 1000);
+                }, 1500);
 
             }
             //发动机转一圈 后 要定时检查机器状态
-            if (result.toUpperCase().substring(4, 6).equals("A2")) {
-                if (task == null) {
+//            if (result.toUpperCase().substring(4, 6).equals("A2")) {
+            if (result.toUpperCase().contains("A2") && "2".equals((result.toUpperCase().charAt(result.toUpperCase().indexOf("A") + 1)) + "")) {
+                SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, 1);
+//                tv8.setText("发动机转一圈" + k + "==" + result);
+               /* if (task == null) {
                     task = new MyTimeTask(TASK_DELAY_TIME, new TimerTask() {
                         @Override
                         public void run() {
@@ -144,16 +170,38 @@ public class QidianActivity extends BaseActivity {
                         }
                     });
                 }
-                task.start();
+                task.start();*/
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (tvStatu==null){
+                            return;
+                        }
+                        tvStatu.setText("出货成功!");
+                        postData(1);
+                        SPUtils.put(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, String.valueOf(System.currentTimeMillis()));
+                    }
+                }, 1000);
             }
             //读取机器状态
-            if (result.toUpperCase().substring(4, 6).equals("A1")) {
+//            if (result.toUpperCase().substring(4, 6).equals("A1")) {
+            if (result.toUpperCase().contains("A1") && "1".equals((result.toUpperCase().charAt(result.toUpperCase().indexOf("A") + 1)) + "")) {
                 //读取出货结果: 20 00 A1 03 00 00 1A 98
                 //0: 空闲等待
                 //1: 正在出货
                 //2: 出货成功
                 //3: 出货失败
-                String status = result.substring(10, 12);
+                String status = "";
+                if (result.length() == 16) {
+                    status = result.substring(10, 12);
+                } else if (result.length() == 14) {
+                    status = result.substring(8, 10);
+                } else {
+                    status = "02";
+                }
+
                 switch (status) {
                     case "00":
                         tvStatu.setText("空闲等待");
@@ -165,7 +213,7 @@ public class QidianActivity extends BaseActivity {
                     case "02":
                         task.stop();
                         task = null;
-                        tvStatu.setText("出货成功!");
+                       /* tvStatu.setText("出货成功!");
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -173,7 +221,7 @@ public class QidianActivity extends BaseActivity {
                                 postData(1);
                                 SPUtils.put(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, String.valueOf(System.currentTimeMillis()));
                             }
-                        }, 1000);
+                        }, 1000);*/
 
                         break;
                     case "03":
@@ -186,7 +234,7 @@ public class QidianActivity extends BaseActivity {
                             public void run() {
                                 postData(0);
                             }
-                        }, 3000);
+                        }, 1000);
                         break;
                     default:
                 }
@@ -200,22 +248,22 @@ public class QidianActivity extends BaseActivity {
                 String machine = result.substring(8, 10);
                 switch (machine) {
                     case "00":
-                        tv7.setText("机器正常");
+//                        tv7.setText("机器正常");
                         break;
                     case "01":
-                        tv7.setText("电机未接入或霍尔板有问题。");
+//                        tv7.setText("电机未接入或霍尔板有问题。");
                         break;
                     case "02":
-                        tv7.setText("电机运行超时。");
+//                        tv7.setText("电机运行超时。");
                         break;
                     case "03":
-                        tv7.setText("电机编号错误");
+//                        tv7.setText("电机编号错误");
                         break;
                     case "04":
-                        tv7.setText("红外线通信失败。");
+//                        tv7.setText("红外线通信失败。");
                         break;
                     case "05":
-                        tv7.setText("红外线被阻挡。");
+//                        tv7.setText("红外线被阻挡。");
                         break;
                     default:
                 }
@@ -229,19 +277,22 @@ public class QidianActivity extends BaseActivity {
     }
 
     private void postData(int status) {
-        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, status);
         loading();
         if (scanDao == null) {
             return;
         }
-        tv3.setText("提交传参" + "id=" + scanDao.getId() + "status=" + status + "code=" + CommUtils.getIMEI(this) + "h_code=" + scanDao.getH_code());
+        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, status);
+//        tv3.setText("提交传参" + "id=" + scanDao.getId() + "status=" + status + "code=" + CommUtils.getIMEI(this) + "h_code=" + scanDao.getH_code());
         RxHttpUtils.createApi(ApiService.class)
                 .bindUser(scanDao.getId(), status, CommUtils.getIMEI(this), scanDao.getH_code(), scanDao.getH_code_id())
                 .compose(Transformer.<Object>switchSchedulers())
                 .subscribe(new CommonObserver<Object>() {
                     @Override
                     protected void onError(String errorMsg) {
-//                        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, 0);
+
+                        if (tvName==null&&tvStatu==null){
+                            return;
+                        }
                         if (j != 0) {
                             j = 0;
                         }
@@ -258,7 +309,10 @@ public class QidianActivity extends BaseActivity {
 
                     @Override
                     protected void onSuccess(Object responeDao) {
-//                        SPUtils.put(QidianActivity.this, Constant.QIREN_FLAG_KEY, 1);
+
+                        if (tvName==null&&tvStatu==null){
+                            return;
+                        }
                         cancelLoading();
                         if (j != 0) {
                             j = 0;
@@ -267,7 +321,7 @@ public class QidianActivity extends BaseActivity {
                             bufferPanl.delete(0, bufferPanl.toString().length());
                         }
                         tvName.setText("");
-                        tv4.setText(JsonUtil.object2Json(responeDao));
+//                        tv4.setText(JsonUtil.object2Json(responeDao));
                         tvStatu.setText("欢迎领取垃圾袋!!");
                         canScan = true;
                         restart();
@@ -296,7 +350,7 @@ public class QidianActivity extends BaseActivity {
 //        tvName.append(result+i+ConvertUtils.bytes2HexString(obj));
         buffer.append(result);
         buffer1.append(ConvertUtils.bytes2HexString(obj));
-        tv5.setText(buffer.toString() + "====" + i + "-->\n");
+//        tv5.setText(buffer.toString() + "====" + i + "-->\n");
         if (i == 2) {
             canScan = false;
             if (JsonUtil.isJsonValid(buffer.toString())) {
@@ -323,6 +377,10 @@ public class QidianActivity extends BaseActivity {
                     scanResult(s, "");
 
                 } catch (Exception e) {
+
+                    if (tvStatu==null){
+                        return;
+                    }
                     e.printStackTrace();
                     tvStatu.setText("反码出现异常,请联系客服解决");
                     new Handler().postDelayed(new Runnable() {
@@ -333,6 +391,10 @@ public class QidianActivity extends BaseActivity {
                             }
                             if (buffer.toString().length() > 0) {
                                 buffer.delete(0, buffer.toString().length());
+                            }
+
+                            if (tvStatu==null){
+                                return;
                             }
                             tvStatu.setText("欢迎领取垃圾袋!!");
                             canScan = true;
@@ -350,11 +412,11 @@ public class QidianActivity extends BaseActivity {
     }
 
     private void scanResult(final String id, String ids) {
-        tv1.setText("扫描传参" + "id=" + id + "----ids=" + ids + "------getIMEI=" + CommUtils.getIMEI(this)
+        /*tv1.setText("扫描传参" + "id=" + id + "----ids=" + ids + "------getIMEI=" + CommUtils.getIMEI(this)
                 + "----qrenId=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ID_KEY, "")
                 + "----flag=" + (int) SPUtils.get(QidianActivity.this, Constant.QIREN_FLAG_KEY, 1)
                 + "----h_code_id=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_HCODE_ID_KEY, "")
-                + "----addtime=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, ""));
+                + "----addtime=" + (String) SPUtils.get(QidianActivity.this, Constant.QIREN_ADDTIEM_KEY, ""));*/
         loading();
         RxHttpUtils.createApi(ApiService.class)
                 .scanResult(id, ids, CommUtils.getIMEI(this),
@@ -368,6 +430,10 @@ public class QidianActivity extends BaseActivity {
                     @Override
                     protected void onError(String errorMsg) {
                         cancelLoading();
+
+                        if (tvName==null&&tvStatu==null){
+                            return;
+                        }
                         if (i != 0) {
                             i = 0;
                         }
@@ -381,6 +447,10 @@ public class QidianActivity extends BaseActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+
+                                if (tvStatu==null){
+                                    return;
+                                }
                                 tvStatu.setText("欢迎领取垃圾袋!!");
                             }
                         }, 1000);
@@ -395,15 +465,33 @@ public class QidianActivity extends BaseActivity {
                         if (buffer.toString().length() > 0) {
                             buffer.delete(0, buffer.toString().length());
                         }
-                        tv2.setText("扫描获取的数据=" + JsonUtil.object2Json(responeDao) + "\n" + JsonUtil.object2Json(responeDao.getData()));
+//                        tv2.setText("扫描获取的数据=" + JsonUtil.object2Json(responeDao) + "\n" + JsonUtil.object2Json(responeDao.getData()));
                         scanDao = responeDao.getData();
                         if ("1".equals(responeDao.getStatus())) {
+
+                            if (tvName==null){
+                                return;
+                            }
                             tvName.setText(scanDao.getFullname());
 //                        tvStatu.setText(JsonUtil.object2Json(responeDao));
                             if ("0".equals(scanDao.getStatus())) {
-                                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(Constant.QIAN_CLEAR));
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+//                                        tv8.setText("发动清除状态信号");
+                                        mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(Constant.QIAN_CLEAR));
+                                    }
+                                }, 1000);
+
                                 SPUtils.put(QidianActivity.this, Constant.QIREN_ID_KEY, scanDao.getId());
-//                                SPUtils.put(QidianActivity.this, Constant.QIREN_HCODE_ID_KEY, scanDao.getH_code_id());
+                                SPUtils.put(QidianActivity.this, Constant.QIREN_HCODE_ID_KEY, scanDao.getH_code_id());
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        canScan = true;
+                                    }
+                                }, 180000);
                             }
                             //用户没关联上去
                             else if ("3".equals(scanDao.getStatus())) {
@@ -416,12 +504,20 @@ public class QidianActivity extends BaseActivity {
 
                                 canScan = true;
                             } else {
+
+                                if (tvName==null&&tvStatu==null){
+                                    return;
+                                }
                                 canScan = true;
                                 tvName.setText("");
                                 tvStatu.setText("对不起,您本月已经领取了");
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
+
+                                        if (tvStatu==null){
+                                            return;
+                                        }
                                         tvStatu.setText("欢迎领取垃圾袋!!");
                                     }
                                 }, 1000);
@@ -429,12 +525,19 @@ public class QidianActivity extends BaseActivity {
                         } else {
 
 
+                            if (tvName == null && tvStatu == null) {
+                                return;
+                            }
                             canScan = true;
                             tvName.setText("");
                             tvStatu.setText("垃圾袋已领完，请等待上货");
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+
+                                    if (tvStatu == null) {
+                                        return;
+                                    }
                                     tvStatu.setText("欢迎领取垃圾袋!!");
                                 }
                             }, 1000);
@@ -459,7 +562,7 @@ public class QidianActivity extends BaseActivity {
     @Override
     public void initView() {
         XLog.e("");
-        setTimer();
+//        setTimer();
 //        initNoteAndRote();
         setScanListerer();
         setPanelListener();

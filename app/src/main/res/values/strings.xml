@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">淇点</string>
+    <string name="app_name">绿色一平方</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -29,4 +29,7 @@ limitations under the License.\n
 		port.</string>
     <string name="error_unknown">The serial port can not be opened for an unknown
 		reason.</string>
+
+    <string name="home_msg">1)请使用APP扫描屏幕上相对应垃圾分类的二维码或在选择垃圾分类后，于下刻感应区刷卡投放;\n2)等特垃圾投放箱门打开,将垃圾投放入垃圾籍中,并关上箱门;\n3)系统将自动为您称重。称重后您将看到相应的垃圾分、重量以及所获得的积分等信息;\n4)完成投放返回首页(若长时间未返园首页,系统将在一段时间后自动返回首页)。</string>
+
 </resources>

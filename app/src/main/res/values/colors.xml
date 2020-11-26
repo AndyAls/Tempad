@@ -8,4 +8,6 @@
     <color name="white">#ffffff</color>
     <color name="theme_color">#efc622</color>
     <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="yi_text_color">#2E8579</color>
 </resources>

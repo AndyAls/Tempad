@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutScan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <FrameLayout
+            android:id="@+id/flScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/prompt_other">
+
+
+            <TextView
+                android:id="@+id/tvDumpType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginTop="@dimen/dp3"
+                android:text="金属"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+
+            <padd.qlckh.cn.tempad.roundimageview.RoundedImageView
+                android:id="@+id/ivDump"
+                android:layout_width="@dimen/dp28"
+                android:layout_height="@dimen/dp28"
+                android:layout_marginLeft="@dimen/dp67"
+                android:layout_marginTop="@dimen/dp2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/js"
+                app:riv_oval="true" />
+
+            <ImageView
+                android:id="@+id/ivScanCode"
+                android:layout_width="@dimen/dp142"
+                android:layout_height="@dimen/dp142"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp3"
+                android:layout_marginBottom="@dimen/dp3"
+                android:scaleType="fitXY"
+                android:src="@drawable/bigcode" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvScanHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp25"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp150"
+            android:paddingRight="@dimen/dp150"
+            android:text="请使用APP扫描屏幕上的二维码或在下侧感应区刷卡投放"
+            android:textColor="@color/yi_text_color"
+            android:textSize="@dimen/sp24"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutDump"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+
+        <TextView
+            android:id="@+id/tvDes2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp26"
+            android:text="扫码或刷卡成功"
+            android:textColor="@color/yi_text_color"
+            android:textSize="@dimen/sp26"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDes2"
+            android:layout_marginTop="@dimen/dp18"
+            android:scaleType="fitXY"
+            android:src="@drawable/parting" />
+
+        <TextView
+            android:id="@+id/tvClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivLine"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp26"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dp150"
+            android:paddingRight="@dimen/dp150"
+            android:text="请将垃圾放入打开的箱中并关闭箱门系统将自动为您称重!"
+            android:textColor="@color/yi_text_color"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvClose"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp20"
+            android:text="20s"
+            android:textColor="@color/yi_text_color"
+            android:textSize="@dimen/sp26"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTime"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp12"
+            android:background="@drawable/btn_operation_normal"
+            android:gravity="center"
+            android:text="关闭箱门"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/img_trash_blue" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp80"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvDes3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="正在称重,请稍等...."
+            android:textColor="@color/yi_text_color"
+            android:textSize="@dimen/sp20"
+            android:textStyle="bold" />
+
+
+        <FrameLayout
+            android:id="@+id/flLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@drawable/display_loading">
+
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                android:layout_width="@dimen/dp39"
+                android:layout_height="@dimen/dp39"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp6"
+                android:indeterminateDrawable="@drawable/progress_bg" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp80"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvDes4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="投放成功"
+            android:textColor="@color/yi_text_color"
+            android:textSize="@dimen/sp20"
+            android:textStyle="bold" />
+
+
+        <FrameLayout
+            android:id="@+id/flSuccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="@drawable/display_delivery"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSuccessResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/dp5"
+                android:text="投放成功\n投放成功投放成功"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

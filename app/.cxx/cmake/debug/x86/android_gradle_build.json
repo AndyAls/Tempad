@@ -1,0 +1,43 @@
+{
+  "stringTable": {
+    "0": "D:/09tempad/TemPad/app/.cxx/cmake/debug/x86",
+    "1": "--target=i686-none-linux-android16 --gcc-toolchain=D:/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DSerialPort_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "D:\\sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake",
+    "D:\\sdk\\ndk-bundle\\build\\cmake\\platforms.cmake"
+  ],
+  "cleanCommands": [
+    "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\debug\\x86\" clean"
+  ],
+  "buildTargetsCommand": "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\debug\\x86\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "SerialPort-Debug-x86": {
+      "buildCommand": "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\debug\\x86\" SerialPort",
+      "buildType": "debug",
+      "toolchain": "2658276297",
+      "abi": "x86",
+      "artifactName": "SerialPort",
+      "files": [
+        {
+          "src": "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\SerialPort.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\debug\\x86\\libSerialPort.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "2658276297": {
+      "cCompilerExecutable": "D:\\sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}
