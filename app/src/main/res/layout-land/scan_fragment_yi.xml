@@ -190,9 +190,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp80"
-        android:visibility="gone"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvDes4"
@@ -231,4 +231,12 @@
     </LinearLayout>
 
 
+    <EditText
+        android:id="@+id/etScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text=""
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/sp5" />
 </FrameLayout>

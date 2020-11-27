@@ -231,4 +231,12 @@
     </LinearLayout>
 
 
+    <EditText
+        android:id="@+id/etScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text=""
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/sp5" />
 </FrameLayout>

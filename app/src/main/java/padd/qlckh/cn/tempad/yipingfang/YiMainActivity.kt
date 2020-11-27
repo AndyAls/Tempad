@@ -1,5 +1,6 @@
 package padd.qlckh.cn.tempad.yipingfang
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
@@ -8,6 +9,7 @@ import com.golong.commlib.util.setViewVisible
 import kotlinx.android.synthetic.main.activity_main_yi.*
 import padd.qlckh.cn.tempad.BaseActivity
 import padd.qlckh.cn.tempad.R
+import padd.qlckh.cn.tempad.SettingActivity
 
 
 /**
@@ -31,6 +33,10 @@ class YiMainActivity : BaseActivity() {
         llSuliao.setClickListener {
             viewClick(SULIAO)
         }
+        ivSetting.setClickListener {
+
+            startActivity(Intent(this,SettingActivity::class.java))
+        }
 
         ivHome.setClickListener {
             llBoli.setBackgroundResource(0)
@@ -38,13 +44,13 @@ class YiMainActivity : BaseActivity() {
             llJishu.setBackgroundResource(0)
             llDianChi.setBackgroundResource(0)
 
-            var homeFragment:YiHomeFragment?=null
-            if (supportFragmentManager.findFragmentByTag("home")==null){
-                homeFragment= YiHomeFragment.newInstance()
-            }else{
-                homeFragment= supportFragmentManager.findFragmentByTag("home") as YiHomeFragment?
+            var homeFragment: YiHomeFragment? = null
+            if (supportFragmentManager.findFragmentByTag("home") == null) {
+                homeFragment = YiHomeFragment.newInstance()
+            } else {
+                homeFragment = supportFragmentManager.findFragmentByTag("home") as YiHomeFragment?
             }
-            switchContent(homeFragment,"home")
+            switchContent(homeFragment, "home")
 
         }
 
@@ -67,8 +73,9 @@ class YiMainActivity : BaseActivity() {
                 ft.hide(supportFragmentManager.findFragmentByTag(this.checkedFragmentTag)!!).add(R.id.fl_frame, to, tag).commitAllowingStateLoss()
                 fm.executePendingTransactions()
             }
-            this.checkedFragmentTag = tag
+
         }
+        this.checkedFragmentTag = tag
     }
 
     fun viewClick(tag: String) {
@@ -102,9 +109,14 @@ class YiMainActivity : BaseActivity() {
                 llDianChi.setBackgroundResource(R.drawable.code_perform)
             }
         }
-        val yiScanFragment = YiScanFragment.newInstance(tag)
+        var yiScanFragment: YiScanFragment? = null
+        if (supportFragmentManager.findFragmentByTag(tag) == null) {
+            yiScanFragment = YiScanFragment.newInstance(tag)
+        } else {
+            yiScanFragment = supportFragmentManager.findFragmentByTag(tag) as YiScanFragment?
+        }
 
-        switchContent(yiScanFragment, "scan")
+        switchContent(yiScanFragment, tag)
     }
 
     override fun initDate() {

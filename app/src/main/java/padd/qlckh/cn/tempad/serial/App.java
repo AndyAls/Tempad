@@ -166,10 +166,10 @@ public class App extends Application {
         if (mPanelManager == null) {
             mPanelManager = new SerialPortManager();
             SharedPreferences psp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
-//            String panelNode = psp.getString(Constant.PANEL_NODE, "");
-//            int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
-            String panelNode ="/dev/ttyO3";
-            int panelRate = 38400;
+            String panelNode = psp.getString(Constant.PANEL_NODE, "");
+            int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
+            /*String panelNode ="/dev/ttyO3";
+            int panelRate = 38400;*/
             mPanelManager.openSerialPort(new File(panelNode), panelRate);
         }
         return mPanelManager;
