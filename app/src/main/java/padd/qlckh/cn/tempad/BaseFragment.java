@@ -44,11 +44,17 @@ public abstract class BaseFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mActivity = (BaseActivity) getActivity();
         mApplication = (App) getActivity().getApplication();
-        getSerialPort();
+                getSerialPort();
         return super.onCreateView(inflater, container, savedInstanceState);
 
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        super.onViewCreated(view, savedInstanceState);
+
+    }
     /* //</editor-fold>
 
     //<editor-fold desc="基类初始化">
@@ -72,7 +78,7 @@ public abstract class BaseFragment extends Fragment{
     }*/
 
     private void getSerialPort() {
-        mPanelManager = mApplication.getmPanelManager();
+        mPanelManager = mApplication.getmPanelManager(getActivity());
         mPrintManager = mApplication.getmPrintManager();
         mScanManager = mApplication.getmScanManager();
         mWeightManager = mApplication.getmWeightManager();

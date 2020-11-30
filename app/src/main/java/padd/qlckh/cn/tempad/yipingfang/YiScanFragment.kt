@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.golong.commlib.util.setClickListener
+import com.golong.commlib.util.setViewVisible
 import com.golong.commlib.util.toast
 import kotlinx.android.synthetic.main.scan_fragment_yi.*
 import padd.qlckh.cn.tempad.*
@@ -31,14 +32,43 @@ class YiScanFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setSerialListener()
         super.onViewCreated(view, savedInstanceState)
         initView()
         initListener()
         initData()
-        setSerialListener()
+
+
     }
 
     private fun initListener() {
+        layoutScan.setClickListener {
+            layoutScan.setViewVisible(false)
+            layoutDump.setViewVisible(true)
+            layoutLoading.setViewVisible(false)
+            layoutSuccess.setViewVisible(false)
+
+        }
+
+        layoutDump.setClickListener {
+            layoutScan.setViewVisible(false)
+            layoutDump.setViewVisible(false)
+            layoutLoading.setViewVisible(true)
+            layoutSuccess.setViewVisible(false)
+        }
+        layoutLoading.setClickListener {
+            layoutScan.setViewVisible(false)
+            layoutDump.setViewVisible(false)
+            layoutLoading.setViewVisible(false)
+            layoutSuccess.setViewVisible(true)
+        }
+        layoutSuccess.setClickListener {
+            layoutScan.setViewVisible(true)
+            layoutDump.setViewVisible(false)
+            layoutLoading.setViewVisible(false)
+            layoutSuccess.setViewVisible(false)
+        }
+
         ivScanCode.setClickListener {
             toast(tagCheck + "开门")
             openTrash()
@@ -67,9 +97,7 @@ class YiScanFragment : BaseFragment() {
 
 
     private fun openTrash() {
-
         when (tagCheck) {
-
             YiMainActivity.DIANCHI -> {
 
                 mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_DIANCHI))

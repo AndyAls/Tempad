@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.InvalidParameterException;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 
@@ -27,20 +28,17 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 import android_serialport_api.SerialPort;
 import android_serialport_api.SerialPortFinder;
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
-import cat.ereza.customactivityoncrash.activity.DefaultErrorActivity;
 import cat.ereza.customactivityoncrash.config.CaocConfig;
 import padd.qlckh.cn.tempad.ApiService;
 import padd.qlckh.cn.tempad.CommUtils;
 import padd.qlckh.cn.tempad.Constant;
 import padd.qlckh.cn.tempad.CustomErrorActivity;
-import padd.qlckh.cn.tempad.QidianActivity;
 import padd.qlckh.cn.tempad.R;
-import padd.qlckh.cn.tempad.TestActivity;
-import padd.qlckh.cn.tempad.WelcomeActivity;
 import padd.qlckh.cn.tempad.XLog;
 import padd.qlckh.cn.tempad.http.RxHttpUtils;
 import padd.qlckh.cn.tempad.manager.SerialPortManager;
+import padd.qlckh.cn.tempad.yipingfang.YiMainActivity;
+
 /**
  * @author Andy
  * @date   2018/9/19 15:51
@@ -84,7 +82,7 @@ public class App extends Application {
                 .trackActivities(true)     //错误页面中显示错误详细信息；针对框架自带程序崩溃后显示的页面有用(DefaultErrorActivity)。
                 .minTimeBetweenCrashesMs(500)      //定义应用程序崩溃之间的最短时间，以确定我们不在崩溃循环中。比如：在规定的时间内再次崩溃，框架将不处理，让系统处理！
                 .errorDrawable(R.mipmap.ic_launcher)     //崩溃页面显示的图标
-                .restartActivity(QidianActivity.class)      //重新启动后的页面
+                .restartActivity(YiMainActivity.class)      //重新启动后的页面
                 .errorActivity(CustomErrorActivity.class) //程序崩溃后显示的页面
                 .apply();
     }
@@ -130,7 +128,7 @@ public class App extends Application {
             SharedPreferences sp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String weightNode = sp.getString(Constant.WEGHT_NODE, "");
             int weightRate = Integer.decode(sp.getString(Constant.WEGHT_RATE, "-1"));
-            mWeightManager.openSerialPort(new File(weightNode), weightRate);
+//            mWeightManager.openSerialPort(new File(weightNode), weightRate, activity);
 
         }
         return mWeightManager;
@@ -145,7 +143,7 @@ public class App extends Application {
             String scanNode ="/dev/ttyO4";
             //9600
             int scanRate = 9600;
-            mScanManager.openSerialPort(new File(scanNode), scanRate);
+//            mScanManager.openSerialPort(new File(scanNode), scanRate, activity);
         }
         return mScanManager;
     }
@@ -157,12 +155,12 @@ public class App extends Application {
             SharedPreferences prsp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String printNode = prsp.getString(Constant.PRINT_NODE, "");
             int printRate = Integer.decode(prsp.getString(Constant.PRINT_RATE, "-1"));
-            mPrintManager.openSerialPort(new File(printNode), printRate);
+//            mPrintManager.openSerialPort(new File(printNode), printRate, activity);
         }
         return mPrintManager;
     }
 
-    public SerialPortManager getmPanelManager() {
+    public SerialPortManager getmPanelManager(Activity activity) {
         if (mPanelManager == null) {
             mPanelManager = new SerialPortManager();
             SharedPreferences psp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
@@ -170,7 +168,7 @@ public class App extends Application {
             int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
             /*String panelNode ="/dev/ttyO3";
             int panelRate = 38400;*/
-            mPanelManager.openSerialPort(new File(panelNode), panelRate);
+            mPanelManager.openSerialPort(new File(panelNode), panelRate,activity);
         }
         return mPanelManager;
     }

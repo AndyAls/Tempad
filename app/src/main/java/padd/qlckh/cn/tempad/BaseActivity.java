@@ -74,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     }
 
     private void getSerialPort() {
-        mPanelManager=mApplication.getmPanelManager();
+        mPanelManager=mApplication.getmPanelManager(this);
         mPrintManager=mApplication.getmPrintManager();
         mScanManager=mApplication.getmScanManager();
         mWeightManager=mApplication.getmWeightManager();

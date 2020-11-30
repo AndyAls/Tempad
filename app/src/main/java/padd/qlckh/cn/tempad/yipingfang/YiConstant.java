@@ -19,6 +19,7 @@ public interface YiConstant {
     String OPEN_BOLI = "5505000100005103";
     String OPEN_JINSHU = "5505000001005103";
     String OPEN_SULIAO = "5505000000015103";
+    String OPEN_ALL = "5505010101015003";
 
     /**
      * 四个桶推杆关闭指令
@@ -27,6 +28,7 @@ public interface YiConstant {
     String CLOSE_BOLI = "5505000200005203";
     String CLOSE_JINSHU = "5505000002005203";
     String CLOSE_SULIAO = "5505000000025203";
+    String CLOSE_ALL = "5505020202025003";
 
 
     /**
@@ -37,7 +39,7 @@ public interface YiConstant {
      * 四个称去皮
      */
     String PEEL_DIANCHI = "5504000000207103";
-    String PEEL_BOLI = "5504000001207003";
+    String PEEL_BOLI =    "5504000001207003";
     String PEEL_JINSHU = "5504000002207303";
     String PEEL_SULIAO = "5504000003207203";
 

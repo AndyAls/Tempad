@@ -70,6 +70,7 @@
         <activity android:name=".InfoErrorActivity"
             />
         <activity android:name=".CustomErrorActivity" />
+        <activity android:name=".yipingfang.YiTestActivity" />
 
         <receiver android:name=".receivier.RootBroastReceiver">
             <intent-filter >

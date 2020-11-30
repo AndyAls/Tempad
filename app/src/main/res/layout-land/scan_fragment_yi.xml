@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/frame_right"
     android:orientation="vertical">
 
     <LinearLayout
@@ -25,8 +26,8 @@
                 android:id="@+id/tvDumpType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp8"
-                android:layout_marginTop="@dimen/dp3"
+                android:layout_marginLeft="@dimen/dp6"
+                android:layout_marginTop="@dimen/dp1"
                 android:text="金属"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp18"
@@ -34,9 +35,9 @@
 
             <padd.qlckh.cn.tempad.roundimageview.RoundedImageView
                 android:id="@+id/ivDump"
-                android:layout_width="@dimen/dp28"
-                android:layout_height="@dimen/dp28"
-                android:layout_marginLeft="@dimen/dp67"
+                android:layout_width="@dimen/dp23"
+                android:layout_height="@dimen/dp23"
+                android:layout_marginLeft="@dimen/dp57"
                 android:layout_marginTop="@dimen/dp2"
                 android:scaleType="centerCrop"
                 android:src="@drawable/js"
@@ -44,8 +45,8 @@
 
             <ImageView
                 android:id="@+id/ivScanCode"
-                android:layout_width="@dimen/dp142"
-                android:layout_height="@dimen/dp142"
+                android:layout_width="@dimen/dp119"
+                android:layout_height="@dimen/dp119"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/dp3"
                 android:layout_marginBottom="@dimen/dp3"
@@ -57,13 +58,13 @@
             android:id="@+id/tvScanHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp25"
+            android:layout_marginTop="@dimen/dp22"
             android:gravity="center"
-            android:paddingLeft="@dimen/dp150"
-            android:paddingRight="@dimen/dp150"
+            android:paddingLeft="@dimen/dp100"
+            android:paddingRight="@dimen/dp100"
             android:text="请使用APP扫描屏幕上的二维码或在下侧感应区刷卡投放"
             android:textColor="@color/yi_text_color"
-            android:textSize="@dimen/sp24"
+            android:textSize="22sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -82,7 +83,7 @@
             android:layout_marginTop="@dimen/dp26"
             android:text="扫码或刷卡成功"
             android:textColor="@color/yi_text_color"
-            android:textSize="@dimen/sp26"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -90,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvDes2"
-            android:layout_marginTop="@dimen/dp18"
+            android:layout_marginTop="@dimen/dp12"
             android:scaleType="fitXY"
             android:src="@drawable/parting" />
 
@@ -100,13 +101,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ivLine"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp26"
+            android:layout_marginTop="@dimen/dp22"
             android:gravity="center"
-            android:paddingLeft="@dimen/dp150"
-            android:paddingRight="@dimen/dp150"
+            android:paddingLeft="@dimen/dp100"
+            android:paddingRight="@dimen/dp100"
             android:text="请将垃圾放入打开的箱中并关闭箱门系统将自动为您称重!"
             android:textColor="@color/yi_text_color"
-            android:textSize="@dimen/sp18"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -118,7 +119,7 @@
             android:layout_marginTop="@dimen/dp20"
             android:text="20s"
             android:textColor="@color/yi_text_color"
-            android:textSize="@dimen/sp26"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
 
@@ -128,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvTime"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp10"
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
             android:text="关闭箱门"
@@ -161,7 +162,7 @@
             android:layout_centerHorizontal="true"
             android:text="正在称重,请稍等...."
             android:textColor="@color/yi_text_color"
-            android:textSize="@dimen/sp20"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
 
@@ -174,10 +175,10 @@
 
             <ProgressBar
                 android:id="@+id/pbLoading"
-                android:layout_width="@dimen/dp39"
-                android:layout_height="@dimen/dp39"
+                android:layout_width="@dimen/dp35"
+                android:layout_height="@dimen/dp35"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginTop="@dimen/dp8"
                 android:indeterminateDrawable="@drawable/progress_bg" />
         </FrameLayout>
 
@@ -201,7 +202,7 @@
             android:layout_centerHorizontal="true"
             android:text="投放成功"
             android:textColor="@color/yi_text_color"
-            android:textSize="@dimen/sp20"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
 
@@ -223,7 +224,7 @@
                 android:lineSpacingExtra="@dimen/dp5"
                 android:text="投放成功\n投放成功投放成功"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp18"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </FrameLayout>
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/dp10"
+    android:background="@drawable/frame_right"
     android:orientation="vertical">
 
 
@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp17"
         android:orientation="horizontal">
 
 
@@ -134,10 +135,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp8"
         android:text="投放方法说明:"
         android:textColor="#2E8579"
-        android:textSize="@dimen/sp16"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
@@ -150,7 +151,7 @@
         android:text="@string/home_msg"
         android:textColor="@color/yi_text_color"
         android:textStyle="bold"
-        android:textSize="@dimen/sp12" />
+        android:textSize="10sp" />
 
     <Space
         android:layout_width="1dp"
@@ -161,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp15"
         android:orientation="horizontal"
         >
 
@@ -174,7 +175,7 @@
             android:layout_marginLeft="@dimen/dp5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp14"
+            android:textSize="14sp"
             android:textColor="#2E8579"
             android:gravity="center_vertical"
             android:textStyle="bold"

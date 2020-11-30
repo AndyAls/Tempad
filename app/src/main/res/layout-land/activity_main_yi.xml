@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp10"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_toLeftOf="@id/ivSetting"
             android:src="@drawable/btn_home" />
 
@@ -99,26 +99,27 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_marginLeft="@dimen/dp4"
                                 android:text="电\n池"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/sp12" />
+                                android:textSize="@dimen/sp10" />
 
                             <padd.qlckh.cn.tempad.roundimageview.RoundedImageView
-                                android:layout_width="@dimen/dp19"
-                                android:layout_height="@dimen/dp19"
+                                android:layout_width="@dimen/dp17"
+                                android:layout_height="@dimen/dp17"
                                 android:layout_gravity="bottom"
-                                android:layout_marginLeft="@dimen/dp2"
-                                android:layout_marginBottom="@dimen/dp2"
+                                android:layout_marginBottom="@dimen/dp1"
+                                android:layout_marginLeft="@dimen/dp1"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/dianchi"
                                 app:riv_oval="true" />
 
                             <ImageView
-                                android:layout_width="@dimen/dp56"
-                                android:layout_height="@dimen/dp55"
+                                android:layout_width="@dimen/dp46"
+                                android:layout_height="@dimen/dp46"
                                 android:layout_gravity="right"
-                                android:padding="@dimen/dp2"
+                                android:layout_marginTop="@dimen/dp1"
+                                android:layout_marginRight="@dimen/dp1"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/code" />
 
@@ -143,26 +144,27 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_marginLeft="@dimen/dp4"
                                 android:text="玻\n璃"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/sp12" />
+                                android:textSize="@dimen/sp10" />
 
                             <padd.qlckh.cn.tempad.roundimageview.RoundedImageView
-                                android:layout_width="@dimen/dp19"
-                                android:layout_height="@dimen/dp19"
+                                android:layout_width="@dimen/dp17"
+                                android:layout_height="@dimen/dp17"
                                 android:layout_gravity="bottom"
-                                android:layout_marginLeft="@dimen/dp2"
-                                android:layout_marginBottom="@dimen/dp2"
+                                android:layout_marginLeft="@dimen/dp1"
                                 android:scaleType="centerCrop"
+                                android:layout_marginBottom="@dimen/dp1"
                                 android:src="@drawable/boli"
                                 app:riv_oval="true" />
 
                             <ImageView
-                                android:layout_width="@dimen/dp56"
-                                android:layout_height="@dimen/dp55"
+                                android:layout_width="@dimen/dp46"
+                                android:layout_height="@dimen/dp46"
+                                android:layout_marginRight="@dimen/dp1"
+                                android:layout_marginTop="@dimen/dp1"
                                 android:layout_gravity="right"
-                                android:padding="@dimen/dp2"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/code" />
 
@@ -197,26 +199,27 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_marginLeft="@dimen/dp4"
                                 android:text="金\n属"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/sp12" />
+                                android:textSize="@dimen/sp10" />
 
                             <padd.qlckh.cn.tempad.roundimageview.RoundedImageView
-                                android:layout_width="@dimen/dp19"
-                                android:layout_height="@dimen/dp19"
+                                android:layout_width="@dimen/dp17"
+                                android:layout_height="@dimen/dp17"
                                 android:layout_gravity="bottom"
-                                android:layout_marginLeft="@dimen/dp2"
-                                android:layout_marginBottom="@dimen/dp2"
+                                android:layout_marginLeft="@dimen/dp1"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/jinshu"
+                                android:layout_marginBottom="@dimen/dp1"
                                 app:riv_oval="true" />
 
                             <ImageView
-                                android:layout_width="@dimen/dp56"
-                                android:layout_height="@dimen/dp55"
+                                android:layout_width="@dimen/dp46"
+                                android:layout_height="@dimen/dp46"
+                                android:layout_marginRight="@dimen/dp1"
+                                android:layout_marginTop="@dimen/dp1"
                                 android:layout_gravity="right"
-                                android:padding="@dimen/dp2"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/code" />
 
@@ -241,26 +244,27 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/dp5"
+                                android:layout_marginLeft="@dimen/dp4"
                                 android:text="塑\n料"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/sp12" />
+                                android:textSize="@dimen/sp10" />
 
                             <padd.qlckh.cn.tempad.roundimageview.RoundedImageView
-                                android:layout_width="@dimen/dp19"
-                                android:layout_height="@dimen/dp19"
+                                android:layout_width="@dimen/dp17"
+                                android:layout_height="@dimen/dp17"
                                 android:layout_gravity="bottom"
-                                android:layout_marginLeft="@dimen/dp2"
-                                android:layout_marginBottom="@dimen/dp2"
+                                android:layout_marginLeft="@dimen/dp1"
                                 android:scaleType="centerCrop"
+                                android:layout_marginBottom="@dimen/dp1"
                                 android:src="@drawable/suliao"
                                 app:riv_oval="true" />
 
                             <ImageView
-                                android:layout_width="@dimen/dp56"
-                                android:layout_height="@dimen/dp55"
+                                android:layout_width="@dimen/dp46"
+                                android:layout_height="@dimen/dp46"
+                                android:layout_marginRight="@dimen/dp1"
+                                android:layout_marginTop="@dimen/dp1"
                                 android:layout_gravity="right"
-                                android:padding="@dimen/dp2"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/code" />
 

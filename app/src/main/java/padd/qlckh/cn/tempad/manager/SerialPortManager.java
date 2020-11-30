@@ -1,9 +1,13 @@
 package padd.qlckh.cn.tempad.manager;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -35,9 +39,10 @@ public class SerialPortManager extends SerialPort {
      *
      * @param device   串口设备
      * @param baudRate 波特率
+     * @param activity
      * @return 打开是否成功
      */
-    public boolean openSerialPort(File device, int baudRate) {
+    public boolean openSerialPort(File device, int baudRate, Activity activity) {
 
         Log.i(TAG, "openSerialPort: " + String.format("打开串口 %s  波特率 %s", device.getPath(), baudRate));
 
@@ -46,6 +51,7 @@ public class SerialPortManager extends SerialPort {
             boolean chmod777 = chmod777(device);
             if (!chmod777) {
                 Log.i(TAG, "openSerialPort: 没有读写权限");
+                showAlert(activity,"openSerialPort: 没有读写权限");
                 if (null != mOnOpenSerialPortListener) {
                     mOnOpenSerialPortListener.onFail(device, OnOpenSerialPortListener.Status.NO_READ_WRITE_PERMISSION);
                 }
@@ -54,10 +60,13 @@ public class SerialPortManager extends SerialPort {
         }
 
         try {
+            showAlert(activity,"正在打开串口");
             mFd = open(device.getAbsolutePath(), baudRate, 0);
             mFileInputStream = new FileInputStream(mFd);
             mFileOutputStream = new FileOutputStream(mFd);
             Log.i(TAG, "openSerialPort: 串口已经打开 " + mFd);
+            showAlert(activity,"openSerialPort: 串口已经打开 " + mFd);
+            Toast.makeText(activity,"openSerialPort: 串口已经打开 " + mFd,Toast.LENGTH_LONG).show();
             if (null != mOnOpenSerialPortListener) {
                 mOnOpenSerialPortListener.onSuccess(device);
             }
@@ -67,12 +76,25 @@ public class SerialPortManager extends SerialPort {
             startReadThread();
             return true;
         } catch (Exception e) {
+            showAlert(activity, OnOpenSerialPortListener.Status.OPEN_FAIL.name()+"---"+e.getMessage());
             e.printStackTrace();
             if (null != mOnOpenSerialPortListener) {
                 mOnOpenSerialPortListener.onFail(device, OnOpenSerialPortListener.Status.OPEN_FAIL);
+
             }
         }
         return false;
+    }
+
+    private void showAlert(Activity activity, String s) {
+        new AlertDialog.Builder(activity).setMessage(s)
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                }).create().show();
     }
 
     /**

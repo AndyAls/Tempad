@@ -35,7 +35,7 @@ class YiMainActivity : BaseActivity() {
         }
         ivSetting.setClickListener {
 
-            startActivity(Intent(this,SettingActivity::class.java))
+            startActivity(Intent(this, SettingActivity::class.java))
         }
 
         ivHome.setClickListener {
@@ -44,20 +44,23 @@ class YiMainActivity : BaseActivity() {
             llJishu.setBackgroundResource(0)
             llDianChi.setBackgroundResource(0)
 
+            startActivity(Intent(this, YiTestActivity::class.java))
+
             var homeFragment: YiHomeFragment? = null
             if (supportFragmentManager.findFragmentByTag("home") == null) {
                 homeFragment = YiHomeFragment.newInstance()
             } else {
                 homeFragment = supportFragmentManager.findFragmentByTag("home") as YiHomeFragment?
             }
-            switchContent(homeFragment, "home")
+//            switchContent(homeFragment, "home")
 
         }
 
     }
 
     fun setHomeBtnVisible(isHide: Boolean) {
-        ivHome.setViewVisible(isHide)
+        // TODO: 2020/11/27 先注释
+//        ivHome.setViewVisible(isHide)
     }
 
     fun switchContent(to: Fragment?, tag: String) {

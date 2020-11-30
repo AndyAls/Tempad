@@ -127,7 +127,7 @@ JNIEXPORT jobject JNICALL Java_android_1serialport_1api_SerialPort_open
 		}
 	}
 
-	/* Create a corresponding file descriptor */
+	/* Create a corresponding file descriptor  descriptor*/
 	{
 		jclass cFileDescriptor = (*env)->FindClass(env, "java/io/FileDescriptor");
 		jmethodID iFileDescriptor = (*env)->GetMethodID(env, cFileDescriptor, "<init>", "()V");
