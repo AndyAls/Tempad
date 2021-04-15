@@ -1,9 +1,9 @@
 {
-  "ndk": "D:\\sdk\\ndk-bundle",
+  "ndk": "D:\\sdk\\ndk\\16.1.4479499",
   "revision": {
-    "mMajor": 22,
-    "mMinor": 0,
-    "mMicro": 6917172,
+    "mMajor": 16,
+    "mMinor": 1,
+    "mMicro": 4479499,
     "mPreview": 0,
     "mPrecision": "MICRO",
     "mPreviewSeparator": " "

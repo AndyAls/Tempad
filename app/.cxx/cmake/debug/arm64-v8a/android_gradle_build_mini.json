@@ -1,8 +1,7 @@
 {
   "buildFiles": [
     "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
-    "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
-    "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake"
+    "D:\\sdk\\ndk\\16.1.4479499\\build\\cmake\\android.toolchain.cmake"
   ],
   "cleanCommands": [
     "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\debug\\arm64-v8a\" clean"

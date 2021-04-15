@@ -128,7 +128,7 @@ public class App extends Application {
             SharedPreferences sp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String weightNode = sp.getString(Constant.WEGHT_NODE, "");
             int weightRate = Integer.decode(sp.getString(Constant.WEGHT_RATE, "-1"));
-//            mWeightManager.openSerialPort(new File(weightNode), weightRate, activity);
+            mWeightManager.openSerialPort(new File(weightNode), weightRate, activity);
 
         }
         return mWeightManager;

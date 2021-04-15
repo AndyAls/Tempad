@@ -54,8 +54,8 @@ class YiTestActivity : BaseActivity() {
 
         open.setOnClickListener {
 
-            showShort("称重")
-            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_BOLI))
+            showShort("开门")
+            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_ALL))
         }
         close.setOnClickListener {
             showShort("关门")
@@ -83,10 +83,6 @@ class YiTestActivity : BaseActivity() {
     override fun getContentView(): Int {
 
         return R.layout.test_activity_yi
-    }
-
-    private fun openDoor(): Boolean {
-        return serialMultiPorts.writeDataToBySortId(5, 1) >= 0
     }
 
 }

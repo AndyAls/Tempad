@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #include <termios.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -20,12 +21,15 @@
 #include <fcntl.h>
 #include <string.h>
 #include <jni.h>
+
 #include "SerialPort.h"
+
 #include "android/log.h"
 static const char *TAG="serial_port";
 #define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO,  TAG, fmt, ##args)
 #define LOGD(fmt, args...) __android_log_print(ANDROID_LOG_DEBUG, TAG, fmt, ##args)
 #define LOGE(fmt, args...) __android_log_print(ANDROID_LOG_ERROR, TAG, fmt, ##args)
+
 static speed_t getBaudrate(jint baudrate)
 {
 	switch(baudrate) {
@@ -43,6 +47,7 @@ static speed_t getBaudrate(jint baudrate)
 	case 2400: return B2400;
 	case 4800: return B4800;
 	case 9600: return B9600;
+	case 19200: return B19200;
 	case 38400: return B38400;
 	case 57600: return B57600;
 	case 115200: return B115200;
@@ -127,7 +132,7 @@ JNIEXPORT jobject JNICALL Java_android_1serialport_1api_SerialPort_open
 		}
 	}
 
-	/* Create a corresponding file descriptor  descriptor*/
+	/* Create a corresponding file descriptor */
 	{
 		jclass cFileDescriptor = (*env)->FindClass(env, "java/io/FileDescriptor");
 		jmethodID iFileDescriptor = (*env)->GetMethodID(env, cFileDescriptor, "<init>", "()V");
@@ -159,3 +164,4 @@ JNIEXPORT void JNICALL Java_android_1serialport_1api_SerialPort_close
 	LOGD("close(fd = %d)", descriptor);
 	close(descriptor);
 }
+

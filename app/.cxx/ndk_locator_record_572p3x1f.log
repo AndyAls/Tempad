@@ -1,7 +1,7 @@
 [
   {
     "level": "INFO",
-    "message": "android.ndkVersion from module build.gradle is [21.0.6113669]"
+    "message": "android.ndkVersion from module build.gradle is [16.1.4479499]"
   },
   {
     "level": "INFO",
@@ -18,13 +18,5 @@
   {
     "level": "INFO",
     "message": "sdkFolder is D:\\sdk"
-  },
-  {
-    "level": "INFO",
-    "message": "Folder D:\\sdk\\ndk\\21.0.6113669 does not exist. Ignoring."
-  },
-  {
-    "level": "INFO",
-    "message": "No NDK was found. Trying to download it now."
   }
 ]

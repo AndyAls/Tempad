@@ -1,7 +1,7 @@
 [
   {
     "level": "INFO",
-    "message": "Start JSON generation. Platform version: 16 min SDK version: x86",
+    "message": "Start JSON generation. Platform version: 14 min SDK version: x86",
     "file": "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
     "tag": "release|x86"
   },
