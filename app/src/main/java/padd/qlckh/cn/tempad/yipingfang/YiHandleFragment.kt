@@ -264,7 +264,7 @@ class YiHandleFragment : BaseFragment() {
             disposable = Observable.interval(5, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        if (System.currentTimeMillis() - recorderTime > 6000L) {
+                        if (System.currentTimeMillis() - recorderTime > 60000L) {
                             restartSelf()
                         }
                     }

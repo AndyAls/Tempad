@@ -20,7 +20,7 @@ import padd.qlckh.cn.tempad.view.IToast;
  * @date 2018/5/14 11:24
  * Desc:  基类Activity
  */
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     private static final String TAG = "BaseActivity";
     protected float textsize;
     protected BaseActivity mActivity;
@@ -43,7 +43,7 @@ public abstract class BaseFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mActivity = (BaseActivity) getActivity();
         mApplication = (App) getActivity().getApplication();
-                getSerialPort();
+        getSerialPort();
         return super.onCreateView(inflater, container, savedInstanceState);
 
     }
@@ -110,7 +110,11 @@ public abstract class BaseFragment extends Fragment{
     }
 
     protected void loading() {
-        LoadingView.showLoading(getActivity(), "请稍等...", false);
+        loading("请稍等...");
+    }
+
+    protected void loading(String msg) {
+        LoadingView.showLoading(getActivity(), msg, true);
     }
 
     protected void cancelLoading() {

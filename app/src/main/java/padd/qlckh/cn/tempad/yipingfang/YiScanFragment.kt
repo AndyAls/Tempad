@@ -102,12 +102,14 @@ class YiScanFragment : BaseFragment() {
         canGoHome = false
         setGoHome()
         recorderTime = System.currentTimeMillis()
+        loading("门正在打开,请稍等.....")
         RxHttpUtils.createApi(ApiService::class.java)
                 .queryYiInfo(scanStr)
                 .compose(Transformer.switchSchedulers())
                 .subscribe(object : CommonObserver<YiUserInfo?>() {
                     override fun onError(errorMsg: String) {
                         canScan = true
+                        cancelLoading()
                         recorderTime = System.currentTimeMillis()
                         canGoHome = true
                         showLong("获取用户信息失败")
@@ -119,6 +121,7 @@ class YiScanFragment : BaseFragment() {
                             userInfo = t.row[0]
                             canGoHome = false
                             setGoHome()
+                            recorderTime=System.currentTimeMillis()
                             Handler().postDelayed({
                                 openTrash()
                             }, 200)
@@ -222,8 +225,8 @@ class YiScanFragment : BaseFragment() {
 
     private fun closeTrash() {
 
+        loading("门正在关闭,请稍等......")
         when (tagCheck) {
-
             YiMainActivity.DIANCHI -> {
                 mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_DIANCHI))
             }
@@ -317,6 +320,7 @@ class YiScanFragment : BaseFragment() {
                 sbPanel.delete(0, sbPanel.length)
             }
             if (sbPanel.startsWith("55") && sbPanel.length == 30) {
+                recorderTime=System.currentTimeMillis()
                 val status = when (tagCheck) {
                     YiMainActivity.JINSHU -> {
                         sbPanel.substring(16, 18)
@@ -342,7 +346,8 @@ class YiScanFragment : BaseFragment() {
                         layoutDump.setViewVisible(true)
                         layoutLoading.setViewVisible(false)
                         layoutSuccess.setViewVisible(false)
-                        MediaPlayerHelper.getInstance(mActivity).startPlay(R.raw.put_in_garbage)
+                        cancelLoading()
+                        MediaPlayerHelper.getInstance(context).startPlay(R.raw.put_in_garbage)
                         if (timer != null) {
                             timer!!.start()
                         }
@@ -354,7 +359,8 @@ class YiScanFragment : BaseFragment() {
                         layoutDump.setViewVisible(false)
                         layoutLoading.setViewVisible(true)
                         layoutSuccess.setViewVisible(false)
-                        MediaPlayerHelper.getInstance(mActivity).startPlay(R.raw.weighting)
+                        cancelLoading()
+                        MediaPlayerHelper.getInstance(context).startPlay(R.raw.weighting)
                         Handler().postDelayed({
                             startWeight = true
                         }, 800)
@@ -369,6 +375,7 @@ class YiScanFragment : BaseFragment() {
 
     private fun postData(rowBean: YiUserInfo.RowBean, weight: String, d: Double, status: String) {
 
+        recorderTime=System.currentTimeMillis()
         RxHttpUtils.createApi(ApiService::class.java)
                 .postData(rowBean.fullname, rowBean.id, weight, rowBean.items, rowBean.phone,
                         AppUtils.getDeviceId(context), BigDecimal(weight).multiply(BigDecimal(d)).toString(), status, "3")
@@ -433,7 +440,7 @@ class YiScanFragment : BaseFragment() {
 
         etScan.addTextChangedListener(watcher)
         etScan.inputType = 0
-        MediaPlayerHelper.getInstance(mActivity).startPlay(R.raw.scan_qr_code_or_swipe_card)
+        MediaPlayerHelper.getInstance(context).startPlay(R.raw.scan_qr_code_or_swipe_card)
         initTimer()
         peelWeight()
         canScan = true
@@ -468,7 +475,7 @@ class YiScanFragment : BaseFragment() {
             disposable = Observable.interval(5, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        if (System.currentTimeMillis() - recorderTime > 6000L) {
+                        if (System.currentTimeMillis() - recorderTime > 60000L) {
                             restartSelf()
                         }
                     }
@@ -476,8 +483,8 @@ class YiScanFragment : BaseFragment() {
     }
 
     private fun restartSelf() {
-        if (mActivity == null) return
-        val intent = Intent(mActivity, YiMainActivity::class.java)
+        if (context == null) return
+        val intent = Intent(context, YiMainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         mActivity?.finish()
@@ -506,6 +513,7 @@ class YiScanFragment : BaseFragment() {
                         }
                     }) {
 
+                        recorderTime=System.currentTimeMillis()
                         canScan = true
                     }
 
@@ -660,7 +668,7 @@ class YiScanFragment : BaseFragment() {
         etScan.addTextChangedListener(watcher)
         etScan.inputType = 0
         etScan.isEnabled = true
-        MediaPlayerHelper.getInstance(mActivity).startPlay(R.raw.scan_qr_code_or_swipe_card)
+        MediaPlayerHelper.getInstance(context).startPlay(R.raw.scan_qr_code_or_swipe_card)
         initTimer()
         peelWeight()
         btnClose.isEnabled = true

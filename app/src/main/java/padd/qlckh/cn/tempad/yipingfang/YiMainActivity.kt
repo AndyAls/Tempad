@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentTransaction
 import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.setViewVisible
 import kotlinx.android.synthetic.main.activity_main_yi.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import padd.qlckh.cn.tempad.*
 import padd.qlckh.cn.tempad.http.RxHttpUtils
 import padd.qlckh.cn.tempad.http.interceptor.Transformer
@@ -28,6 +31,7 @@ class YiMainActivity : BaseActivity() {
     private var canGoHome = true
 
     override fun initView() {
+        EventBus.getDefault().register(this)
         llBoli.setClickListener {
             viewClick(BOLI)
         }
@@ -295,6 +299,12 @@ class YiMainActivity : BaseActivity() {
 
     override fun release() {
         RxHttpUtils.cancelAllRequest()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    fun netWorkState(stateEvent: NetWorkStateEvent){
+        onResume()
     }
 
     override fun getContentView(): Int {

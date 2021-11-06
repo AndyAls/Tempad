@@ -6,17 +6,17 @@
     >
 
     <RelativeLayout
-        android:layout_width="@dimen/dp100"
-        android:layout_height="@dimen/dp100"
+        android:layout_width="@dimen/dp180"
+        android:layout_height="@dimen/dp180"
         android:layout_centerInParent="true"
-        android:background="#66000005">
+        android:background="#4D000005">
         <ProgressBar
             android:id="@+id/loading_pb"
-            style="?android:attr/progressBarStyle"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:indeterminateDrawable="@drawable/progressbar"/>
+            android:indeterminateDrawable="@drawable/progress_bg"/>
 
         <TextView
             android:id="@+id/loading_tv"
@@ -27,6 +27,6 @@
             android:textColor="@color/white"
             android:text=""
             android:visibility="visible"
-            android:textSize="18sp" />
+            android:textSize="23sp" />
     </RelativeLayout>
 </RelativeLayout>
