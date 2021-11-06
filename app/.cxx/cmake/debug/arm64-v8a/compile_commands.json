@@ -1,7 +1,0 @@
-[
-{
-  "directory": "D:/09tempad/TemPad/app/.cxx/cmake/debug/arm64-v8a",
-  "command": "D:\\sdk\\ndk\\16.1.4479499\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android --gcc-toolchain=D:/sdk/ndk/16.1.4479499/toolchains/aarch64-linux-android-4.9/prebuilt/windows-x86_64 --sysroot=D:/sdk/ndk/16.1.4479499/sysroot -DSerialPort_EXPORTS  -isystem D:/sdk/ndk/16.1.4479499/sysroot/usr/include/aarch64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles\\SerialPort.dir\\SerialPort.c.o   -c D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\SerialPort.c",
-  "file": "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\SerialPort.c"
-}
-]

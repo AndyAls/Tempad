@@ -50,7 +50,7 @@ android {
         abortOnError false
     }
 
-    ndkVersion '16.1.4479499'
+    ndkVersion '21.1.6352462'
 }
 
 dependencies {
@@ -58,6 +58,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 //    implementation files('libs\\pl2303multilib.jar')
 //    implementation files('libs\\pl2303driver.jar')
     testImplementation 'junit:junit:4.12'
@@ -78,4 +79,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     implementation 'cat.ereza:customactivityoncrash:2.2.0'
     implementation 'com.tencent.bugly:crashreport:3.0.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //二维码 https://github.com/bertsir/zBarLibary
+    implementation('cn.bertsir.zbarLibary:zbarlibary:1.2.9') {
+        exclude group: 'com.android.support'
+    }
 }

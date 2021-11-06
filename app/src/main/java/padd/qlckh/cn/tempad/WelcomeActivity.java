@@ -8,8 +8,6 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import padd.qlckh.cn.tempad.serial.MainMenu;
 
 /**
  * @author Andy

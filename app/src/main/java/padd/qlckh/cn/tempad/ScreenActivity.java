@@ -2,7 +2,6 @@ package padd.qlckh.cn.tempad;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
@@ -15,15 +14,12 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import padd.qlckh.cn.tempad.http.RxHttpUtils;
 import padd.qlckh.cn.tempad.http.interceptor.Transformer;
 import padd.qlckh.cn.tempad.http.observer.CommonObserver;
 import padd.qlckh.cn.tempad.manager.OnOpenSerialPortListener;
 import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener;
-import padd.qlckh.cn.tempad.manager.SerialPortManager;
-import padd.qlckh.cn.tempad.serial.App;
 
 /**
  * @author Andy

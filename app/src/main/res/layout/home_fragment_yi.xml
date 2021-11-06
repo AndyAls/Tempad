@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/frame_right"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp17"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
-
 
         <RelativeLayout
             android:id="@+id/rlDianchi"
@@ -24,7 +24,7 @@
                 android:layout_centerVertical="true"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/dp10"
-                android:src="@drawable/ds" />
+                android:src="@drawable/zz" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/bg_garbage_btn"
                 android:gravity="center"
-                android:text="电池"
+                android:text="纸张"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp16"
                 android:textStyle="bold" />
@@ -72,7 +72,6 @@
         android:layout_marginTop="@dimen/dp10"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
-
 
         <RelativeLayout
             android:id="@+id/rlJinshu"
@@ -128,55 +127,107 @@
         </RelativeLayout>
     </LinearLayout>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/dp10"
-        android:text="投放方法说明:"
-        android:textColor="#2E8579"
-        android:textSize="@dimen/sp16"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp5"
-        android:paddingLeft="@dimen/dp10"
-        android:paddingRight="@dimen/dp10"
-        android:text="@string/home_msg"
-        android:textColor="#2E8579"
-        android:textStyle="bold"
-        android:textSize="@dimen/sp12" />
-
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="@dimen/dp10"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_service"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_marginLeft="@dimen/dp5"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:paddingLeft="@dimen/dp10"
+                android:text="投放方法说明:"
+                android:textColor="#2e8579"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:lineSpacingExtra="@dimen/dp2"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:text="@string/home_msg"
+                android:textColor="@color/yi_text_color"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp15"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_service" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:text="客服热线:    85070000"
+                    android:textColor="#2e8579"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp14"
-            android:textColor="#2E8579"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:text="客服热线:    85070000"/>
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:src="@drawable/yi_wechat_offical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="微信公众号"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp10"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:src="@drawable/yi_apk_download" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="应用下载"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp14" />
+        </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

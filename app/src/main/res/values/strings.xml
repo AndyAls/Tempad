@@ -29,7 +29,8 @@ limitations under the License.\n
 		port.</string>
     <string name="error_unknown">The serial port can not be opened for an unknown
 		reason.</string>
-
     <string name="home_msg">1)请使用APP扫描屏幕上相对应垃圾分类的二维码或在选择垃圾分类后，于下刻感应区刷卡投放;\n2)等特垃圾投放箱门打开,将垃圾投放入垃圾籍中,并关上箱门;\n3)系统将自动为您称重。称重后您将看到相应的垃圾分、重量以及所获得的积分等信息;\n4)完成投放返回首页(若长时间未返园首页,系统将在一段时间后自动返回首页)。</string>
+    <string name="query_msg">垃圾分类回收投放，绿色环保健康生活，是获得碳分的最佳方式:\n1)在消费15天内完成评价，可随机获得积分，订单金额越高，获得较高积分的概率越大，每单最高100积分;\n2)若评价被认证为“认真评价，还将获得额外100积分奖励;\n3)第三方优惠码、外卖、猫眼选座评价后不获得积分。\n提醒:在使用的过程中，你还有可能偶遇各种彩蛋和各类评价任务，认真完成它们你就能收获更多积分!</string>
+
 
 </resources>

@@ -10,8 +10,9 @@ import java.io.File
 
 /**
  * @author Andy
- * @date   2020/11/27 13:22
- * Desc:
+ * @date   2021/11/5 17:03
+ * @link   {http://blog.csdn.net/andy_l1}
+ * Desc:    YiTestActivity.kt
  */
 class YiTestActivity : BaseActivity() {
     private var serialMultiPorts = SerialMultiPorts()

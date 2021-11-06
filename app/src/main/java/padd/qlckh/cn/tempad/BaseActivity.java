@@ -3,14 +3,12 @@ package padd.qlckh.cn.tempad;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -18,15 +16,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import padd.qlckh.cn.tempad.manager.SerialPortManager;
-import padd.qlckh.cn.tempad.serial.App;
 import padd.qlckh.cn.tempad.view.IToast;
-
-import static android.os.Build.getSerial;
 
 /**
  * @author Andy
@@ -74,7 +68,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     }
 
     private void getSerialPort() {
-        mPanelManager=mApplication.getmPanelManager(this);
+        mPanelManager=mApplication.getmPanelManager();
+        mWeightManager=mApplication.getmWeightManager();
        /* mPrintManager=mApplication.getmPrintManager();
         mScanManager=mApplication.getmScanManager();
         mWeightManager=mApplication.getmWeightManager();*/

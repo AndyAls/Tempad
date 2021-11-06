@@ -1,11 +1,12 @@
 {
   "stringTable": {
     "0": "D:/09tempad/TemPad/app/.cxx/cmake/release/x86_64",
-    "1": "--target=x86_64-none-linux-android --gcc-toolchain=D:/sdk/ndk/16.1.4479499/toolchains/x86_64-4.9/prebuilt/windows-x86_64 --sysroot=D:/sdk/ndk/16.1.4479499/sysroot -DSerialPort_EXPORTS -isystem D:/sdk/ndk/16.1.4479499/sysroot/usr/include/x86_64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -O2 -DNDEBUG -fPIC"
+    "1": "--target=x86_64-none-linux-android21 --gcc-toolchain=D:/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DSerialPort_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O2 -DNDEBUG -fPIC"
   },
   "buildFiles": [
     "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
-    "D:\\sdk\\ndk\\16.1.4479499\\build\\cmake\\android.toolchain.cmake"
+    "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake"
   ],
   "cleanCommands": [
     "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\release\\x86_64\" clean"
@@ -15,7 +16,7 @@
     "SerialPort-Release-x86_64": {
       "buildCommand": "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\release\\x86_64\" SerialPort",
       "buildType": "release",
-      "toolchain": "2012170402",
+      "toolchain": "2876269984",
       "abi": "x86_64",
       "artifactName": "SerialPort",
       "files": [
@@ -31,8 +32,8 @@
     }
   },
   "toolchains": {
-    "2012170402": {
-      "cCompilerExecutable": "D:\\sdk\\ndk\\16.1.4479499\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    "2876269984": {
+      "cCompilerExecutable": "D:\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
     }
   },
   "cFileExtensions": [

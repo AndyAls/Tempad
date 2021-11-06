@@ -7,19 +7,26 @@ import android.support.v4.app.FragmentTransaction
 import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.setViewVisible
 import kotlinx.android.synthetic.main.activity_main_yi.*
-import padd.qlckh.cn.tempad.BaseActivity
-import padd.qlckh.cn.tempad.R
-import padd.qlckh.cn.tempad.SettingActivity
+import padd.qlckh.cn.tempad.*
+import padd.qlckh.cn.tempad.http.RxHttpUtils
+import padd.qlckh.cn.tempad.http.interceptor.Transformer
+import padd.qlckh.cn.tempad.http.observer.CommonObserver
+import padd.qlckh.cn.tempad.http.utils.AppUtils
+import padd.qlckh.cn.tempad.view.AppUtil
+import padd.qlckh.cn.tempad.view.RateDao
 
 
 /**
  * @author Andy
- * @date   2020/11/24 17:11
- * Desc:
+ * @date   2021/11/5 17:03
+ * @link   {http://blog.csdn.net/andy_l1}
+ * Desc:    YiMainActivity.kt
  */
 class YiMainActivity : BaseActivity() {
 
     private var checkedFragmentTag = "home"
+    private var canGoHome = true
+
     override fun initView() {
         llBoli.setClickListener {
             viewClick(BOLI)
@@ -35,16 +42,90 @@ class YiMainActivity : BaseActivity() {
         }
         ivSetting.setClickListener {
 
-            startActivity(Intent(this, SettingActivity::class.java))
+            startActivity(Intent(this, YiPannelActivity::class.java))
         }
 
         ivHome.setClickListener {
+            goHome()
+
+        }
+
+        btnCountry.setClickListener {
+            if (canGoHome) {
+                h5Click("country")
+                btnCountry.isSelected = true
+                btnVedio.isSelected = false
+                btnQuery.isSelected = false
+                btnPut.isSelected = false
+            }
+        }
+        btnVedio.setClickListener {
+            if (canGoHome) {
+                h5Click("vedio")
+                btnCountry.isSelected = false
+                btnVedio.isSelected = true
+                btnQuery.isSelected = false
+                btnPut.isSelected = false
+            }
+        }
+        btnPut.setClickListener {
+            if (canGoHome) {
+                btnCountry.isSelected = false
+                btnVedio.isSelected = false
+                btnQuery.isSelected = false
+                btnPut.isSelected = true
+                btnClick("put")
+            }
+        }
+        btnQuery.setClickListener {
+            if (canGoHome) {
+                btnCountry.isSelected = false
+                btnVedio.isSelected = false
+                btnQuery.isSelected = true
+                btnPut.isSelected = false
+                btnClick("query")
+            }
+
+        }
+
+    }
+
+    fun canGoHome(goHome: Boolean) {
+        this.canGoHome = goHome
+    }
+
+    private fun btnClick(tag: String) {
+        if (canGoHome) {
             llBoli.setBackgroundResource(0)
             llSuliao.setBackgroundResource(0)
             llJishu.setBackgroundResource(0)
             llDianChi.setBackgroundResource(0)
+            var yiHandFragment: YiHandleFragment? = null
+            if (supportFragmentManager.findFragmentByTag(tag) == null) {
+                yiHandFragment = YiHandleFragment.newInstance(tag)
+            } else {
+                yiHandFragment = supportFragmentManager.findFragmentByTag(tag) as YiHandleFragment?
+            }
+            switchContent(yiHandFragment, tag)
+        }
+    }
 
-            startActivity(Intent(this, YiTestActivity::class.java))
+    override fun onResume() {
+        super.onResume()
+        val hasNetwork = NetUtils.hasNetwork(this)
+        ivNet.setImageResource(if (hasNetwork) R.drawable.ic_good_net else R.drawable.ic_bad_net)
+        if (!hasNetwork) {
+            showDialog("当前网络状态不可用,影响应用正常使用")
+        }
+        canGoHome = hasNetwork
+    }
+
+    private fun goHome() {
+        if (canGoHome) {
+            llBoli.setBackgroundResource(0)
+            llSuliao.setBackgroundResource(0)
+            llJishu.setBackgroundResource(0)
+            llDianChi.setBackgroundResource(0)
 
             var homeFragment: YiHomeFragment? = null
             if (supportFragmentManager.findFragmentByTag("home") == null) {
@@ -52,15 +133,13 @@ class YiMainActivity : BaseActivity() {
             } else {
                 homeFragment = supportFragmentManager.findFragmentByTag("home") as YiHomeFragment?
             }
-//            switchContent(homeFragment, "home")
-
+            switchContent(homeFragment, "home")
         }
 
     }
 
     fun setHomeBtnVisible(isHide: Boolean) {
-        // TODO: 2020/11/27 先注释
-//        ivHome.setViewVisible(isHide)
+        ivHome.setViewVisible(isHide)
     }
 
     fun switchContent(to: Fragment?, tag: String) {
@@ -78,60 +157,144 @@ class YiMainActivity : BaseActivity() {
             }
 
         }
+        val b = to is YiH5Fragment
+        if (!b || to == supportFragmentManager.findFragmentByTag("country")) {
+            val vedioFragment = supportFragmentManager.findFragmentByTag("vedio")
+            if (vedioFragment != null) {
+                supportFragmentManager.beginTransaction().remove(vedioFragment).commitNowAllowingStateLoss()
+            }
+        }
+        if (!b || to == supportFragmentManager.findFragmentByTag("vedio")) {
+            val countryFragment = supportFragmentManager.findFragmentByTag("country")
+            if (countryFragment != null) {
+                supportFragmentManager.beginTransaction().remove(countryFragment).commitNowAllowingStateLoss()
+            }
+        }
         this.checkedFragmentTag = tag
     }
 
     fun viewClick(tag: String) {
+        if (canGoHome) {
+            resetBtn()
+            when (tag) {
+                BOLI -> {
 
-        when (tag) {
-            BOLI -> {
+                    llBoli.setBackgroundResource(R.drawable.code_perform)
+                    llSuliao.setBackgroundResource(0)
+                    llJishu.setBackgroundResource(0)
+                    llDianChi.setBackgroundResource(0)
 
-                llBoli.setBackgroundResource(R.drawable.code_perform)
-                llSuliao.setBackgroundResource(0)
-                llJishu.setBackgroundResource(0)
-                llDianChi.setBackgroundResource(0)
+                }
+                JINSHU -> {
+                    llBoli.setBackgroundResource(0)
+                    llSuliao.setBackgroundResource(0)
+                    llJishu.setBackgroundResource(R.drawable.code_perform)
+                    llDianChi.setBackgroundResource(0)
+                }
+                SULIAO -> {
+                    llBoli.setBackgroundResource(0)
+                    llSuliao.setBackgroundResource(R.drawable.code_perform)
+                    llJishu.setBackgroundResource(0)
+                    llDianChi.setBackgroundResource(0)
 
+                }
+                DIANCHI -> {
+                    llBoli.setBackgroundResource(0)
+                    llSuliao.setBackgroundResource(0)
+                    llJishu.setBackgroundResource(0)
+                    llDianChi.setBackgroundResource(R.drawable.code_perform)
+                }
             }
-            JINSHU -> {
-                llBoli.setBackgroundResource(0)
-                llSuliao.setBackgroundResource(0)
-                llJishu.setBackgroundResource(R.drawable.code_perform)
-                llDianChi.setBackgroundResource(0)
+            var yiScanFragment: YiScanFragment? = null
+            if (supportFragmentManager.findFragmentByTag(tag) == null) {
+                yiScanFragment = YiScanFragment.newInstance(tag)
+            } else {
+                yiScanFragment = supportFragmentManager.findFragmentByTag(tag) as YiScanFragment?
             }
-            SULIAO -> {
-                llBoli.setBackgroundResource(0)
-                llSuliao.setBackgroundResource(R.drawable.code_perform)
-                llJishu.setBackgroundResource(0)
-                llDianChi.setBackgroundResource(0)
 
-            }
-            DIANCHI -> {
-                llBoli.setBackgroundResource(0)
-                llSuliao.setBackgroundResource(0)
-                llJishu.setBackgroundResource(0)
-                llDianChi.setBackgroundResource(R.drawable.code_perform)
-            }
+            switchContent(yiScanFragment, tag)
         }
-        var yiScanFragment: YiScanFragment? = null
-        if (supportFragmentManager.findFragmentByTag(tag) == null) {
-            yiScanFragment = YiScanFragment.newInstance(tag)
-        } else {
-            yiScanFragment = supportFragmentManager.findFragmentByTag(tag) as YiScanFragment?
-        }
 
-        switchContent(yiScanFragment, tag)
     }
+
+
+    private fun h5Click(tag: String) {
+        if (canGoHome) {
+            llBoli.setBackgroundResource(0)
+            llSuliao.setBackgroundResource(0)
+            llJishu.setBackgroundResource(0)
+            llDianChi.setBackgroundResource(0)
+            var yiH5Fragment: YiH5Fragment? = null
+            if (supportFragmentManager.findFragmentByTag(tag) == null) {
+                yiH5Fragment = YiH5Fragment.newInstance(if (tag == "vedio") "http://a.365igc.cn/ypf/view/dist/index.html#/view" else "http://a.365igc.cn/ypf/view/dist/index.html#/picture")
+            } else {
+                yiH5Fragment = supportFragmentManager.findFragmentByTag(tag) as YiH5Fragment?
+            }
+            switchContent(yiH5Fragment, tag)
+        }
+
+
+    }
+
+    private fun resetBtn() {
+        btnCountry.isSelected = false
+        btnVedio.isSelected = false
+        btnQuery.isSelected = false
+        btnPut.isSelected = false
+    }
+
 
     override fun initDate() {
         val beginTransaction = supportFragmentManager.beginTransaction()
         beginTransaction.add(R.id.fl_frame, YiHomeFragment.newInstance(), "home")
-        beginTransaction.commit()
+        val commit = beginTransaction.commit()
+        addCode()
+    }
+
+    private fun addCode() {
+        RxHttpUtils.createApi(ApiService::class.java)
+                .addCode(AppUtils.getDeviceId(this))
+                .compose(Transformer.switchSchedulers())
+                .subscribe(object : CommonObserver<AddCodeResq?>() {
+                    override fun onError(errorMsg: String) {
+                    }
+
+                    override fun onSuccess(t: AddCodeResq?) {
+                        if (t != null && t.row != null) {
+                            val row = t.row
+                            if (row.status == "1") {
+                                llDianChi.isEnabled = false
+                                llJishu.isEnabled = false
+                                llSuliao.isEnabled = false
+                                llBoli.isEnabled = false
+                                ivHome.isEnabled = false
+                                btnCountry.isEnabled = false
+                                btnVedio.isEnabled = false
+                                btnQuery.isEnabled = false
+                                btnPut.isEnabled = false
+                                showDialog("改设备不可用,请联系客服")
+                                return
+                            }
+                        }
+                        llDianChi.isEnabled = true
+                        llJishu.isEnabled = true
+                        llSuliao.isEnabled = true
+                        llBoli.isEnabled = true
+                        ivHome.isEnabled = true
+                        btnCountry.isEnabled = true
+                        btnVedio.isEnabled = true
+                        btnQuery.isEnabled = true
+                        btnPut.isEnabled = true
+
+                    }
+                })
     }
 
     override fun showError(msg: String?) {
     }
 
     override fun release() {
+        RxHttpUtils.cancelAllRequest()
     }
 
     override fun getContentView(): Int {

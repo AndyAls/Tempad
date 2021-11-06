@@ -6,11 +6,9 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.support.annotation.Nullable;
-import android.view.Window;
 import android.view.WindowManager;
 
 import android_serialport_api.SerialPortFinder;
-import padd.qlckh.cn.tempad.serial.App;
 
 /**
  * @author Andy

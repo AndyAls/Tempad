@@ -1,3 +1,2 @@
 ninja: Entering directory `D:\09tempad\TemPad\app\.cxx\cmake\release\x86'
-[1/2] Building C object CMakeFiles/SerialPort.dir/SerialPort.c.o
-[2/2] Linking C shared library D:\09tempad\TemPad\app\build\intermediates\cmake\release\obj\x86\libSerialPort.so
+ninja: no work to do.

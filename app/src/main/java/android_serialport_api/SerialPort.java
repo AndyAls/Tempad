@@ -18,7 +18,7 @@ public class SerialPort {
      * @param file 文件
      * @return 权限修改是否成功
      */
-    boolean chmod777(File file) {
+   public boolean chmod777(File file) {
         if (null == file || !file.exists()) {
             // 文件不存在
             return false;

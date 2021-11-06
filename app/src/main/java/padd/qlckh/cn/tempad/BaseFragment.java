@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import padd.qlckh.cn.tempad.manager.SerialPortManager;
-import padd.qlckh.cn.tempad.serial.App;
 import padd.qlckh.cn.tempad.view.IToast;
 
 /**
@@ -78,15 +77,14 @@ public abstract class BaseFragment extends Fragment{
     }*/
 
     private void getSerialPort() {
-        mPanelManager = mApplication.getmPanelManager(getActivity());
-        mPrintManager = mApplication.getmPrintManager();
-        mScanManager = mApplication.getmScanManager();
+        mPanelManager = mApplication.getmPanelManager();
+//        mPrintManager = mApplication.getmPrintManager();
+//        mScanManager = mApplication.getmScanManager();
         mWeightManager = mApplication.getmWeightManager();
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         super.onDestroy();
     }
 

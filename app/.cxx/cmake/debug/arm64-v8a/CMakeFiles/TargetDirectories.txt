@@ -1,3 +1,0 @@
-D:/09tempad/TemPad/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/SerialPort.dir
-D:/09tempad/TemPad/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
-D:/09tempad/TemPad/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir

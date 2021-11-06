@@ -14,13 +14,11 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-
         <FrameLayout
             android:id="@+id/flScan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/prompt_other">
-
 
             <TextView
                 android:id="@+id/tvDumpType"
@@ -51,7 +49,7 @@
                 android:layout_marginLeft="@dimen/dp3"
                 android:layout_marginBottom="@dimen/dp3"
                 android:scaleType="fitXY"
-                android:src="@drawable/bigcode" />
+                android:src="@drawable/qr_zhizhang" />
         </FrameLayout>
 
         <TextView
@@ -74,7 +72,6 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-
         <TextView
             android:id="@+id/tvDes2"
             android:layout_width="wrap_content"
@@ -90,7 +87,7 @@
             android:id="@+id/ivLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvDes2"
+            android:layout_below="@+id/tvDes2"
             android:layout_marginTop="@dimen/dp12"
             android:scaleType="fitXY"
             android:src="@drawable/parting" />
@@ -99,7 +96,7 @@
             android:id="@+id/tvClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ivLine"
+            android:layout_below="@+id/ivLine"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp22"
             android:gravity="center"
@@ -114,7 +111,7 @@
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvClose"
+            android:layout_below="@+id/tvClose"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp20"
             android:text="20s"
@@ -122,12 +119,11 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-
-        <Button
+        <TextView
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTime"
+            android:layout_below="@+id/tvTime"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp10"
             android:background="@drawable/btn_operation_normal"
@@ -165,7 +161,6 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-
         <FrameLayout
             android:id="@+id/flLoading"
             android:layout_width="wrap_content"
@@ -181,10 +176,7 @@
                 android:layout_marginTop="@dimen/dp8"
                 android:indeterminateDrawable="@drawable/progress_bg" />
         </FrameLayout>
-
-
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/layoutSuccess"
@@ -205,7 +197,6 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-
         <FrameLayout
             android:id="@+id/flSuccess"
             android:layout_width="wrap_content"
@@ -218,26 +209,44 @@
                 android:id="@+id/tvSuccessResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:lineSpacingExtra="@dimen/dp5"
-                android:text="投放成功\n投放成功投放成功"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </FrameLayout>
-
-
     </LinearLayout>
-
 
     <EditText
         android:id="@+id/etScan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:text=""
+        android:cursorVisible="false"
+        android:hint=""
         android:textColor="@color/transparent"
         android:textSize="@dimen/sp5" />
+
+    <TextView
+        android:id="@+id/tvTestW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/sp15"
+        android:layout_marginBottom="@dimen/sp15"
+        android:textColor="#000"
+        android:textSize="@dimen/sp15"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvTestP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/sp25"
+        android:layout_marginBottom="@dimen/sp35"
+        android:textColor="#7923cf"
+        android:textSize="@dimen/sp15"
+        android:textStyle="bold"
+        android:visibility="gone" />
 </FrameLayout>

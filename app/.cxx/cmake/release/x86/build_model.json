@@ -1,6 +1,6 @@
 {
   "abi": "X86",
-  "abiPlatformVersion": 14,
+  "abiPlatformVersion": 16,
   "buildSettings": {
     "environmentVariables": []
   },
@@ -16,7 +16,7 @@
         "ndk"
       ],
       "buildRoot": "D:\\09tempad\\TemPad\\app\\.cxx\\cmake\\release\\x86",
-      "cmakeToolchain": "D:\\sdk\\ndk\\16.1.4479499\\build\\cmake\\android.toolchain.cmake",
+      "cmakeToolchain": "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
       "cmakeExecutable": "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe",
       "variables": [
         {
@@ -29,7 +29,7 @@
         },
         {
           "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "D:\\sdk\\ndk\\16.1.4479499\\build\\cmake\\android.toolchain.cmake"
+          "value": "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake"
         },
         {
           "name": "ANDROID_ABI",
@@ -37,11 +37,11 @@
         },
         {
           "name": "ANDROID_NDK",
-          "value": "D:\\sdk\\ndk\\16.1.4479499"
+          "value": "D:\\sdk\\ndk\\21.1.6352462"
         },
         {
           "name": "ANDROID_PLATFORM",
-          "value": "android-14"
+          "value": "android-16"
         },
         {
           "name": "CMAKE_ANDROID_ARCH_ABI",
@@ -49,7 +49,7 @@
         },
         {
           "name": "CMAKE_ANDROID_NDK",
-          "value": "D:\\sdk\\ndk\\16.1.4479499"
+          "value": "D:\\sdk\\ndk\\21.1.6352462"
         },
         {
           "name": "CMAKE_EXPORT_COMPILE_COMMANDS",
@@ -69,7 +69,7 @@
         },
         {
           "name": "CMAKE_SYSTEM_VERSION",
-          "value": "14"
+          "value": "16"
         },
         {
           "name": "ANDROID_TOOLCHAIN",
@@ -103,7 +103,7 @@
         "minimumCmakeVersion": "3.10.2",
         "ninjaExe": "D:\\sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe"
       },
-      "cmakeToolchainFile": "D:\\sdk\\ndk\\16.1.4479499\\build\\cmake\\android.toolchain.cmake",
+      "cmakeToolchainFile": "D:\\sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
       "cxxFolder": "D:\\09tempad\\TemPad\\app\\.cxx",
       "gradleModulePathName": ":app",
       "intermediatesFolder": "D:\\09tempad\\TemPad\\app\\build\\intermediates",
@@ -116,14 +116,8 @@
         "X86",
         "X86_64"
       ],
-      "ndkFolder": "D:\\sdk\\ndk\\16.1.4479499",
+      "ndkFolder": "D:\\sdk\\ndk\\21.1.6352462",
       "ndkMetaAbiList": [
-        {
-          "abi": "ARMEABI",
-          "bitness": 32,
-          "deprecated": true,
-          "default": false
-        },
         {
           "abi": "ARMEABI_V7A",
           "bitness": 32,
@@ -135,18 +129,6 @@
           "bitness": 64,
           "deprecated": false,
           "default": true
-        },
-        {
-          "abi": "MIPS",
-          "bitness": 32,
-          "deprecated": true,
-          "default": false
-        },
-        {
-          "abi": "MIPS64",
-          "bitness": 64,
-          "deprecated": true,
-          "default": false
         },
         {
           "abi": "X86",
@@ -161,17 +143,35 @@
           "default": true
         }
       ],
+      "ndkMetaPlatforms": {
+        "min": 16,
+        "max": 29,
+        "aliases": {
+          "20": 19,
+          "25": 24,
+          "J": 16,
+          "J-MR1": 17,
+          "J-MR2": 18,
+          "K": 19,
+          "L": 21,
+          "L-MR1": 22,
+          "M": 23,
+          "N": 24,
+          "N-MR1": 24,
+          "O": 26,
+          "O-MR1": 27,
+          "P": 28,
+          "Q": 29
+        }
+      },
       "ndkSupportedAbiList": [
-        "ARMEABI",
         "ARMEABI_V7A",
         "ARM64_V8A",
-        "MIPS",
-        "MIPS64",
         "X86",
         "X86_64"
       ],
-      "ndkDefaultStl": "GNUSTL_STATIC",
-      "ndkVersion": "16.1.4479499",
+      "ndkDefaultStl": "LIBCXX_STATIC",
+      "ndkVersion": "21.1.6352462",
       "project": {
         "compilerSettingsCacheFolder": "D:\\09tempad\\TemPad\\.cxx",
         "cxxFolder": "D:\\09tempad\\TemPad\\.cxx",
@@ -184,37 +184,14 @@
       },
       "splitsAbiFilterSet": [],
       "stlSharedObjectMap": {
-        "GNUSTL_SHARED": {
-          "ARMEABI": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi\\libgnustl_shared.so",
-          "ARMEABI_V7A": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\libgnustl_shared.so",
-          "ARM64_V8A": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\arm64-v8a\\libgnustl_shared.so",
-          "MIPS": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\mips\\libgnustl_shared.so",
-          "MIPS64": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\mips64\\libgnustl_shared.so",
-          "X86": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\libgnustl_shared.so",
-          "X86_64": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86_64\\libgnustl_shared.so"
-        },
-        "GNUSTL_STATIC": {},
         "LIBCXX_SHARED": {
-          "ARMEABI": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\armeabi\\libc++_shared.so",
-          "ARMEABI_V7A": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\armeabi-v7a\\libc++_shared.so",
-          "ARM64_V8A": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\arm64-v8a\\libc++_shared.so",
-          "MIPS": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\mips\\libc++_shared.so",
-          "MIPS64": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\mips64\\libc++_shared.so",
-          "X86": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\x86\\libc++_shared.so",
-          "X86_64": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\llvm-libc++\\libs\\x86_64\\libc++_shared.so"
+          "ARMEABI_V7A": "D:\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\arm-linux-androideabi\\libc++_shared.so",
+          "ARM64_V8A": "D:\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\aarch64-linux-android\\libc++_shared.so",
+          "X86": "D:\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\i686-linux-android\\libc++_shared.so",
+          "X86_64": "D:\\sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\x86_64-linux-android\\libc++_shared.so"
         },
         "LIBCXX_STATIC": {},
         "NONE": {},
-        "STLPORT_SHARED": {
-          "ARMEABI": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\armeabi\\libstlport_shared.so",
-          "ARMEABI_V7A": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\armeabi-v7a\\libstlport_shared.so",
-          "ARM64_V8A": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\arm64-v8a\\libstlport_shared.so",
-          "MIPS": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\mips\\libstlport_shared.so",
-          "MIPS64": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\mips64\\libstlport_shared.so",
-          "X86": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\x86\\libstlport_shared.so",
-          "X86_64": "D:\\sdk\\ndk\\16.1.4479499\\sources\\cxx-stl\\stlport\\libs\\x86_64\\libstlport_shared.so"
-        },
-        "STLPORT_STATIC": {},
         "SYSTEM": {}
       }
     },

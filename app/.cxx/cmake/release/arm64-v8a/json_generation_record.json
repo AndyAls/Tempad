@@ -1,7 +1,7 @@
 [
   {
     "level": "INFO",
-    "message": "Start JSON generation. Platform version: 21 min SDK version: arm64-v8a",
+    "message": "Start JSON generation. Platform version: 16 min SDK version: arm64-v8a",
     "file": "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
     "tag": "release|arm64-v8a"
   },
@@ -20,12 +20,6 @@
   {
     "level": "INFO",
     "message": "- CMake found in SDK at \u0027D:\\sdk\\cmake\\3.10.2.4988404\u0027 had version \u00273.10.2\u0027",
-    "file": "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
-    "tag": "release|arm64-v8a"
-  },
-  {
-    "level": "INFO",
-    "message": "CMake \u00273.6.0\u0027 found in SDK did not match requested version \u00273.10.2\u0027.",
     "file": "D:\\09tempad\\TemPad\\app\\src\\main\\cpp\\CMakeLists.txt",
     "tag": "release|arm64-v8a"
   },

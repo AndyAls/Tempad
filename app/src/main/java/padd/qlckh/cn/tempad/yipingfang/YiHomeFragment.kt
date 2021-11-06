@@ -12,8 +12,9 @@ import padd.qlckh.cn.tempad.R
 
 /**
  * @author Andy
- * @date   2020/11/25 13:28
- * Desc:
+ * @date   2021/11/5 17:03
+ * @link   {http://blog.csdn.net/andy_l1}
+ * Desc:    YiHomeFragment.kt
  */
 class YiHomeFragment : BaseFragment() {
 

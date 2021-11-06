@@ -1,3 +1,2 @@
 ninja: Entering directory `D:\09tempad\TemPad\app\.cxx\cmake\release\armeabi-v7a'
-[1/2] Building C object CMakeFiles/SerialPort.dir/SerialPort.c.o
-[2/2] Linking C shared library D:\09tempad\TemPad\app\build\intermediates\cmake\release\obj\armeabi-v7a\libSerialPort.so
+ninja: no work to do.

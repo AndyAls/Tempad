@@ -1,7 +1,0 @@
-Executable : D:\sdk\cmake\3.10.2.4988404\bin\ninja.exe
-arguments : 
--C
-D:\09tempad\TemPad\app\.cxx\cmake\debug\arm64-v8a
-SerialPort
-jvmArgs : 
-

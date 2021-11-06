@@ -2,8 +2,9 @@ package padd.qlckh.cn.tempad.yipingfang;
 
 /**
  * @author Andy
- * @date 2020/11/26 14:47
- * Desc:
+ * @date   2021/11/5 17:02
+ * @link   {http://blog.csdn.net/andy_l1}
+ * Desc:    YiConstant.java
  */
 public interface YiConstant {
 
@@ -22,13 +23,13 @@ public interface YiConstant {
     String OPEN_ALL = "5505010101015003";
 
     /**
-     * 四个桶推杆关闭指令
+     * 四个桶推杆缩回指令
      */
     String CLOSE_DIANCHI = "5505020000005203";
-    String CLOSE_BOLI = "5505000200005203";
-    String CLOSE_JINSHU = "5505000002005203";
-    String CLOSE_SULIAO = "5505000000025203";
-    String CLOSE_ALL = "5505020202025003";
+    String CLOSE_BOLI =    "5505000200005203";
+    String CLOSE_JINSHU =  "5505000002005203";
+    String CLOSE_SULIAO =  "5505000000025203";
+    String CLOSE_ALL =     "5505020202025003";
 
 
     /**

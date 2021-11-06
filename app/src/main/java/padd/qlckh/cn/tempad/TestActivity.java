@@ -16,7 +16,6 @@ import java.util.Arrays;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import padd.qlckh.cn.tempad.help.MyAct;
 import padd.qlckh.cn.tempad.manager.OnOpenSerialPortListener;
 import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener;
 
