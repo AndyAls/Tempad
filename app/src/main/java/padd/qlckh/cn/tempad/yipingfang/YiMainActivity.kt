@@ -1,9 +1,12 @@
 package padd.qlckh.cn.tempad.yipingfang
 
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AlertDialog
 import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.setViewVisible
 import kotlinx.android.synthetic.main.activity_main_yi.*
@@ -114,14 +117,30 @@ class YiMainActivity : BaseActivity() {
         }
     }
 
+    private var createDialog: AlertDialog? = null
+    var receiver = NetWorkStateReceiver()
+    val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
     override fun onResume() {
         super.onResume()
+        registerReceiver(receiver, intentFilter)
         val hasNetwork = NetUtils.hasNetwork(this)
         ivNet.setImageResource(if (hasNetwork) R.drawable.ic_good_net else R.drawable.ic_bad_net)
+        if (createDialog != null && createDialog!!.isShowing) {
+            createDialog!!.dismiss()
+            createDialog = null
+        }
         if (!hasNetwork) {
-            showDialog("当前网络状态不可用,影响应用正常使用")
+            if (createDialog == null) {
+                createDialog = createDialog("当前网络状态不可用,影响应用正常使用")
+                createDialog?.show()
+            }
         }
         canGoHome = hasNetwork
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(receiver)
     }
 
     private fun goHome() {
@@ -302,8 +321,8 @@ class YiMainActivity : BaseActivity() {
         EventBus.getDefault().unregister(this)
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    fun netWorkState(stateEvent: NetWorkStateEvent){
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun netWorkState(stateEvent: NetWorkStateEvent?) {
         onResume()
     }
 

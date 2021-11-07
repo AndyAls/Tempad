@@ -63,13 +63,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         initView();
         initDate();
 
-        XLog.e(TAG,"onCreate");
+        XLog.e(TAG, "onCreate");
 
     }
 
     private void getSerialPort() {
-        mPanelManager=mApplication.getmPanelManager();
-        mWeightManager=mApplication.getmWeightManager();
+        mPanelManager = mApplication.getmPanelManager();
+        mWeightManager = mApplication.getmWeightManager();
        /* mPrintManager=mApplication.getmPrintManager();
         mScanManager=mApplication.getmScanManager();
         mWeightManager=mApplication.getmWeightManager();*/
@@ -90,6 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 //</editor-fold>
 
     //<editor-fold desc="软键盘控制">
+
     /**
      * 分配触摸事件
      */
@@ -146,29 +147,29 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     //<editor-fold desc="基类抽取">
     protected void showShort(String msg) {
         IToast.Config build = new IToast.Builder().setTextSize(28).build();
-        IToast.showShort(msg,build);
+        IToast.showShort(msg, build);
     }
 
     protected void showLong(String msg) {
 
         IToast.Config build = new IToast.Builder().setTextSize(28).build();
-        IToast.showLong(msg,build);
+        IToast.showLong(msg, build);
     }
 
-    protected boolean isEmpty(Object msg){
-        if (msg instanceof String){
-            return TextUtils.isEmpty((String)msg)||"".equals(msg)||"null".equals(msg);
-        }else {
-            return msg==null;
+    protected boolean isEmpty(Object msg) {
+        if (msg instanceof String) {
+            return TextUtils.isEmpty((String) msg) || "".equals(msg) || "null".equals(msg);
+        } else {
+            return msg == null;
         }
 
     }
 
-    protected void loading(){
-        LoadingView.showLoading(mActivity,"请稍等...",false);
+    protected void loading() {
+        LoadingView.showLoading(mActivity, "请稍等...", false);
     }
 
-    protected void cancelLoading(){
+    protected void cancelLoading() {
         LoadingView.cancelLoading();
     }
 
@@ -177,7 +178,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
      *
      * @param message message
      */
-    protected void showDialog( String message) {
+    protected void showDialog(String message) {
         new AlertDialog.Builder(this)
                 .setTitle("提示")
                 .setMessage(message)
@@ -190,5 +191,19 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
                 .setCancelable(false)
                 .create()
                 .show();
+    }
+
+    protected AlertDialog createDialog(String message) {
+        return new AlertDialog.Builder(this)
+                .setTitle("提示")
+                .setMessage(message)
+                .setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .create();
     }
 }

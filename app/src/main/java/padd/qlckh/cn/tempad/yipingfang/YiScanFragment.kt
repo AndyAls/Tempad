@@ -224,25 +224,26 @@ class YiScanFragment : BaseFragment() {
     }
 
     private fun closeTrash() {
-
         loading("门正在关闭,请稍等......")
-        when (tagCheck) {
-            YiMainActivity.DIANCHI -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_DIANCHI))
-            }
+        Handler().postDelayed({
+            when (tagCheck) {
+                YiMainActivity.DIANCHI -> {
+                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_DIANCHI))
+                }
 
-            YiMainActivity.BOLI -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_BOLI))
-            }
-            YiMainActivity.JINSHU -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_JINSHU))
-            }
-            YiMainActivity.SULIAO -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_SULIAO))
-            }
+                YiMainActivity.BOLI -> {
+                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_BOLI))
+                }
+                YiMainActivity.JINSHU -> {
+                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_JINSHU))
+                }
+                YiMainActivity.SULIAO -> {
+                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_SULIAO))
+                }
 
+            }
+        },200)
 
-        }
     }
 
     private fun handWeight(bytes: ByteArray) {
@@ -300,7 +301,7 @@ class YiScanFragment : BaseFragment() {
                 layoutDump.setViewVisible(false)
                 layoutLoading.setViewVisible(false)
                 layoutSuccess.setViewVisible(true)
-                tvSuccessResult.text = "用户:  ${userInfo?.fullname}\n\n种类:  ${name}\n\n重量:  ${weight}kg\n\n碳分:  ${BigDecimal(weight).multiply(BigDecimal(jifen))}分"
+                tvSuccessResult.text = "用户:  ${userInfo?.fullname}\n种类:  ${name}\n重量:  ${weight}kg\n碳分:  ${BigDecimal(weight).multiply(BigDecimal(jifen))}分"
                 postData(userInfo!!, weight, jifen, status)
                 MediaPlayerHelper.getInstance(getActivity()).startPlay(R.raw.delivery_success)
                 weightBuilder.delete(0, weightBuilder.length)
@@ -342,29 +343,35 @@ class YiScanFragment : BaseFragment() {
                 when (status.toString().toUpperCase(Locale.ROOT)) {
                     //缩回  门打开
                     "07", "0B" -> {
-                        layoutScan.setViewVisible(false)
-                        layoutDump.setViewVisible(true)
-                        layoutLoading.setViewVisible(false)
-                        layoutSuccess.setViewVisible(false)
-                        cancelLoading()
-                        MediaPlayerHelper.getInstance(context).startPlay(R.raw.put_in_garbage)
-                        if (timer != null) {
-                            timer!!.start()
+                        if (layoutScan.visibility==View.VISIBLE){
+                            layoutScan.setViewVisible(false)
+                            layoutDump.setViewVisible(true)
+                            layoutLoading.setViewVisible(false)
+                            layoutSuccess.setViewVisible(false)
+                            cancelLoading()
+                            MediaPlayerHelper.getInstance(context).startPlay(R.raw.put_in_garbage)
+                            if (timer != null) {
+                                timer!!.start()
+                            }
+                            startPanel = false
                         }
-                        startPanel = false
+
                     }
                     //伸出  门关闭
                     "03", "04" -> {
-                        layoutScan.setViewVisible(false)
-                        layoutDump.setViewVisible(false)
-                        layoutLoading.setViewVisible(true)
-                        layoutSuccess.setViewVisible(false)
-                        cancelLoading()
-                        MediaPlayerHelper.getInstance(context).startPlay(R.raw.weighting)
-                        Handler().postDelayed({
-                            startWeight = true
-                        }, 800)
-                        startPanel = false
+                        if (layoutDump.visibility==View.VISIBLE){
+                            layoutScan.setViewVisible(false)
+                            layoutDump.setViewVisible(false)
+                            layoutLoading.setViewVisible(true)
+                            layoutSuccess.setViewVisible(false)
+                            cancelLoading()
+                            MediaPlayerHelper.getInstance(context).startPlay(R.raw.weighting)
+                            Handler().postDelayed({
+                                startWeight = true
+                            }, 800)
+                            startPanel = false
+                        }
+
                     }
 
                 }
@@ -475,6 +482,10 @@ class YiScanFragment : BaseFragment() {
             disposable = Observable.interval(5, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
+                        if (activity!=null&&activity is YiMainActivity){
+                           /* val yiMainActivity = activity as YiMainActivity
+                            yiMainActivity.netWorkState(null)*/
+                        }
                         if (System.currentTimeMillis() - recorderTime > 60000L) {
                             restartSelf()
                         }

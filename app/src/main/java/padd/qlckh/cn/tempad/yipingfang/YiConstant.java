@@ -17,10 +17,10 @@ public interface YiConstant {
      * 四个桶推杆伸出指令
      */
     String OPEN_DIANCHI = "5505010000005103";
-    String OPEN_BOLI = "5505000100005103";
-    String OPEN_JINSHU = "5505000001005103";
-    String OPEN_SULIAO = "5505000000015103";
-    String OPEN_ALL = "5505010101015003";
+    String OPEN_BOLI =    "5505000100005103";
+    String OPEN_JINSHU =  "5505000001005103";
+    String OPEN_SULIAO =  "5505000000015103";
+    String OPEN_ALL =     "5505010101015003";
 
     /**
      * 四个桶推杆缩回指令
