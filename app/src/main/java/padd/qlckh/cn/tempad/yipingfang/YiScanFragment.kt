@@ -242,7 +242,7 @@ class YiScanFragment : BaseFragment() {
                 }
 
             }
-        },200)
+        },100)
 
     }
 
@@ -391,13 +391,13 @@ class YiScanFragment : BaseFragment() {
                     override fun onError(errorMsg: String) {
                         Handler().postDelayed({
                             restartSelf()
-                        }, 3000)
+                        }, 2000)
                     }
 
                     override fun onSuccess(t: Any?) {
                         Handler().postDelayed({
                             restartSelf()
-                        }, 3000)
+                        }, 2000)
                     }
                 })
     }
@@ -535,16 +535,16 @@ class YiScanFragment : BaseFragment() {
 
         Handler().postDelayed({
             mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_DIANCHI))
-        }, 200)
+        }, 150)
         Handler().postDelayed({
             mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_BOLI))
-        }, 400)
+        }, 300)
         Handler().postDelayed({
             mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_JINSHU))
-        }, 600)
+        }, 450)
         Handler().postDelayed({
             mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_SULIAO))
-        }, 800)
+        }, 600)
 
     }
 
@@ -654,6 +654,8 @@ class YiScanFragment : BaseFragment() {
         handler.removeMessages(WEIGHT_WHAT)
         handler.removeMessages(PANNEL_WHAT)
         clearCode()
+        canGoHome=true
+        setGoHome()
     }
 
     private fun clearCode() {
@@ -718,6 +720,8 @@ class YiScanFragment : BaseFragment() {
         }
         handler.removeMessages(WEIGHT_WHAT)
         handler.removeMessages(PANNEL_WHAT)
+        canGoHome=true
+        setGoHome()
     }
 
     companion object {

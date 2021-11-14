@@ -120,9 +120,8 @@ class YiMainActivity : BaseActivity() {
     private var createDialog: AlertDialog? = null
     var receiver = NetWorkStateReceiver()
     val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-    override fun onResume() {
+   /* override fun onResume() {
         super.onResume()
-        registerReceiver(receiver, intentFilter)
         val hasNetwork = NetUtils.hasNetwork(this)
         ivNet.setImageResource(if (hasNetwork) R.drawable.ic_good_net else R.drawable.ic_bad_net)
         if (createDialog != null && createDialog!!.isShowing) {
@@ -136,12 +135,8 @@ class YiMainActivity : BaseActivity() {
             }
         }
         canGoHome = hasNetwork
-    }
+    }*/
 
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(receiver)
-    }
 
     private fun goHome() {
         if (canGoHome) {
@@ -271,6 +266,7 @@ class YiMainActivity : BaseActivity() {
         val beginTransaction = supportFragmentManager.beginTransaction()
         beginTransaction.add(R.id.fl_frame, YiHomeFragment.newInstance(), "home")
         val commit = beginTransaction.commit()
+        registerReceiver(receiver, intentFilter)
         addCode()
     }
 
@@ -317,7 +313,8 @@ class YiMainActivity : BaseActivity() {
     }
 
     override fun release() {
-        RxHttpUtils.cancelAllRequest()
+//        RxHttpUtils.cancelAllRequest()
+        unregisterReceiver(receiver)
         EventBus.getDefault().unregister(this)
     }
 

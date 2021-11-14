@@ -27,7 +27,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     String BASE_URL = "http://www.lsypf.cn/api/";
-    long DEFAULT_TIME = 60;
+    long DEFAULT_TIME = 39;
     String IMG_URL = "http://www.lsypf.cn/Public/Public/";
 
     @FormUrlEncoded
