@@ -3,6 +3,7 @@ package padd.qlckh.cn.tempad.yipingfang
 import android.os.Handler
 import android.os.Message
 import com.golong.commlib.util.setClickListener
+import com.golong.commlib.util.toast
 import kotlinx.android.synthetic.main.activity_yi_pannel.*
 import padd.qlckh.cn.tempad.BaseActivity
 import padd.qlckh.cn.tempad.ConvertUtils
@@ -36,17 +37,45 @@ class YiPannelActivity : BaseActivity() {
         tvResult.text = buidler.toString()
     }
 
+    private fun peelWeight() {
+
+        Handler().postDelayed({
+            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_DIANCHI))
+        }, 150)
+        Handler().postDelayed({
+            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_BOLI))
+        }, 300)
+        Handler().postDelayed({
+            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_JINSHU))
+        }, 450)
+        Handler().postDelayed({
+            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_SULIAO))
+        }, 600)
+
+    }
 
     override fun initView() {
         zhizhang.setClickListener {
-            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_DIANCHI))
+//            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_DIANCHI))
+            peelWeight()
+            clearText()
+            toast("去皮")
         }
         boli.setClickListener {
-            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_BOLI))
+//            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_BOLI))
+            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.ZERO_JINSHU))
+            clearText()
+            toast("标零点")
         }
         jinshu.setClickListener {
-            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_JINSHU))
+//            mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_JINSHU))
+            toast("标定20kg")
+            clearText()
+            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CHECK_JINSHU))
         }
+
+
+
         suliao.setClickListener {
             mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_SULIAO))
         }
@@ -54,19 +83,25 @@ class YiPannelActivity : BaseActivity() {
             mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_ALL))
         }
         tvResult.setClickListener {
-            tvResult.text = ""
+            clearText()
         }
     }
+
+    fun clearText() {
+        buidler.clear()
+        tvResult.text = ""
+    }
+
     override fun initDate() {
         mWeightManager.setOnSerialPortDataListener(object : OnSerialPortDataListener {
             override fun onDataReceived(bytes: ByteArray?) {
+                val message = Message.obtain()
+                message.what = WEIGHT_WHAT
+                message.obj = bytes
+                handler.sendMessageDelayed(message, 200)
             }
 
             override fun onDataSent(bytes: ByteArray?) {
-                val message = Message()
-                message.what = WEIGHT_WHAT
-                message.obj = bytes
-                handler.sendMessage(message)
             }
 
         })

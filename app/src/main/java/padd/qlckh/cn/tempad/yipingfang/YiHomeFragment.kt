@@ -1,7 +1,6 @@
 package padd.qlckh.cn.tempad.yipingfang
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +32,7 @@ class YiHomeFragment : BaseFragment() {
             viewClick(YiMainActivity.BOLI)
         }
         rlDianchi.setClickListener {
-            viewClick(YiMainActivity.DIANCHI)
+            viewClick(YiMainActivity.ZHIZHANG)
 
         }
         rlJinshu.setClickListener {

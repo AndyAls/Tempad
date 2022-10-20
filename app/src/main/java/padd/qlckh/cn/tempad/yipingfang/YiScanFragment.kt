@@ -124,10 +124,10 @@ class YiScanFragment : BaseFragment() {
                             recorderTime=System.currentTimeMillis()
                             Handler().postDelayed({
                                 openTrash()
-                            }, 200)
+                            }, 100)
                             Handler().postDelayed({
                                 startPanel = true
-                            }, 800)
+                            }, 500)
 
                         } else {
                             showLong("获取用户信息失败")
@@ -205,7 +205,7 @@ class YiScanFragment : BaseFragment() {
 
     private fun openTrash() {
         when (tagCheck) {
-            YiMainActivity.DIANCHI -> {
+            YiMainActivity.ZHIZHANG -> {
                 mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_DIANCHI))
             }
 
@@ -227,7 +227,7 @@ class YiScanFragment : BaseFragment() {
         loading("门正在关闭,请稍等......")
         Handler().postDelayed({
             when (tagCheck) {
-                YiMainActivity.DIANCHI -> {
+                YiMainActivity.ZHIZHANG -> {
                     mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_DIANCHI))
                 }
 
@@ -286,7 +286,7 @@ class YiScanFragment : BaseFragment() {
                         status = "2,3"
                         "玻璃"
                     }
-                    YiMainActivity.DIANCHI -> {
+                    YiMainActivity.ZHIZHANG -> {
                         jifen = zhizhang
                         status = "2,2"
                         "纸张"
@@ -333,7 +333,7 @@ class YiScanFragment : BaseFragment() {
                     YiMainActivity.BOLI -> {
                         sbPanel.substring(12, 14)
                     }
-                    YiMainActivity.DIANCHI -> {
+                    YiMainActivity.ZHIZHANG -> {
                         sbPanel.substring(8, 10)
                     }
                     else -> {
@@ -368,7 +368,7 @@ class YiScanFragment : BaseFragment() {
                             MediaPlayerHelper.getInstance(context).startPlay(R.raw.weighting)
                             Handler().postDelayed({
                                 startWeight = true
-                            }, 800)
+                            }, 500)
                             startPanel = false
                         }
 
@@ -391,13 +391,13 @@ class YiScanFragment : BaseFragment() {
                     override fun onError(errorMsg: String) {
                         Handler().postDelayed({
                             restartSelf()
-                        }, 2000)
+                        }, 1000)
                     }
 
                     override fun onSuccess(t: Any?) {
                         Handler().postDelayed({
                             restartSelf()
-                        }, 2000)
+                        }, 1000)
                     }
                 })
     }
@@ -416,7 +416,7 @@ class YiScanFragment : BaseFragment() {
 
         mPanelManager.setOnSerialPortDataListener(object : OnSerialPortDataListener {
             override fun onDataReceived(bytes: ByteArray?) {
-                val message = Message()
+                val message = Message.obtain()
                 message.what = PANNEL_WHAT
                 message.obj = bytes
                 handler.sendMessage(message)
@@ -431,7 +431,7 @@ class YiScanFragment : BaseFragment() {
         })
         mWeightManager.setOnSerialPortDataListener(object : OnSerialPortDataListener {
             override fun onDataReceived(bytes: ByteArray?) {
-                val message = Message()
+                val message = Message.obtain()
                 message.what = WEIGHT_WHAT
                 message.obj = bytes
                 handler.sendMessage(message)
@@ -506,8 +506,8 @@ class YiScanFragment : BaseFragment() {
         if (delay == null) {
             delay = RxHttpUtils.createApi(ApiService::class.java)
                     .scanCode(AppUtils.getDeviceId(context))
-                    .delay(5, TimeUnit.SECONDS)
-                    .repeat(24)
+                    .delay(2, TimeUnit.SECONDS)
+                    .repeat(30)
                     .compose(Transformer.switchSchedulers())
                     .subscribe({
                         if (it.status == "1") {
@@ -562,7 +562,7 @@ class YiScanFragment : BaseFragment() {
                     btnClose.isEnabled = false
                     Handler().postDelayed({
                         startPanel = true
-                    }, 800)
+                    }, 500)
                 }
 
             }
@@ -576,7 +576,7 @@ class YiScanFragment : BaseFragment() {
             }
             Handler().postDelayed({
                 startPanel = true
-            }, 800)
+            }, 500)
         }
 
     }
@@ -586,7 +586,7 @@ class YiScanFragment : BaseFragment() {
         val str3 = "\",\"fenlei\":\"可回收/废纸板\"}"
         val str4 = "{\"status\":\"2,2\",\"wyid\":\""
         tvDumpType.text = when (tagCheck) {
-            YiMainActivity.DIANCHI -> {
+            YiMainActivity.ZHIZHANG -> {
 
                 ivScanCode.setImageBitmap(QRUtils.getInstance().createQRCode(str4 + AppUtils.getDeviceId(getActivity()) + str3))
                 ivDump.setImageResource(R.drawable.zz)

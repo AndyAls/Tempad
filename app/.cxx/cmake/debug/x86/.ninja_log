@@ -1,3 +1,11 @@
 # ninja log v5
 1	3517	657977386	CMakeFiles/SerialPort.dir/SerialPort.c.o	9fdaad52e4a47f16
 3521	7415	657977390	D:/09tempad/TemPad/app/build/intermediates/cmake/debug/obj/x86/libSerialPort.so	c11e56cfd19470fb
+1	35	0	clean	fa2febc325648e13
+0	32	0	clean	fa2febc325648e13
+7	4306	660307665	CMakeFiles/SerialPort.dir/SerialPort.c.o	9fdaad52e4a47f16
+4306	8547	660307669	D:/09tempad/TemPad/app/build/intermediates/cmake/debug/obj/x86/libSerialPort.so	c11e56cfd19470fb
+0	17	0	clean	fa2febc325648e13
+0	10	0	clean	fa2febc325648e13
+0	10	0	clean	fa2febc325648e13
+2	16	0	clean	fa2febc325648e13

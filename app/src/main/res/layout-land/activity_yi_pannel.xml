@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="接收的数据"
-            android:textColor="#000"
+            android:textColor="#f00"
             android:textSize="@dimen/sp18" />
     </ScrollView>
 
@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
-            android:text="纸张"
+            android:text="去皮"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
-            android:text="玻璃"
+            android:text="抓零点"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
-            android:text="金属"
+            android:text="标定20kg"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />
@@ -74,6 +74,7 @@
             android:text="塑料"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
+            android:visibility="gone"
             android:textStyle="bold" />
 
         <Button
@@ -84,6 +85,7 @@
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
             android:text="关门"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />

@@ -7,19 +7,20 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AlertDialog
+import android.view.KeyEvent
 import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.setViewVisible
-import kotlinx.android.synthetic.main.activity_main_yi.*
+import kotlinx.android.synthetic.main.activity_main_yi_daping.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import padd.qlckh.cn.tempad.*
+import padd.qlckh.cn.tempad.ApiService
+import padd.qlckh.cn.tempad.BaseActivity
+import padd.qlckh.cn.tempad.R
 import padd.qlckh.cn.tempad.http.RxHttpUtils
 import padd.qlckh.cn.tempad.http.interceptor.Transformer
 import padd.qlckh.cn.tempad.http.observer.CommonObserver
 import padd.qlckh.cn.tempad.http.utils.AppUtils
-import padd.qlckh.cn.tempad.view.AppUtil
-import padd.qlckh.cn.tempad.view.RateDao
 
 
 /**
@@ -34,12 +35,16 @@ class YiMainActivity : BaseActivity() {
     private var canGoHome = true
 
     override fun initView() {
+        try {
+            YiUtils.setNavigationBarVisible(this, true)
+        } catch (e: Exception) {
+        }
         EventBus.getDefault().register(this)
         llBoli.setClickListener {
             viewClick(BOLI)
         }
         llDianChi.setClickListener {
-            viewClick(DIANCHI)
+            viewClick(ZHIZHANG)
         }
         llJishu.setClickListener {
             viewClick(JINSHU)
@@ -51,7 +56,9 @@ class YiMainActivity : BaseActivity() {
 
             startActivity(Intent(this, YiPannelActivity::class.java))
         }
-
+        ivIcon.setClickListener {
+            startActivity(Intent(this, YiPannelActivity::class.java))
+        }
         ivHome.setClickListener {
             goHome()
 
@@ -95,6 +102,28 @@ class YiMainActivity : BaseActivity() {
 
         }
 
+
+        ivIcon.setOnLongClickListener {
+
+            DialogUtils.showEditDialog(this, "退出应用", "", "退出应用", "取消", object : OnDialogClickListener {
+                override fun onSureClick(psw: String) {
+
+                    if (psw == "666888") {
+                        finish()
+                    } else {
+                        showLong("请输入正确的密码退出应用")
+                    }
+                }
+
+                override fun onCancleClick() {
+
+                }
+
+
+            })
+            false
+        }
+
     }
 
     fun canGoHome(goHome: Boolean) {
@@ -120,23 +149,26 @@ class YiMainActivity : BaseActivity() {
     private var createDialog: AlertDialog? = null
     var receiver = NetWorkStateReceiver()
     val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-   /* override fun onResume() {
-        super.onResume()
-        val hasNetwork = NetUtils.hasNetwork(this)
-        ivNet.setImageResource(if (hasNetwork) R.drawable.ic_good_net else R.drawable.ic_bad_net)
-        if (createDialog != null && createDialog!!.isShowing) {
-            createDialog!!.dismiss()
-            createDialog = null
-        }
-        if (!hasNetwork) {
-            if (createDialog == null) {
-                createDialog = createDialog("当前网络状态不可用,影响应用正常使用")
-                createDialog?.show()
-            }
-        }
-        canGoHome = hasNetwork
-    }*/
-
+    /* override fun onResume() {
+         super.onResume()
+         try {
+             val hasNetwork = NetUtils.hasNetwork(this)
+             ivNet.setImageResource(if (hasNetwork) R.drawable.ic_good_net else R.drawable.ic_bad_net)
+             if (createDialog != null && createDialog!!.isShowing) {
+                 createDialog!!.dismiss()
+                 createDialog = null
+             }
+             if (!hasNetwork) {
+                 if (createDialog == null) {
+                     createDialog = createDialog("当前网络状态不可用,影响应用正常使用")
+                     createDialog?.show()
+                 }
+             }
+             canGoHome = hasNetwork
+         } catch (e: Exception) {
+         }
+     }
+*/
 
     private fun goHome() {
         if (canGoHome) {
@@ -216,7 +248,7 @@ class YiMainActivity : BaseActivity() {
                     llDianChi.setBackgroundResource(0)
 
                 }
-                DIANCHI -> {
+                ZHIZHANG -> {
                     llBoli.setBackgroundResource(0)
                     llSuliao.setBackgroundResource(0)
                     llJishu.setBackgroundResource(0)
@@ -261,6 +293,9 @@ class YiMainActivity : BaseActivity() {
         btnPut.isSelected = false
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return true
+    }
 
     override fun initDate() {
         val beginTransaction = supportFragmentManager.beginTransaction()
@@ -320,7 +355,7 @@ class YiMainActivity : BaseActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun netWorkState(stateEvent: NetWorkStateEvent?) {
-        onResume()
+//        onResume()
     }
 
     override fun getContentView(): Int {
@@ -330,7 +365,7 @@ class YiMainActivity : BaseActivity() {
 
     companion object {
 
-        const val DIANCHI = "dianchi"
+        const val ZHIZHANG = "dianchi"
         const val BOLI = "boli"
         const val JINSHU = "jinshu"
         const val SULIAO = "suliao"

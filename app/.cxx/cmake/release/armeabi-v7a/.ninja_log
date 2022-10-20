@@ -1,3 +1,17 @@
 # ninja log v5
 1	2267	657889569	CMakeFiles/SerialPort.dir/SerialPort.c.o	ed7b611f3cc7219a
 2268	3224	657889570	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/armeabi-v7a/libSerialPort.so	7129d69c9d61de94
+1	71	0	clean	fa2febc325648e13
+1	34	0	clean	fa2febc325648e13
+11	12255	660307213	CMakeFiles/SerialPort.dir/SerialPort.c.o	ed7b611f3cc7219a
+12255	17408	660307218	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/armeabi-v7a/libSerialPort.so	7129d69c9d61de94
+0	14	0	clean	fa2febc325648e13
+0	12	0	clean	fa2febc325648e13
+3	7207	661606671	CMakeFiles/SerialPort.dir/SerialPort.c.o	ed7b611f3cc7219a
+7207	11674	661606675	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/armeabi-v7a/libSerialPort.so	7129d69c9d61de94
+0	12	0	clean	fa2febc325648e13
+3	1163	661614192	CMakeFiles/SerialPort.dir/SerialPort.c.o	ed7b611f3cc7219a
+1163	1396	661614192	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/armeabi-v7a/libSerialPort.so	7129d69c9d61de94
+0	30	0	clean	fa2febc325648e13
+2	6927	662125647	CMakeFiles/SerialPort.dir/SerialPort.c.o	ed7b611f3cc7219a
+6927	7711	662125648	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/armeabi-v7a/libSerialPort.so	7129d69c9d61de94

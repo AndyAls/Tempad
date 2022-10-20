@@ -1,3 +1,17 @@
 # ninja log v5
 1	1144	657889575	CMakeFiles/SerialPort.dir/SerialPort.c.o	4b691a0614a3aa7
 1146	2106	657889576	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	ce4d5793f51c38cd
+1	65	0	clean	fa2febc325648e13
+0	34	0	clean	fa2febc325648e13
+7	4692	660307242	CMakeFiles/SerialPort.dir/SerialPort.c.o	4b691a0614a3aa7
+4693	9627	660307247	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	ce4d5793f51c38cd
+1	16	0	clean	fa2febc325648e13
+0	19	0	clean	fa2febc325648e13
+2	803	661606680	CMakeFiles/SerialPort.dir/SerialPort.c.o	4b691a0614a3aa7
+803	1974	661606681	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	ce4d5793f51c38cd
+1	22	0	clean	fa2febc325648e13
+2	440	661614194	CMakeFiles/SerialPort.dir/SerialPort.c.o	4b691a0614a3aa7
+440	626	661614195	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	ce4d5793f51c38cd
+0	16	0	clean	fa2febc325648e13
+1	494	662125651	CMakeFiles/SerialPort.dir/SerialPort.c.o	4b691a0614a3aa7
+494	1126	662125652	D:/09tempad/TemPad/app/build/intermediates/cmake/release/obj/x86_64/libSerialPort.so	ce4d5793f51c38cd

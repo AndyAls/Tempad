@@ -1,5 +1,8 @@
 package padd.qlckh.cn.tempad.yipingfang;
 
+import android.app.Activity;
+import android.view.View;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
@@ -13,14 +16,19 @@ public class YiUtils {
 
     public static String getWeight(String weight, String tag) {
         switch (tag) {
-            case YiMainActivity.JINSHU:
-                return transfromKg("1BE7", weight.substring(22, 26));
-            case YiMainActivity.SULIAO:
-                return transfromKg("1BE7", weight.substring(28, 32));
+            //纸张
+            case YiMainActivity.ZHIZHANG:
+                return transfromKg("2710", weight.substring(10, 14));
+            //玻璃
             case YiMainActivity.BOLI:
-                return transfromKg("1BE7", weight.substring(16, 20));
-            case YiMainActivity.DIANCHI:
-                return transfromKg("1BE7", weight.substring(10, 14));
+                return transfromKg("07D0", weight.substring(16, 20));
+            //金属
+            case YiMainActivity.JINSHU:
+                return transfromKg("07D0", weight.substring(22, 26));
+
+            case YiMainActivity.SULIAO:
+                //塑料
+                return transfromKg("07D0", weight.substring(28, 32));
             default:
                 return "0";
         }
@@ -34,6 +42,23 @@ public class YiUtils {
         Double.isNaN(d);
         return new DecimalFormat("0.00").format(new BigDecimal(parseLong2 / d).setScale(2, 4).doubleValue());
     }
-
+    /**
+     * 隐藏或显示 导航栏
+     *
+     * @param activity
+     */
+    public static void setNavigationBarVisible(Activity activity, boolean isHide) {
+        if (isHide) {
+            View decorView = activity.getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        } else {
+            View decorView = activity.getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
 
 }

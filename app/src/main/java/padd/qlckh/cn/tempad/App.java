@@ -60,11 +60,11 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         initHttp();
-        initCarsh();
-        CrashReport.UserStrategy userStrategy = new CrashReport.UserStrategy(this);
-        userStrategy.setDeviceID(CommUtils.getIMEI(this));
-        CrashReport.setUserId(CommUtils.getIMEI(this));
-        CrashReport.initCrashReport(getApplicationContext(), "6f38b53273", false,userStrategy);
+//        initCarsh();
+//        CrashReport.UserStrategy userStrategy = new CrashReport.UserStrategy(this);
+//        userStrategy.setDeviceID(CommUtils.getIMEI(this));
+//        CrashReport.setUserId(CommUtils.getIMEI(this));
+//        CrashReport.initCrashReport(getApplicationContext(), "6f38b53273", false,userStrategy);
     }
 
     private void initCarsh() {
@@ -119,7 +119,7 @@ public class App extends Application {
                 //全局超时配置
                 .setConnectTimeout(ApiService.DEFAULT_TIME)
                 //全局是否打开请求log日志
-                .setLog(true);
+                .setLog(false);
     }
 
     public SerialPortManager getmWeightManager() {
