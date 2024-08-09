@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = D:\sdk\cmake\3.10.2.4988404\bin\cmake.exe -HD:\09tempad\TemPad\app\src\main\cpp -BD:\09tempad\TemPad\app\.cxx\cmake\debug\x86
+  command = D:\sdk\cmake\3.10.2.4988404\bin\cmake.exe -HE:\01project\Tempad\app\src\main\cpp -BE:\01project\Tempad\app\.cxx\cmake\debug\x86
   description = Re-running CMake...
   generator = 1
 
