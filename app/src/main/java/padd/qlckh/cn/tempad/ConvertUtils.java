@@ -68,6 +68,12 @@ public final class ConvertUtils {
         }
         return ret;
     }
+
+    public static byte[] json2Bytes(String json){
+        J
+      return json.toBy
+    };
+
     public static final String GB2312 = "GB2312";
     /** 将字符编码转换成GB2312     */
     public static String toGB2312(String str) throws UnsupportedEncodingException {
@@ -289,4 +295,5 @@ public final class ConvertUtils {
         }
         return true;
     }
+
 }

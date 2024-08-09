@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
@@ -122,10 +123,10 @@ class YiScanFragment : BaseFragment() {
                             canGoHome = false
                             setGoHome()
                             recorderTime=System.currentTimeMillis()
-                            Handler().postDelayed({
+                            Handler(Looper.getMainLooper()).postDelayed({
                                 openTrash()
                             }, 100)
-                            Handler().postDelayed({
+                            Handler(Looper.getMainLooper()).postDelayed({
                                 startPanel = true
                             }, 500)
 
@@ -189,7 +190,7 @@ class YiScanFragment : BaseFragment() {
 
     }
 
-    var handler = Handler {
+    var handler = Handler (Looper.getMainLooper()){
         val what = it.what
         when (what) {
             PANNEL_WHAT -> {

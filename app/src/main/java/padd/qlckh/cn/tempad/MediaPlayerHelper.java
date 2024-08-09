@@ -79,12 +79,12 @@ public class MediaPlayerHelper {
 
 
     public void startPlay(@RawRes final int rawId) {
-        requestAudioFocus();
+      /*  requestAudioFocus();
         try {
             preparePlay(null, rawId);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 //        subscribe = Completable.create(new CompletableOnSubscribe() {
