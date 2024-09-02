@@ -9,8 +9,8 @@ import java.util.List;
 
 /**
  * @author Andy
- * @date   2018/5/15 15:25
- * @link   {http://blog.csdn.net/andy_l1}
+ * @date 2018/5/15 15:25
+ * @link {http://blog.csdn.net/andy_l1}
  * Desc:    JsonUtil.java
  */
 
@@ -20,19 +20,19 @@ public class JsonUtil {
         return JSON.parseArray(jsonData, clazz);
     }
 
-    public static <T> T json2Object2(String json, Class<T> clazz){
-        return JSON.parseObject(json,  clazz);
+    public static <T> T json2Object2(String json, Class<T> clazz) {
+        return JSON.parseObject(json, clazz);
     }
 
-    public static <T> String object2Json(T t){
+    public static <T> String object2Json(T t) {
         return JSON.toJSONString(t);
     }
 
-    public static String getString(String tag, String json){
+    public static String getString(String tag, String json) {
         try {
 
             org.json.JSONObject jsonObject = new org.json.JSONObject(json);
-            if (jsonObject.has(tag)){
+            if (jsonObject.has(tag)) {
                 return jsonObject.getString(tag);
             }
         } catch (JSONException e) {
@@ -42,10 +42,11 @@ public class JsonUtil {
     }
 
 
-    public static boolean isJsonValid(String json){
+    public static boolean isJsonValid(String json) {
         try {
+            final String JSON_PATTERN = "\\{.*\\}";
             Object parse = JSON.parse(json);
-            return json.contains("{");
+            return json.matches(JSON_PATTERN);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

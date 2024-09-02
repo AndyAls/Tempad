@@ -345,38 +345,6 @@ CMAKE SERVER:
 
 CMAKE SERVER: [== "CMake Server" ==[
 
-CMAKE SERVER: {"cookie":"","inReplyTo":"","name":"dirty","type":"signal"}
-
-CMAKE SERVER: ]== "CMake Server" ==]
-
-CMAKE SERVER: 
-
-CMAKE SERVER: [== "CMake Server" ==[
-
-CMAKE SERVER: {"cookie":"","inReplyTo":"","name":"fileChange","path":"D:/sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake","properties":["change"],"type":"signal"}
-
-CMAKE SERVER: ]== "CMake Server" ==]
-
-CMAKE SERVER: 
-
-CMAKE SERVER: [== "CMake Server" ==[
-
-CMAKE SERVER: {"cookie":"","inReplyTo":"","name":"fileChange","path":"D:/sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake","properties":["change"],"type":"signal"}
-
-CMAKE SERVER: ]== "CMake Server" ==]
-
-CMAKE SERVER: 
-
-CMAKE SERVER: [== "CMake Server" ==[
-
-CMAKE SERVER: {"cookie":"","inReplyTo":"","name":"fileChange","path":"D:/sdk/ndk/21.1.6352462/build/cmake/platforms.cmake","properties":["change"],"type":"signal"}
-
-CMAKE SERVER: ]== "CMake Server" ==]
-
-CMAKE SERVER: 
-
-CMAKE SERVER: [== "CMake Server" ==[
-
 CMAKE SERVER: {"configurations":[{"name":"Debug","projects":[{"buildDirectory":"E:/01project/Tempad/app/.cxx/cmake/debug/x86","name":"Project","sourceDirectory":"E:/01project/Tempad/app/src/main/cpp","targets":[{"artifacts":["E:/01project/Tempad/app/build/intermediates/cmake/debug/obj/x86/libSerialPort.so"],"buildDirectory":"E:/01project/Tempad/app/.cxx/cmake/debug/x86","fileGroups":[{"compileFlags":"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC  ","defines":["SerialPort_EXPORTS"],"isGenerated":false,"language":"C","sources":["SerialPort.c"]}],"fullName":"libSerialPort.so","linkFlags":"-Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libgcc_real.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments","linkLibraries":"-landroid -llog -latomic -lm","linkerLanguage":"C","name":"SerialPort","sourceDirectory":"E:/01project/Tempad/app/src/main/cpp","sysroot":"D:/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot","type":"SHARED_LIBRARY"}]}]}],"cookie":"","inReplyTo":"codemodel","type":"reply"}
 
 CMAKE SERVER: ]== "CMake Server" ==]

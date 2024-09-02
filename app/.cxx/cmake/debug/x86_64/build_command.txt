@@ -1,7 +1,7 @@
                 Executable : D:\sdk\cmake\3.10.2.4988404\bin\cmake.exe
 arguments : 
--HD:\09tempad\TemPad\app\src\main\cpp
--DCMAKE_FIND_ROOT_PATH=D:\09tempad\TemPad\app\.cxx\cmake\debug\prefab\x86_64\prefab
+-HE:\01project\Tempad\app\src\main\cpp
+-DCMAKE_FIND_ROOT_PATH=E:\01project\Tempad\app\.cxx\cmake\debug\prefab\x86_64\prefab
 -DCMAKE_BUILD_TYPE=Debug
 -DCMAKE_TOOLCHAIN_FILE=D:\sdk\ndk\21.1.6352462\build\cmake\android.toolchain.cmake
 -DANDROID_ABI=x86_64
@@ -10,12 +10,12 @@ arguments :
 -DCMAKE_ANDROID_ARCH_ABI=x86_64
 -DCMAKE_ANDROID_NDK=D:\sdk\ndk\21.1.6352462
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\09tempad\TemPad\app\build\intermediates\cmake\debug\obj\x86_64
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=E:\01project\Tempad\app\build\intermediates\cmake\debug\obj\x86_64
 -DCMAKE_MAKE_PROGRAM=D:\sdk\cmake\3.10.2.4988404\bin\ninja.exe
 -DCMAKE_SYSTEM_NAME=Android
 -DCMAKE_SYSTEM_VERSION=16
 -DANDROID_TOOLCHAIN=clang
--BD:\09tempad\TemPad\app\.cxx\cmake\debug\x86_64
+-BE:\01project\Tempad\app\.cxx\cmake\debug\x86_64
 -GNinja
 jvmArgs : 
 

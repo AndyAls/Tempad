@@ -69,6 +69,7 @@ class YiScanFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setSerialListener()
         super.onViewCreated(view, savedInstanceState)
+        mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.TIME_OUT))
         initView()
         initListener()
         initData()
@@ -205,21 +206,21 @@ class YiScanFragment : BaseFragment() {
 
 
     private fun openTrash() {
+
         when (tagCheck) {
             YiMainActivity.ZHIZHANG -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_DIANCHI))
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.OPEN_DIANCHI))
             }
 
             YiMainActivity.BOLI -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_BOLI))
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.OPEN_BOLI))
             }
             YiMainActivity.JINSHU -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_JINSHU))
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.OPEN_JINSHU))
             }
             YiMainActivity.SULIAO -> {
-                mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.CLOSE_SULIAO))
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.OPEN_SULIAO))
             }
-
 
         }
     }
@@ -229,17 +230,17 @@ class YiScanFragment : BaseFragment() {
         Handler().postDelayed({
             when (tagCheck) {
                 YiMainActivity.ZHIZHANG -> {
-                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_DIANCHI))
+                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_DIANCHI))
                 }
 
                 YiMainActivity.BOLI -> {
-                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_BOLI))
+                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_BOLI))
                 }
                 YiMainActivity.JINSHU -> {
-                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_JINSHU))
+                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_JINSHU))
                 }
                 YiMainActivity.SULIAO -> {
-                    mPanelManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.OPEN_SULIAO))
+                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_SULIAO))
                 }
 
             }
@@ -250,24 +251,15 @@ class YiScanFragment : BaseFragment() {
     private fun handWeight(bytes: ByteArray) {
 
         if (startWeight) {
-            weightBuilder.append(ConvertUtils.bytes2HexString(bytes))
-            if (!weightBuilder.startsWith("55")) {
+            val append = weightBuilder.append(ConvertUtils.bytes2HexString(bytes))
+
+            if (!append.startsWith("{")) {
                 weightBuilder.delete(0, weightBuilder.length)
             }
-            if (weightBuilder.startsWith("55") && weightBuilder.length == 36) {
+            if (JsonUtil.isJsonValid(weightBuilder.toString())&&weightBuilder.contains("{\"o\":1201,")) {
                 startWeight = false
-                var weight = YiUtils.getWeight(weightBuilder.toString(), tagCheck)
-                if (weight.toDouble() > 25.0) {
-                    if (count < 6) {
-                        startWeight = true
-                        count += 1
-                        weightBuilder.delete(0, weightBuilder.length)
-                        return
-                    } else {
-                        weight = "0.0"
-                    }
-                }
-
+                val weightBean = JsonUtil.json2Object2(weightBuilder.toString(), WeightBean::class.java)
+                val weight = weightBean.d.binInfo.weight
                 val jifen: Double
                 val status: String
                 val name = when (tagCheck) {
@@ -303,7 +295,7 @@ class YiScanFragment : BaseFragment() {
                 layoutLoading.setViewVisible(false)
                 layoutSuccess.setViewVisible(true)
                 tvSuccessResult.text = "用户:  ${userInfo?.fullname}\n种类:  ${name}\n重量:  ${weight}kg\n碳分:  ${BigDecimal(weight).multiply(BigDecimal(jifen))}分"
-                postData(userInfo!!, weight, jifen, status)
+                postData(userInfo!!, weight.toString(), jifen, status)
                 MediaPlayerHelper.getInstance(getActivity()).startPlay(R.raw.delivery_success)
                 weightBuilder.delete(0, weightBuilder.length)
                 startWeight = false
@@ -317,31 +309,60 @@ class YiScanFragment : BaseFragment() {
     private fun handPanel(bytes: ByteArray) {
 
         if (startPanel) {
-            val append = sbPanel.append(ConvertUtils.bytes2HexString(bytes))
-            if (!append.startsWith("55")) {
+            val append = sbPanel.append(String(bytes))
+            if (!append.startsWith("{")) {
                 sbPanel.delete(0, sbPanel.length)
             }
-            if (sbPanel.startsWith("55") && sbPanel.length == 30) {
+            if (JsonUtil.isJsonValid(sbPanel.toString())&&sbPanel.contains("{\"r\":8001")) {
                 recorderTime=System.currentTimeMillis()
-                val status = when (tagCheck) {
-                    YiMainActivity.JINSHU -> {
-                        sbPanel.substring(16, 18)
-                    }
-                    YiMainActivity.SULIAO -> {
-                        sbPanel.substring(20, 22)
-
-                    }
-                    YiMainActivity.BOLI -> {
-                        sbPanel.substring(12, 14)
-                    }
-                    YiMainActivity.ZHIZHANG -> {
-                        sbPanel.substring(8, 10)
-                    }
-                    else -> {
-                        "00"
+                val orderReply = JsonUtil.json2Object2(sbPanel.toString(), OrderReply::class.java)
+                if (orderReply.isOpen()){
+                    if (layoutScan.visibility==View.VISIBLE){
+                        layoutScan.setViewVisible(false)
+                        layoutDump.setViewVisible(true)
+                        layoutLoading.setViewVisible(false)
+                        layoutSuccess.setViewVisible(false)
+                        cancelLoading()
+                        MediaPlayerHelper.getInstance(context).startPlay(R.raw.put_in_garbage)
+                        if (timer != null) {
+                            timer!!.start()
+                        }
+                        startPanel = false
                     }
                 }
-                when (status.toString().toUpperCase(Locale.ROOT)) {
+                if (orderReply.isClose()){
+                    if (layoutDump.visibility==View.VISIBLE){
+                        layoutScan.setViewVisible(false)
+                        layoutDump.setViewVisible(false)
+                        layoutLoading.setViewVisible(true)
+                        layoutSuccess.setViewVisible(false)
+                        cancelLoading()
+                        MediaPlayerHelper.getInstance(context).startPlay(R.raw.weighting)
+                        Handler().postDelayed({
+                            startWeight = true
+                        }, 500)
+                        startPanel = false
+                    }
+                }
+                /*  val status = when (tagCheck) {
+                      YiMainActivity.JINSHU -> {
+                          sbPanel.substring(16, 18)
+                      }
+                      YiMainActivity.SULIAO -> {
+                          sbPanel.substring(20, 22)
+
+                      }
+                      YiMainActivity.BOLI -> {
+                          sbPanel.substring(12, 14)
+                      }
+                      YiMainActivity.ZHIZHANG -> {
+                          sbPanel.substring(8, 10)
+                      }
+                      else -> {
+                          "00"
+                      }
+                  }*/
+               /* when (status.toString().toUpperCase(Locale.ROOT)) {
                     //缩回  门打开
                     "07", "0B" -> {
                         if (layoutScan.visibility==View.VISIBLE){
@@ -375,10 +396,12 @@ class YiScanFragment : BaseFragment() {
 
                     }
 
-                }
+                }*/
                 sbPanel.delete(0, sbPanel.length)
             }
         }
+
+        handWeight(bytes)
     }
 
     private fun postData(rowBean: YiUserInfo.RowBean, weight: String, d: Double, status: String) {
@@ -430,7 +453,7 @@ class YiScanFragment : BaseFragment() {
             }
 
         })
-        mWeightManager.setOnSerialPortDataListener(object : OnSerialPortDataListener {
+       /* mWeightManager.setOnSerialPortDataListener(object : OnSerialPortDataListener {
             override fun onDataReceived(bytes: ByteArray?) {
                 val message = Message.obtain()
                 message.what = WEIGHT_WHAT
@@ -441,7 +464,7 @@ class YiScanFragment : BaseFragment() {
             override fun onDataSent(bytes: ByteArray?) {
             }
 
-        })
+        })*/
     }
 
     private fun initView() {
@@ -535,16 +558,16 @@ class YiScanFragment : BaseFragment() {
     private fun peelWeight() {
 
         Handler().postDelayed({
-            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_DIANCHI))
+            mWeightManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_DIANCHI))
         }, 150)
         Handler().postDelayed({
-            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_BOLI))
+            mWeightManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_BOLI))
         }, 300)
         Handler().postDelayed({
-            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_JINSHU))
+            mWeightManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_JINSHU))
         }, 450)
         Handler().postDelayed({
-            mWeightManager.sendBytes(ConvertUtils.hexString2Bytes(YiConstant.PEEL_SULIAO))
+            mWeightManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_SULIAO))
         }, 600)
 
     }

@@ -1,7 +1,0 @@
-# ninja log v5
-0	297	7445515358132949	CMakeFiles/SerialPort.dir/SerialPort.c.o	8fcad7761f042c61
-299	485	7445515359978032	E:/01project/Tempad/app/build/intermediates/cxx/Debug/2yd5o352/obj/arm64-v8a/libSerialPort.so	bfa2983aff10b9eb
-0	12	0	clean	8da9d024a5b18bcf
-1	233	7445516420688280	CMakeFiles/SerialPort.dir/SerialPort.c.o	8fcad7761f042c61
-234	373	7445516422091405	E:/01project/Tempad/app/build/intermediates/cxx/Debug/2yd5o352/obj/arm64-v8a/libSerialPort.so	bfa2983aff10b9eb
-0	12	0	clean	8da9d024a5b18bcf

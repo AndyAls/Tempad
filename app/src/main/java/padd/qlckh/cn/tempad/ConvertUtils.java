@@ -1,15 +1,31 @@
 package padd.qlckh.cn.tempad;
 
+import android.util.Base64;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.zxing.common.StringUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
+import kotlin.text.Charsets;
+import kotlin.text.StringsKt;
+import kotlinx.serialization.json.Json;
+import padd.qlckh.cn.tempad.http.utils.GsonUtils;
+
 /**
  * @author Andy
- * @date   2018/9/16 22:24
- * @link   {http://blankj.com}
+ * @date 2018/9/16 22:24
+ * @link {http://blankj.com}
  * Desc:    转换相关工具类
  */
 public final class ConvertUtils {
@@ -69,24 +85,46 @@ public final class ConvertUtils {
         return ret;
     }
 
-    public static byte[] json2Bytes(String json){
-        J
-      return json.toBy
-    };
 
+    public static byte[] json2Bytes(String jsonString) {
+        try {
+            // 将JSON字符串转换为JSON对象
+            JSONObject jsonObject = new JSONObject(jsonString);
+            // 将JSON对象转换为二进制字节数据
+            return jsonObject.toString().getBytes();
+        } catch (JSONException e) {
+           return null;
+        }
+    }
+
+   static StringBuilder sb = new StringBuilder();
+
+    public static String bytes2Json(byte[] bytes) {
+        sb.delete(0,sb.length());
+        for (byte b : bytes) {
+            sb.append((char) b);
+        }
+        return sb.toString();
+    }
+
+    ;
     public static final String GB2312 = "GB2312";
-    /** 将字符编码转换成GB2312     */
+
+    /**
+     * 将字符编码转换成GB2312
+     */
     public static String toGB2312(String str) throws UnsupportedEncodingException {
-        return changeCharset(str,GB2312);
+        return changeCharset(str, GB2312);
     }
 
     /**
      * 字符串编码转换的实现方法
-     * @param str    待转换的字符串
-     * @param newCharset    目标编码
+     *
+     * @param str        待转换的字符串
+     * @param newCharset 目标编码
      */
     public static String changeCharset(String str, String newCharset) throws UnsupportedEncodingException {
-        if(str != null) {
+        if (str != null) {
             //用默认字符编码解码字符串。与系统相关，中文windows默认为GB2312
             byte[] bs = str.getBytes();
             return new String(bs, newCharset);    //用新的字符编码生成字符串
@@ -96,20 +134,23 @@ public final class ConvertUtils {
 
     /**
      * 字符串编码转换的实现方法
-     * @param str    待转换的字符串
-     * @param oldCharset    源字符集
-     * @param newCharset    目标字符集
+     *
+     * @param str        待转换的字符串
+     * @param oldCharset 源字符集
+     * @param newCharset 目标字符集
      */
     public String changeCharset(String str, String oldCharset, String newCharset) throws UnsupportedEncodingException {
-        if(str != null) {
+        if (str != null) {
             //用源字符编码解码字符串
             byte[] bs = str.getBytes(oldCharset);
             return new String(bs, newCharset);
         }
         return null;
     }
+
     /**
      * 字符串转换成为16进制(无需Unicode编码)
+     *
      * @param str
      * @return
      */
@@ -130,6 +171,7 @@ public final class ConvertUtils {
 
     /**
      * 16进制直接转换成为字符串(无需Unicode解码)
+     *
      * @param hexStr
      * @return
      */
@@ -145,6 +187,7 @@ public final class ConvertUtils {
         }
         return new String(bytes);
     }
+
     /**
      * hexChar转int
      *
@@ -256,7 +299,6 @@ public final class ConvertUtils {
         }
         return new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
     }
-
 
 
     /**

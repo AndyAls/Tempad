@@ -17,10 +17,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
+import java.io.File;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import padd.qlckh.cn.tempad.manager.OnOpenSerialPortListener;
+import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener;
 import padd.qlckh.cn.tempad.manager.SerialPortManager;
 import padd.qlckh.cn.tempad.view.IToast;
+import padd.qlckh.cn.tempad.yipingfang.DeviceResp;
+import padd.qlckh.cn.tempad.yipingfang.YiConstant;
 
 /**
  * @author Andy
@@ -63,12 +69,32 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         initView();
         initDate();
 
-        XLog.e(TAG, "onCreate");
-
     }
 
+
+    protected  void onOpenSuccess(File device){
+
+        showDialog("串口打开成功"+device.getAbsolutePath());
+
+    };
+    protected  void onOpenFail(File device, OnOpenSerialPortListener.Status status){
+        showDialog("串口打开失败"+device.getAbsolutePath()+"-"+status);
+    };
+
     private void getSerialPort() {
-        mPanelManager = mApplication.getmPanelManager();
+        OnOpenSerialPortListener listener = new OnOpenSerialPortListener() {
+            @Override
+            public void onSuccess(File device) {
+                onOpenSuccess(device);
+            }
+
+            @Override
+            public void onFail(File device, Status status) {
+
+                onOpenFail(device,status);
+            }
+        };
+        mPanelManager = mApplication.getmPanelManager(listener);
         mWeightManager = mApplication.getmWeightManager();
        /* mPrintManager=mApplication.getmPrintManager();
         mScanManager=mApplication.getmScanManager();

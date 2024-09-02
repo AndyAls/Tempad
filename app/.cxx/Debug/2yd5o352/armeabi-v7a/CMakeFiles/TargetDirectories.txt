@@ -1,3 +1,0 @@
-E:/01project/Tempad/app/.cxx/Debug/2yd5o352/armeabi-v7a/CMakeFiles/SerialPort.dir
-E:/01project/Tempad/app/.cxx/Debug/2yd5o352/armeabi-v7a/CMakeFiles/edit_cache.dir
-E:/01project/Tempad/app/.cxx/Debug/2yd5o352/armeabi-v7a/CMakeFiles/rebuild_cache.dir

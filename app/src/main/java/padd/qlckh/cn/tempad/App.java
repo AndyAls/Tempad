@@ -36,6 +36,7 @@ import padd.qlckh.cn.tempad.CustomErrorActivity;
 import padd.qlckh.cn.tempad.R;
 import padd.qlckh.cn.tempad.XLog;
 import padd.qlckh.cn.tempad.http.RxHttpUtils;
+import padd.qlckh.cn.tempad.manager.OnOpenSerialPortListener;
 import padd.qlckh.cn.tempad.manager.SerialPortManager;
 import padd.qlckh.cn.tempad.yipingfang.YiMainActivity;
 
@@ -140,7 +141,7 @@ public class App extends Application {
             SharedPreferences ssp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String scanNode = ssp.getString(Constant.SCAN_NODE, "");
             int scanRate = Integer.decode(ssp.getString(Constant.SCAN_RATE, "-1"));
-            mScanManager.openSerialPort(new File(scanNode), scanRate);
+            mScanManager.openSerialPort(new File("/dev/ttyS5"), 115200);
         }
         return mScanManager;
     }
@@ -157,15 +158,16 @@ public class App extends Application {
         return mPrintManager;
     }
 
-    public SerialPortManager getmPanelManager() {
+    public SerialPortManager getmPanelManager(OnOpenSerialPortListener listener) {
         if (mPanelManager == null) {
             mPanelManager = new SerialPortManager();
             SharedPreferences psp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
-            String panelNode = psp.getString(Constant.PANEL_NODE, "");
-            int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "-1"));
+            String panelNode = psp.getString(Constant.PANEL_NODE, "/dev/ttyS3");
+            int panelRate = Integer.decode(psp.getString(Constant.PRINT_RATE, "115200"));
             /*String panelNode ="/dev/ttyO3";
             int panelRate = 38400;*/
-            mPanelManager.openSerialPort(new File("/dev/ttyS2"), 9600);
+            mPanelManager.setOnOpenSerialPortListener(listener);
+            mPanelManager.openSerialPort(new File(panelNode), panelRate);
         }
         return mPanelManager;
     }

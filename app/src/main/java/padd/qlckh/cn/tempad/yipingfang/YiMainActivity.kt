@@ -16,7 +16,10 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import padd.qlckh.cn.tempad.ApiService
 import padd.qlckh.cn.tempad.BaseActivity
+import padd.qlckh.cn.tempad.ConvertUtils
+import padd.qlckh.cn.tempad.JsonUtil
 import padd.qlckh.cn.tempad.R
+import padd.qlckh.cn.tempad.SettingActivity
 import padd.qlckh.cn.tempad.http.RxHttpUtils
 import padd.qlckh.cn.tempad.http.interceptor.Transformer
 import padd.qlckh.cn.tempad.http.observer.CommonObserver
@@ -41,6 +44,8 @@ class YiMainActivity : BaseActivity() {
         }
         EventBus.getDefault().register(this)
         llBoli.setClickListener {
+          /*  test();
+            return@setClickListener*/
             viewClick(BOLI)
         }
         llDianChi.setClickListener {
@@ -54,7 +59,7 @@ class YiMainActivity : BaseActivity() {
         }
         ivSetting.setClickListener {
 
-            startActivity(Intent(this, YiPannelActivity::class.java))
+            startActivity(Intent(this, SettingActivity::class.java))
         }
         ivIcon.setClickListener {
             startActivity(Intent(this, YiPannelActivity::class.java))
@@ -123,6 +128,22 @@ class YiMainActivity : BaseActivity() {
             })
             false
         }
+
+    }
+
+    private fun test() {
+        println("------------------")
+        val open = ConvertUtils.json2Bytes(YiConstant.OPEN_BOLI)
+        println(open.asList())
+        val json = ConvertUtils.bytes2Json(open)
+        println(json)
+        val jsonValid = JsonUtil.isJsonValid(YiConstant.OPEN_BOLI)
+        val jsonValid1 = JsonUtil.isJsonValid(json)
+        println("$jsonValid ---> $jsonValid1")
+
+        val orderReply = JsonUtil.json2Object2("{\"r\":8001,\"d\":{\"bin_no\":1,\"code\":1}}", OrderReply::class.java)
+        println(orderReply)
+
 
     }
 
@@ -256,10 +277,10 @@ class YiMainActivity : BaseActivity() {
                 }
             }
             var yiScanFragment: YiScanFragment? = null
-            if (supportFragmentManager.findFragmentByTag(tag) == null) {
-                yiScanFragment = YiScanFragment.newInstance(tag)
+            yiScanFragment = if (supportFragmentManager.findFragmentByTag(tag) == null) {
+                YiScanFragment.newInstance(tag)
             } else {
-                yiScanFragment = supportFragmentManager.findFragmentByTag(tag) as YiScanFragment?
+                supportFragmentManager.findFragmentByTag(tag) as YiScanFragment?
             }
 
             switchContent(yiScanFragment, tag)
@@ -275,10 +296,10 @@ class YiMainActivity : BaseActivity() {
             llJishu.setBackgroundResource(0)
             llDianChi.setBackgroundResource(0)
             var yiH5Fragment: YiH5Fragment? = null
-            if (supportFragmentManager.findFragmentByTag(tag) == null) {
-                yiH5Fragment = YiH5Fragment.newInstance(if (tag == "vedio") "http://a.365igc.cn/ypf/view/dist/index.html#/view" else "http://a.365igc.cn/ypf/view/dist/index.html#/picture")
+            yiH5Fragment = if (supportFragmentManager.findFragmentByTag(tag) == null) {
+                YiH5Fragment.newInstance(if (tag == "vedio") "http://a.365igc.cn/ypf/view/dist/index.html#/view" else "http://a.365igc.cn/ypf/view/dist/index.html#/picture")
             } else {
-                yiH5Fragment = supportFragmentManager.findFragmentByTag(tag) as YiH5Fragment?
+                supportFragmentManager.findFragmentByTag(tag) as YiH5Fragment?
             }
             switchContent(yiH5Fragment, tag)
         }

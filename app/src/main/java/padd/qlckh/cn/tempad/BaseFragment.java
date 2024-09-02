@@ -77,7 +77,7 @@ public abstract class BaseFragment extends Fragment {
     }*/
 
     private void getSerialPort() {
-        mPanelManager = mApplication.getmPanelManager();
+        mPanelManager = mApplication.getmPanelManager(null);
 //        mPrintManager = mApplication.getmPrintManager();
 //        mScanManager = mApplication.getmScanManager();
         mWeightManager = mApplication.getmWeightManager();

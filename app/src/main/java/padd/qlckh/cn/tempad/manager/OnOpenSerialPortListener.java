@@ -18,6 +18,7 @@ public interface OnOpenSerialPortListener {
          * 打开串口监听
          */
         NO_READ_WRITE_PERMISSION,
-        OPEN_FAIL
+        OPEN_FAIL,
+        FILE_NO_EXIT,
     }
 }

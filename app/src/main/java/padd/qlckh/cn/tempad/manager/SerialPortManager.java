@@ -44,7 +44,12 @@ public class SerialPortManager extends SerialPort {
     public boolean openSerialPort(File device, int baudRate) {
 
         Log.i(TAG, "openSerialPort: " + String.format("打开串口 %s  波特率 %s", device.getPath(), baudRate));
-
+        if (!device.exists()){
+            if (null != mOnOpenSerialPortListener) {
+                mOnOpenSerialPortListener.onFail(device, OnOpenSerialPortListener.Status.FILE_NO_EXIT);
+            }
+            return false;
+        }
         // 校验串口权限
         if (!device.canRead() || !device.canWrite()) {
             boolean chmod777 = chmod777(device);

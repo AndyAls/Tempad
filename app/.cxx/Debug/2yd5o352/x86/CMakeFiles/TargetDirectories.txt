@@ -1,3 +1,0 @@
-E:/01project/Tempad/app/.cxx/Debug/2yd5o352/x86/CMakeFiles/SerialPort.dir
-E:/01project/Tempad/app/.cxx/Debug/2yd5o352/x86/CMakeFiles/edit_cache.dir
-E:/01project/Tempad/app/.cxx/Debug/2yd5o352/x86/CMakeFiles/rebuild_cache.dir

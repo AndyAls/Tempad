@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
-            android:text="标定20kg"
+            android:text="标定2kg"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />
@@ -71,10 +71,10 @@
             android:layout_weight="1"
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
-            android:text="塑料"
+            android:text="4号开"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textStyle="bold" />
 
         <Button
@@ -85,9 +85,31 @@
             android:background="@drawable/btn_operation_normal"
             android:gravity="center"
             android:text="关门"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/tvState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_alignParentRight="true"
+        android:text ='串口' />
+
+    <EditText
+        android:id="@+id/etScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:cursorVisible="false"
+        android:hint=""
+        android:text=""
+        android:layout_centerInParent="true"
+        android:textColor="#9830FF"
+        android:textSize="@dimen/sp16" />
 </RelativeLayout>
