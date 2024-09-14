@@ -1,2 +1,0 @@
-ninja: Entering directory `E:\01project\Tempad\app\.cxx\cmake\debug\x86_64'
-[1/1] Linking C shared library E:\01project\Tempad\app\build\intermediates\cmake\debug\obj\x86_64\libSerialPort.so

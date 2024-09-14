@@ -74,11 +74,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     protected  void onOpenSuccess(File device){
 
-        showDialog("串口打开成功"+device.getAbsolutePath());
+//        showDialog("串口打开成功"+device.getAbsolutePath());
 
     };
     protected  void onOpenFail(File device, OnOpenSerialPortListener.Status status){
-        showDialog("串口打开失败"+device.getAbsolutePath()+"-"+status);
+//        showDialog("串口打开失败"+device.getAbsolutePath()+"-"+status);
     };
 
     private void getSerialPort() {
@@ -96,6 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         };
         mPanelManager = mApplication.getmPanelManager(listener);
         mWeightManager = mApplication.getmWeightManager();
+        mScanManager=mApplication.getmScanManager();
        /* mPrintManager=mApplication.getmPrintManager();
         mScanManager=mApplication.getmScanManager();
         mWeightManager=mApplication.getmWeightManager();*/

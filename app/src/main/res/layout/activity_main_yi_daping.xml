@@ -50,7 +50,7 @@
             android:layout_alignTop="@id/ivNet"
             android:layout_toRightOf="@id/ivNet"
             android:src="@drawable/btn_help_normal"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/ivHome"

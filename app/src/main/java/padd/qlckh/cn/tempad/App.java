@@ -129,7 +129,7 @@ public class App extends Application {
             SharedPreferences sp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String weightNode = sp.getString(Constant.WEGHT_NODE, "");
             int weightRate = Integer.decode(sp.getString(Constant.WEGHT_RATE, "-1"));
-            mWeightManager.openSerialPort(new File("/dev/ttyS3"), 9600);
+            mWeightManager.openSerialPort(new File("/dev/ttyS8"), 9600);
 
         }
         return mWeightManager;
@@ -141,7 +141,7 @@ public class App extends Application {
             SharedPreferences ssp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String scanNode = ssp.getString(Constant.SCAN_NODE, "");
             int scanRate = Integer.decode(ssp.getString(Constant.SCAN_RATE, "-1"));
-            mScanManager.openSerialPort(new File("/dev/ttyS5"), 115200);
+            mScanManager.openSerialPort(new File("/dev/ttyS5"), 9600);
         }
         return mScanManager;
     }
@@ -153,7 +153,7 @@ public class App extends Application {
             SharedPreferences prsp = getSharedPreferences(Constant.SP_NAME, MODE_PRIVATE);
             String printNode = prsp.getString(Constant.PRINT_NODE, "");
             int printRate = Integer.decode(prsp.getString(Constant.PRINT_RATE, "-1"));
-            mPrintManager.openSerialPort(new File(printNode), printRate);
+            mPrintManager.openSerialPort(new File("/dev/ttyS6"), printRate);
         }
         return mPrintManager;
     }
@@ -167,7 +167,7 @@ public class App extends Application {
             /*String panelNode ="/dev/ttyO3";
             int panelRate = 38400;*/
             mPanelManager.setOnOpenSerialPortListener(listener);
-            mPanelManager.openSerialPort(new File(panelNode), panelRate);
+            mPanelManager.openSerialPort(new File("/dev/ttyS3"), 115200);
         }
         return mPanelManager;
     }

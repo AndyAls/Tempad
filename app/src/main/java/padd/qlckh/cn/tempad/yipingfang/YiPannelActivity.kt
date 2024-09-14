@@ -23,6 +23,8 @@ import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener
 import java.io.File
 
 
+private const val s1 = "串口打开失败"
+
 /**
  * @author Andy
  * @date   2021/11/4 17:10
@@ -51,7 +53,12 @@ class YiPannelActivity : BaseActivity() {
 
     private fun handScan(bytes: ByteArray) {
 
-        etScan.setText("**${ConvertUtils.bytes2Json(bytes)}")
+        buidler.append("接收的数据-")
+            .append("\n")
+            .append(ConvertUtils.bytes2HexString(bytes))
+            .append(ConvertUtils.hexStringToAscii(ConvertUtils.bytes2HexString(bytes)))
+            .append("\n")
+        tvResult.text = buidler.toString()
     }
 
     private fun handWeightReq(bytes: ByteArray) {
@@ -144,6 +151,7 @@ class YiPannelActivity : BaseActivity() {
             peelWeight()
             clearText()
             toast("去皮")
+
         }
         boli.setClickListener {
 //            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_BOLI))
@@ -191,8 +199,11 @@ class YiPannelActivity : BaseActivity() {
         }
 
         override fun afterTextChanged(s: Editable?) {
-            val scanStr = s?.toString() ?: ""
-            etScan.setText(scanStr);
+            buidler.append("接收的数据:")
+                .append("\n")
+                .append(s?.toString())
+                .append("\n")
+            tvResult.text = buidler.toString()
         }
     }
     fun clearText() {
@@ -228,7 +239,8 @@ class YiPannelActivity : BaseActivity() {
             }
 
             override fun onDataSent(bytes: ByteArray?) {
-                TODO("Not yet implemented")
+
+
             }
 
         })
@@ -237,9 +249,13 @@ class YiPannelActivity : BaseActivity() {
 
     private fun sendLogin() {
 
+
         Handler().postDelayed({
-            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.QUERY))
-        }, 800)
+            mScanManager.sendBytes(ConvertUtils.hexString2Bytes("200061014AD503"))
+        }, 100)
+        Handler().postDelayed({
+            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.TIME_OUT))
+        }, 300)
     }
 
     override fun onOpenSuccess(device: File?) {

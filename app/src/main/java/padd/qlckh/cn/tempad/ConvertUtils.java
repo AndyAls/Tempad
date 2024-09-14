@@ -57,7 +57,7 @@ public final class ConvertUtils {
             ret[j++] = hexDigits[bytes[i] >>> 4 & 0x0f];
             ret[j++] = hexDigits[bytes[i] & 0x0f];
         }
-        return new String(ret);
+        return new String(ret).trim().replace("\r","").replace("\n","");
     }
 
     /**
@@ -97,14 +97,23 @@ public final class ConvertUtils {
         }
     }
 
-   static StringBuilder sb = new StringBuilder();
+    public static String hexStringToAscii(String hex) {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < hex.length(); i += 2) {
+            String str = hex.substring(i, i + 2);
+            output.append((char) Integer.parseInt(str, 16));
+        }
+        return output.toString().trim().replace("\r","").replace("\n","");
+    }
+
+    static StringBuilder sb = new StringBuilder();
 
     public static String bytes2Json(byte[] bytes) {
         sb.delete(0,sb.length());
         for (byte b : bytes) {
             sb.append((char) b);
         }
-        return sb.toString();
+        return sb.toString().trim().replace("\r","").replace("\n","");
     }
 
     ;

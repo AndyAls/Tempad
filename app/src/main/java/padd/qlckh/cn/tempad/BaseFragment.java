@@ -79,8 +79,8 @@ public abstract class BaseFragment extends Fragment {
     private void getSerialPort() {
         mPanelManager = mApplication.getmPanelManager(null);
 //        mPrintManager = mApplication.getmPrintManager();
-//        mScanManager = mApplication.getmScanManager();
-        mWeightManager = mApplication.getmWeightManager();
+        mScanManager = mApplication.getmScanManager();
+//        mWeightManager = mApplication.getmWeightManager();
     }
 
     @Override
@@ -129,7 +129,6 @@ public abstract class BaseFragment extends Fragment {
     protected void showDialog(String message) {
         new AlertDialog.Builder(getActivity())
                 .setTitle("提示")
-                .setMessage(message)
                 .setPositiveButton("退出", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {

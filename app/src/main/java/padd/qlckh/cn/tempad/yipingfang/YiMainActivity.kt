@@ -44,8 +44,8 @@ class YiMainActivity : BaseActivity() {
         }
         EventBus.getDefault().register(this)
         llBoli.setClickListener {
-          /*  test();
-            return@setClickListener*/
+            /*  test();
+              return@setClickListener*/
             viewClick(BOLI)
         }
         llDianChi.setClickListener {
@@ -61,9 +61,7 @@ class YiMainActivity : BaseActivity() {
 
             startActivity(Intent(this, SettingActivity::class.java))
         }
-        ivIcon.setClickListener {
-            startActivity(Intent(this, YiPannelActivity::class.java))
-        }
+
         ivHome.setClickListener {
             goHome()
 
@@ -110,13 +108,19 @@ class YiMainActivity : BaseActivity() {
 
         ivIcon.setOnLongClickListener {
 
-            DialogUtils.showEditDialog(this, "退出应用", "", "退出应用", "取消", object : OnDialogClickListener {
+            DialogUtils.showEditDialog(this, "管理员模式", "", "确认", "取消", object : OnDialogClickListener {
                 override fun onSureClick(psw: String) {
 
-                    if (psw == "666888") {
-                        finish()
-                    } else {
-                        showLong("请输入正确的密码退出应用")
+                    when (psw) {
+                        "666888" -> {
+                            finish()
+                        }
+                        "888666" -> {
+                            startActivity(Intent(this@YiMainActivity, YiPannelActivity::class.java))
+                        }
+                        else -> {
+                            showLong("请输入正确的密码退出应用")
+                        }
                     }
                 }
 
@@ -223,7 +227,8 @@ class YiMainActivity : BaseActivity() {
                 ft.hide(supportFragmentManager.findFragmentByTag(this.checkedFragmentTag)!!).show(to).commitAllowingStateLoss()
                 fm.executePendingTransactions()
             } else {
-                ft.hide(supportFragmentManager.findFragmentByTag(this.checkedFragmentTag)!!).add(R.id.fl_frame, to, tag).commitAllowingStateLoss()
+                ft.hide(supportFragmentManager.findFragmentByTag(this.checkedFragmentTag)!!).add(R.id.fl_frame, to, tag)
+                    .commitAllowingStateLoss()
                 fm.executePendingTransactions()
             }
 
@@ -256,12 +261,14 @@ class YiMainActivity : BaseActivity() {
                     llDianChi.setBackgroundResource(0)
 
                 }
+
                 JINSHU -> {
                     llBoli.setBackgroundResource(0)
                     llSuliao.setBackgroundResource(0)
                     llJishu.setBackgroundResource(R.drawable.code_perform)
                     llDianChi.setBackgroundResource(0)
                 }
+
                 SULIAO -> {
                     llBoli.setBackgroundResource(0)
                     llSuliao.setBackgroundResource(R.drawable.code_perform)
@@ -269,6 +276,7 @@ class YiMainActivity : BaseActivity() {
                     llDianChi.setBackgroundResource(0)
 
                 }
+
                 ZHIZHANG -> {
                     llBoli.setBackgroundResource(0)
                     llSuliao.setBackgroundResource(0)
@@ -328,41 +336,41 @@ class YiMainActivity : BaseActivity() {
 
     private fun addCode() {
         RxHttpUtils.createApi(ApiService::class.java)
-                .addCode(AppUtils.getDeviceId(this))
-                .compose(Transformer.switchSchedulers())
-                .subscribe(object : CommonObserver<AddCodeResq?>() {
-                    override fun onError(errorMsg: String) {
-                    }
+            .addCode(AppUtils.getDeviceId(this))
+            .compose(Transformer.switchSchedulers())
+            .subscribe(object : CommonObserver<AddCodeResq?>() {
+                override fun onError(errorMsg: String) {
+                }
 
-                    override fun onSuccess(t: AddCodeResq?) {
-                        if (t != null && t.row != null) {
-                            val row = t.row
-                            if (row.status == "1") {
-                                llDianChi.isEnabled = false
-                                llJishu.isEnabled = false
-                                llSuliao.isEnabled = false
-                                llBoli.isEnabled = false
-                                ivHome.isEnabled = false
-                                btnCountry.isEnabled = false
-                                btnVedio.isEnabled = false
-                                btnQuery.isEnabled = false
-                                btnPut.isEnabled = false
-                                showDialog("改设备不可用,请联系客服")
-                                return
-                            }
+                override fun onSuccess(t: AddCodeResq?) {
+                    if (t != null && t.row != null) {
+                        val row = t.row
+                        if (row.status == "1") {
+                            llDianChi.isEnabled = false
+                            llJishu.isEnabled = false
+                            llSuliao.isEnabled = false
+                            llBoli.isEnabled = false
+                            ivHome.isEnabled = false
+                            btnCountry.isEnabled = false
+                            btnVedio.isEnabled = false
+                            btnQuery.isEnabled = false
+                            btnPut.isEnabled = false
+                            showDialog("改设备不可用,请联系客服")
+                            return
                         }
-                        llDianChi.isEnabled = true
-                        llJishu.isEnabled = true
-                        llSuliao.isEnabled = true
-                        llBoli.isEnabled = true
-                        ivHome.isEnabled = true
-                        btnCountry.isEnabled = true
-                        btnVedio.isEnabled = true
-                        btnQuery.isEnabled = true
-                        btnPut.isEnabled = true
-
                     }
-                })
+                    llDianChi.isEnabled = true
+                    llJishu.isEnabled = true
+                    llSuliao.isEnabled = true
+                    llBoli.isEnabled = true
+                    ivHome.isEnabled = true
+                    btnCountry.isEnabled = true
+                    btnVedio.isEnabled = true
+                    btnQuery.isEnabled = true
+                    btnPut.isEnabled = true
+
+                }
+            })
     }
 
     override fun showError(msg: String?) {
