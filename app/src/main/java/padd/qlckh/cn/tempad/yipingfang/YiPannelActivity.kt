@@ -1,12 +1,18 @@
 package padd.qlckh.cn.tempad.yipingfang
 
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Handler
 import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
+import android.uniwin.UniwinAPI
+import android.widget.TimePicker
 import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.toast
 import kotlinx.android.synthetic.main.activity_yi_pannel.boli
+import kotlinx.android.synthetic.main.activity_yi_pannel.btOff
+import kotlinx.android.synthetic.main.activity_yi_pannel.btOn
 import kotlinx.android.synthetic.main.activity_yi_pannel.colse
 import kotlinx.android.synthetic.main.activity_yi_pannel.etScan
 import kotlinx.android.synthetic.main.activity_yi_pannel.jinshu
@@ -190,6 +196,22 @@ class YiPannelActivity : BaseActivity() {
         }
 
         etScan.addTextChangedListener(watcher)
+
+        btOn.setClickListener {
+                val timePickerDialog = TimePickerDialog(this,
+                    fun(view: TimePicker, hourOfDay: Int, minute: Int) {
+                        DeviceManager.setBootUpTime("$hourOfDay:$minute:00")
+                        refreshOnOff()
+                        DeviceManager.powerOn(this@YiPannelActivity)
+
+                    }, 1, 0, true)
+            timePickerDialog.show();
+        }
+        btOff.setClickListener {
+            val timePickerDialog = TimePickerDialog(this,
+                { view, hourOfDay, minute -> DeviceManager.setBootUpTime("$hourOfDay:$minute:00") }, 1, 0, true)
+            timePickerDialog.show();
+        }
     }
     private var watcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -249,6 +271,7 @@ class YiPannelActivity : BaseActivity() {
 
     private fun sendLogin() {
 
+        refreshOnOff()
 
         Handler().postDelayed({
             mScanManager.sendBytes(ConvertUtils.hexString2Bytes("200061014AD503"))
@@ -256,6 +279,11 @@ class YiPannelActivity : BaseActivity() {
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.TIME_OUT))
         }, 300)
+    }
+
+    private fun refreshOnOff() {
+        btOn.text = if (DeviceManager.getBootUpTime().isEmpty()) "开机时间" else "开机时间(${DeviceManager.getBootUpTime()})"
+        btOff.text = if (DeviceManager.getShutUpTime().isEmpty()) "关机时间" else "关机时间(${DeviceManager.getShutUpTime()})"
     }
 
     override fun onOpenSuccess(device: File?) {

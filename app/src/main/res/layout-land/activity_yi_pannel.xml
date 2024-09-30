@@ -90,6 +90,62 @@
             android:textSize="@dimen/sp18"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/llBottom">
+
+
+        <Button
+            android:id="@+id/btOn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_operation_normal"
+            android:gravity="center"
+            android:text="开机时间"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btOnCancle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_operation_normal"
+            android:gravity="center"
+            android:text="取消开机时间"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btOff"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_operation_normal"
+            android:gravity="center"
+            android:text="关机时间"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btOffCancle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_operation_normal"
+            android:gravity="center"
+            android:text="取消关机时间"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
+
+    </LinearLayout>
     <TextView
         android:id="@+id/tvState"
         android:layout_width="wrap_content"

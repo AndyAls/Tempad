@@ -74,12 +74,13 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-       <!-- <receiver android:name=".yipingfang.NetWorkStateReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>-->
+        <receiver android:name=".receivier.PowerOnReceiver" />
+        <!-- <receiver android:name=".yipingfang.NetWorkStateReceiver">
+             <intent-filter>
+                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                 <category android:name="android.intent.category.DEFAULT" />
+             </intent-filter>
+         </receiver>-->
     </application>
 
 </manifest>

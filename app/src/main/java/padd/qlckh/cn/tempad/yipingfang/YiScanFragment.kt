@@ -235,11 +235,9 @@ class YiScanFragment : BaseFragment() {
             if (!sbPanel.startsWith("{")) {
                 sbPanel.delete(0, sbPanel.length)
             }
-            showDialog(sbPanel.toString() + "\n" + (JsonUtil.isJsonValid(sbPanel.toString()) && sbPanel.contains("{\"r\":8001")));
             if (JsonUtil.isJsonValid(sbPanel.toString()) && sbPanel.contains("{\"r\":8001")) {
                 recorderTime = System.currentTimeMillis()
                 val orderReply = JsonUtil.json2Object2(sbPanel.toString(), OrderReply::class.java)
-                showDialog(orderReply.toString());
                 if (orderReply.isOpen()) {
                     if (layoutScan.visibility == View.VISIBLE) {
                         layoutScan.setViewVisible(false)
@@ -589,6 +587,9 @@ class YiScanFragment : BaseFragment() {
         Handler().postDelayed({
             mScanManager.sendBytes(ConvertUtils.hexString2Bytes("200061014AD503"))
         }, 100)
+        Handler().postDelayed({
+            mScanManager.sendBytes(ConvertUtils.hexString2Bytes("20003000CF03"))
+        }, 200)
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.TIME_OUT))
         }, 300)

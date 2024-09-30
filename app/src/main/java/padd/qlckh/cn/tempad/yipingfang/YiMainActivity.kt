@@ -305,7 +305,7 @@ class YiMainActivity : BaseActivity() {
             llDianChi.setBackgroundResource(0)
             var yiH5Fragment: YiH5Fragment? = null
             yiH5Fragment = if (supportFragmentManager.findFragmentByTag(tag) == null) {
-                YiH5Fragment.newInstance(if (tag == "vedio") "http://a.365igc.cn/ypf/view/dist/index.html#/view" else "http://a.365igc.cn/ypf/view/dist/index.html#/picture")
+                YiH5Fragment.newInstance(if (tag == "vedio") "${ApiService.H5_URL}/view" else "${ApiService.H5_URL}/picture")
             } else {
                 supportFragmentManager.findFragmentByTag(tag) as YiH5Fragment?
             }

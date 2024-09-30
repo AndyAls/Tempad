@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation files('libs\\uniwinapi-rk356x-android11-v2.1.jar')
 //    implementation files('libs\\pl2303multilib.jar')
 //    implementation files('libs\\pl2303driver.jar')
     testImplementation 'junit:junit:4.12'

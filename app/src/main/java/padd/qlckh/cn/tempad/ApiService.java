@@ -27,6 +27,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     String BASE_URL = "http://www.lsypf.cn/api/";
+    String H5_URL = "http://www.lsypf.cn/ypf/view/dist/index.html#";
     long DEFAULT_TIME = 39;
     String IMG_URL = "http://www.lsypf.cn/Public/Public/";
 
