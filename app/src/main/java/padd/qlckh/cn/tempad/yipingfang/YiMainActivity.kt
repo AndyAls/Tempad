@@ -11,6 +11,9 @@ import android.view.KeyEvent
 import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.setViewVisible
 import kotlinx.android.synthetic.main.activity_main_yi_daping.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -332,6 +335,11 @@ class YiMainActivity : BaseActivity() {
         val commit = beginTransaction.commit()
         registerReceiver(receiver, intentFilter)
         addCode()
+        startTimer()
+    }
+
+    private fun startTimer() {
+        val shutDownMillisecond = DeviceManager.getShutDownMillisecond()
     }
 
     private fun addCode() {

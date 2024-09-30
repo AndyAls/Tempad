@@ -111,6 +111,9 @@ public final class ConvertUtils {
     public static String bytes2Json(byte[] bytes) {
         sb.delete(0,sb.length());
         for (byte b : bytes) {
+            if (((char)b) == '\r'||((char)b) == '\n'||((char)b) == ' '){
+                continue;
+            }
             sb.append((char) b);
         }
         return sb.toString().trim().replace("\r","").replace("\n","");

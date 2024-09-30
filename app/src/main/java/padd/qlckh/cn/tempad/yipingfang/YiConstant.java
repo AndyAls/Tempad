@@ -19,7 +19,7 @@ public interface YiConstant {
      * 四个桶推杆伸出指令
      */
     String OPEN_DIANCHI = "{\"o\":8001,\"d\":{\"bin_no\":1,\"code\":1}}";
-    String OPEN_BOLI = "{\"o\":8001,\"d\":{\"bin_no\":2,\"code\":1}}";
+    String OPEN_BOLI =    "{\"o\":8001,\"d\":{\"bin_no\":2,\"code\":1}}";
     String OPEN_JINSHU = "{\"o\":8001,\"d\":{\"bin_no\":3,\"code\":1}}";
     String OPEN_SULIAO = "{\"o\":8001,\"d\":{\"bin_no\":4,\"code\":1}}";
     String OPEN_ALL = "5505010101015003";
@@ -33,7 +33,7 @@ public interface YiConstant {
      * 四个桶推杆缩回指令
      */
     String CLOSE_DIANCHI = "{\"o\":8001,\"d\":{\"bin_no\":1,\"code\":0}}";
-    String CLOSE_BOLI = "{\"o\":8001,\"d\":{\"bin_no\":2,\"code\":0}}";
+    String CLOSE_BOLI =    "{\"o\":8001,\"d\":{\"bin_no\":2,\"code\":0}}";
     String CLOSE_JINSHU = "{\"o\":8001,\"d\":{\"bin_no\":3,\"code\":0}}";
     String CLOSE_SULIAO = "{\"o\":8001,\"d\":{\"bin_no\":4,\"code\":0}}";
     String CLOSE_ALL = "5505020202025003";
@@ -79,9 +79,9 @@ public interface YiConstant {
     /**
      * 四个称1kg标定1000
      */
-    String CHECK_DIANCHI = "{\"o\":1901,\"d\":{\"fix\":\"2000\"}}";
-    String CHECK_BOLI = "{\"o\":1902,\"d\":{\"fix\":\"2000\"}}";
-    String CHECK_JINSHU = "{\"o\":1903,\"d\":{\"fix\":\"2000\"}}";
-    String CHECK_SULIAO = "{\"o\":1904,\"d\":{\"fix\":\"2000\"}}";
+    String CHECK_DIANCHI = "{\"o\":1901,\"d\":{\"fix\":\"1000\"}}";
+    String CHECK_BOLI = "{\"o\":1902,\"d\":{\"fix\":\"1000\"}}";
+    String CHECK_JINSHU = "{\"o\":1903,\"d\":{\"fix\":\"1000\"}}";
+    String CHECK_SULIAO = "{\"o\":1904,\"d\":{\"fix\":\"1000\"}}";
 
 }

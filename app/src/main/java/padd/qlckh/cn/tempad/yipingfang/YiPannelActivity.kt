@@ -12,8 +12,11 @@ import com.golong.commlib.util.setClickListener
 import com.golong.commlib.util.toast
 import kotlinx.android.synthetic.main.activity_yi_pannel.boli
 import kotlinx.android.synthetic.main.activity_yi_pannel.btOff
+import kotlinx.android.synthetic.main.activity_yi_pannel.btOffCancle
 import kotlinx.android.synthetic.main.activity_yi_pannel.btOn
+import kotlinx.android.synthetic.main.activity_yi_pannel.btOnCancle
 import kotlinx.android.synthetic.main.activity_yi_pannel.colse
+import kotlinx.android.synthetic.main.activity_yi_pannel.colse2
 import kotlinx.android.synthetic.main.activity_yi_pannel.etScan
 import kotlinx.android.synthetic.main.activity_yi_pannel.jinshu
 import kotlinx.android.synthetic.main.activity_yi_pannel.suliao
@@ -105,7 +108,7 @@ class YiPannelActivity : BaseActivity() {
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_DIANCHI))
         }, 150)
-        Handler().postDelayed({
+       /* Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_BOLI))
         }, 300)
         Handler().postDelayed({
@@ -113,7 +116,7 @@ class YiPannelActivity : BaseActivity() {
         }, 450)
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_SULIAO))
-        }, 600)
+        }, 600)*/
 
     }
 
@@ -167,9 +170,9 @@ class YiPannelActivity : BaseActivity() {
         }
         jinshu.setClickListener {
 //            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_JINSHU))
-            toast("标定2kg")
+            toast("1号标定1kg")
             clearText()
-            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CHECK_SULIAO))
+            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CHECK_DIANCHI))
         }
 
 
@@ -177,17 +180,25 @@ class YiPannelActivity : BaseActivity() {
         suliao.setClickListener {
 
 //            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.UN_Auth))
-            Handler().postDelayed({
-                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.OPEN_SULIAO))
-            }, 500)
+            toast("2号标定1kg")
+            clearText()
+            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CHECK_BOLI))
 
 //            open();
         }
         colse.setClickListener {
 //            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.UN_Auth))
-            Handler().postDelayed({
-                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_SULIAO))
-            }, 500)
+            toast("3号标定1kg")
+            clearText()
+            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CHECK_JINSHU))
+
+//            close();
+        }
+        colse2.setClickListener {
+//            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.UN_Auth))
+            toast("4号标定1kg")
+            clearText()
+            mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CHECK_SULIAO))
 
 //            close();
         }
@@ -209,8 +220,20 @@ class YiPannelActivity : BaseActivity() {
         }
         btOff.setClickListener {
             val timePickerDialog = TimePickerDialog(this,
-                { view, hourOfDay, minute -> DeviceManager.setBootUpTime("$hourOfDay:$minute:00") }, 1, 0, true)
+                fun(view: TimePicker, hourOfDay: Int, minute: Int) {
+                    DeviceManager.setShutUpTime("$hourOfDay:$minute:00")
+                    refreshOnOff()
+                }, 1, 0, true)
             timePickerDialog.show();
+        }
+        btOnCancle.setClickListener {
+            DeviceManager.setBootUpTime("")
+            refreshOnOff()
+            DeviceManager.disPowerOn(this@YiPannelActivity)
+        }
+        btOffCancle.setClickListener {
+            DeviceManager.setShutUpTime("");
+            refreshOnOff()
         }
     }
     private var watcher = object : TextWatcher {

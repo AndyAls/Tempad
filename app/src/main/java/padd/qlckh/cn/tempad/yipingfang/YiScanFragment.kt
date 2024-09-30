@@ -25,6 +25,7 @@ import padd.qlckh.cn.tempad.http.observer.CommonObserver
 import padd.qlckh.cn.tempad.http.utils.AppUtils
 import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener
 import java.math.BigDecimal
+import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
 
 
@@ -202,26 +203,24 @@ class YiScanFragment : BaseFragment() {
 
     private fun closeTrash() {
         loading("门正在关闭,请稍等......")
-        Handler().postDelayed({
-            when (tagCheck) {
-                YiMainActivity.ZHIZHANG -> {
-                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_DIANCHI))
-                }
-
-                YiMainActivity.BOLI -> {
-                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_BOLI))
-                }
-
-                YiMainActivity.JINSHU -> {
-                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_JINSHU))
-                }
-
-                YiMainActivity.SULIAO -> {
-                    mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_SULIAO))
-                }
-
+        when (tagCheck) {
+            YiMainActivity.ZHIZHANG -> {
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_DIANCHI))
             }
-        }, 100)
+
+            YiMainActivity.BOLI -> {
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_BOLI))
+            }
+
+            YiMainActivity.JINSHU -> {
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_JINSHU))
+            }
+
+            YiMainActivity.SULIAO -> {
+                mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.CLOSE_SULIAO))
+            }
+
+        }
 
     }
 
@@ -230,11 +229,13 @@ class YiScanFragment : BaseFragment() {
      */
     private fun handPanel(bytes: ByteArray) {
 
-        if (startPanel) {
-            sbPanel.append(ConvertUtils.bytes2Json(bytes))
-            if (!sbPanel.startsWith("{")) {
-                sbPanel.delete(0, sbPanel.length)
+        if (true) {
+            val source = ConvertUtils.bytes2Json(bytes)
+
+            if (source.startsWith("{\"r\":8001")||sbPanel.startsWith("{\"r\":8001")){
+                sbPanel.append(source);
             }
+
             if (JsonUtil.isJsonValid(sbPanel.toString()) && sbPanel.contains("{\"r\":8001")) {
                 recorderTime = System.currentTimeMillis()
                 val orderReply = JsonUtil.json2Object2(sbPanel.toString(), OrderReply::class.java)
@@ -264,6 +265,9 @@ class YiScanFragment : BaseFragment() {
                         startPanel = false
                     }
                 }
+                if (orderReply.isMan()){
+                    showDialog("满溢了满溢了满溢了满溢了满溢了满溢了")
+                }
                 sbPanel.delete(0, sbPanel.length)
             }
         }
@@ -273,11 +277,11 @@ class YiScanFragment : BaseFragment() {
 
     private fun handWeight(bytes: ByteArray) {
 
-        if (startWeight) {
-            weightBuilder.append(ConvertUtils.bytes2Json(bytes))
+        if (true) {
+            val source = ConvertUtils.bytes2Json(bytes)
 
-            if (!weightBuilder.startsWith("{")) {
-                weightBuilder.delete(0, weightBuilder.length)
+            if (source.startsWith("{\"o\":1204,")||weightBuilder.startsWith("{\"o\":1204,")){
+                weightBuilder.append(source);
             }
             if (JsonUtil.isJsonValid(weightBuilder.toString()) && weightBuilder.contains("{\"o\":1204,")) {
                 startWeight = false
@@ -322,7 +326,7 @@ class YiScanFragment : BaseFragment() {
                 layoutLoading.setViewVisible(false)
                 layoutSuccess.setViewVisible(true)
                 tvSuccessResult.text = "用户:  ${userInfo?.fullname}\n种类:  ${name}\n重量:  ${weight}kg\n碳分:  ${
-                    BigDecimal(weight).multiply(BigDecimal(jifen))
+                    DecimalFormat("0.00").format(BigDecimal(weight).multiply(BigDecimal(jifen)))
                 }分"
                 postData(userInfo!!, weight.toString(), jifen, status)
                 MediaPlayerHelper.getInstance(getActivity()).startPlay(R.raw.delivery_success)
@@ -497,7 +501,7 @@ class YiScanFragment : BaseFragment() {
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_DIANCHI))
         }, 150)
-        Handler().postDelayed({
+      /*  Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_BOLI))
         }, 300)
         Handler().postDelayed({
@@ -505,7 +509,7 @@ class YiScanFragment : BaseFragment() {
         }, 450)
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_SULIAO))
-        }, 600)
+        }, 600)*/
 
     }
 

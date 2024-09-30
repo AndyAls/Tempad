@@ -12,6 +12,10 @@ class OrderReply {
         return r == 8001 && d?.code == 0;
     }
 
+    fun isMan(): Boolean {
+        return r == 8001 && d?.man == 1;
+    }
+
     override fun toString(): String {
         return "OrderReply(d=$d, r=$r)"
     }
@@ -23,6 +27,7 @@ class D {
 
     var bin_no: Int = -1
     var code: Int = -1
+    var man :Int = -1
     override fun toString(): String {
         return "D(bin_no=$bin_no, code=$code)"
     }
