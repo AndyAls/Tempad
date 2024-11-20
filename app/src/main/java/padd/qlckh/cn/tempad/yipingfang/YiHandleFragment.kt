@@ -10,9 +10,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.golong.commlib.util.setClickListener
-import com.golong.commlib.util.setViewVisible
-import com.golong.commlib.util.toast
+import padd.qlckh.cn.tempad.setClickListener
+import padd.qlckh.cn.tempad.setViewVisible
+import padd.qlckh.cn.tempad.toast
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

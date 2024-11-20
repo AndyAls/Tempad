@@ -1,15 +1,13 @@
 package padd.qlckh.cn.tempad.yipingfang
 
 import android.app.TimePickerDialog
-import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Handler
 import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
-import android.uniwin.UniwinAPI
 import android.widget.TimePicker
-import com.golong.commlib.util.setClickListener
-import com.golong.commlib.util.toast
+import padd.qlckh.cn.tempad.setClickListener
+import padd.qlckh.cn.tempad.toast
 import kotlinx.android.synthetic.main.activity_yi_pannel.boli
 import kotlinx.android.synthetic.main.activity_yi_pannel.btOff
 import kotlinx.android.synthetic.main.activity_yi_pannel.btOffCancle

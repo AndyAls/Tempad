@@ -4,14 +4,11 @@ import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.text.InputFilter
-import android.text.Spanned
 import android.view.View
 import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
-import com.golong.commlib.util.setClickListener
-import com.golong.commlib.util.toast
+import padd.qlckh.cn.tempad.setClickListener
 import padd.qlckh.cn.tempad.R
 
 /**

@@ -1,10 +1,7 @@
-package com.golong.commlib.util
+package padd.qlckh.cn.tempad
 
-import android.content.Context
-import android.media.MediaScannerConnection
 import android.view.View
 import padd.qlckh.cn.tempad.view.IToast
-import java.io.File
 import java.nio.charset.Charset
 import java.util.*
 
@@ -71,20 +68,20 @@ fun String.insert(index: Int, element: String = "\n"): String {
     return buffer.toString()
 }
 
-fun View.setViewVisible(isVisibel: Boolean) {
+fun View?.setViewVisible(isVisibel: Boolean) {
 
     if (isVisibel) {
-        this.visibility = View.VISIBLE
+        this?.visibility = View.VISIBLE
     } else {
-        this.visibility = View.GONE
+        this?.visibility = View.GONE
     }
 }
 
-fun View.setViewInVisible(isInVisibel: Boolean) {
+fun View?.setViewInVisible(isInVisibel: Boolean) {
     if (isInVisibel) {
-        this.visibility = View.INVISIBLE
+        this?.visibility = View.INVISIBLE
     } else {
-        this.visibility = View.VISIBLE
+        this?.visibility = View.VISIBLE
     }
 }
 

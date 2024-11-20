@@ -8,12 +8,9 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AlertDialog
 import android.view.KeyEvent
-import com.golong.commlib.util.setClickListener
-import com.golong.commlib.util.setViewVisible
+import padd.qlckh.cn.tempad.setClickListener
+import padd.qlckh.cn.tempad.setViewVisible
 import kotlinx.android.synthetic.main.activity_main_yi_daping.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

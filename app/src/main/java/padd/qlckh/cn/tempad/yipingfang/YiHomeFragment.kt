@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.golong.commlib.util.setClickListener
+import padd.qlckh.cn.tempad.setClickListener
 import kotlinx.android.synthetic.main.home_fragment_yi.*
 import padd.qlckh.cn.tempad.BaseFragment
 import padd.qlckh.cn.tempad.R

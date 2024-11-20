@@ -14,7 +14,7 @@ public interface YiConstant {
      */
     String RECIVE_TUIGAN = "55000005 - 01 0x -01 0x -01 0x - 01 0x - 05 - 61 - 03";
 
-    String TIME_OUT = "{\"o\":2601,\"d\":{\"mia\":\"150\"}}";
+    String TIME_OUT = "{\"o\":2601,\"d\":{\"mia\":\"60\"}}";
     /**
      * 四个桶推杆伸出指令
      */

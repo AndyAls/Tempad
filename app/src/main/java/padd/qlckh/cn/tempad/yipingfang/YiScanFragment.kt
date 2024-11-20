@@ -6,14 +6,12 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.bertsir.zbar.utils.QRUtils
-import com.golong.commlib.util.setClickListener
-import com.golong.commlib.util.setViewVisible
+import padd.qlckh.cn.tempad.setClickListener
+import padd.qlckh.cn.tempad.setViewVisible
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -59,6 +57,7 @@ class YiScanFragment : BaseFragment() {
     private val weightBuilder = StringBuilder()
     private val scanBuilder = StringBuilder()
     var zhizhang = 0.0
+    var isResume = false;
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -66,6 +65,7 @@ class YiScanFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        isResume = true;
         setSerialListener()
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -102,7 +102,7 @@ class YiScanFragment : BaseFragment() {
                         Handler(Looper.getMainLooper()).postDelayed({
                             openTrash()
                             startPanel = true
-                        }, 100)
+                        }, 800)
 
                     } else {
                         showLong("获取用户信息失败")
@@ -165,14 +165,16 @@ class YiScanFragment : BaseFragment() {
     }
 
     var handler = Handler(Looper.getMainLooper()) {
-        val what = it.what
-        when (what) {
-            PANNEL_WHAT -> {
-                handPanel(it.obj as ByteArray)
-            }
+        if (isResume) {
+            val what = it.what
+            when (what) {
+                PANNEL_WHAT -> {
+                    handPanel(it.obj as ByteArray)
+                }
 
-            SCAN_WHAT -> {
-                handScan(it.obj as ByteArray)
+                SCAN_WHAT -> {
+                    handScan(it.obj as ByteArray)
+                }
             }
         }
         false
@@ -232,7 +234,7 @@ class YiScanFragment : BaseFragment() {
         if (true) {
             val source = ConvertUtils.bytes2Json(bytes)
 
-            if (source.startsWith("{\"r\":8001")||sbPanel.startsWith("{\"r\":8001")){
+            if (source.startsWith("{\"r\":8001") || sbPanel.startsWith("{\"r\":8001")) {
                 sbPanel.append(source);
             }
 
@@ -265,7 +267,7 @@ class YiScanFragment : BaseFragment() {
                         startPanel = false
                     }
                 }
-                if (orderReply.isMan()){
+                if (orderReply.isMan()) {
                     showDialog("满溢了满溢了满溢了满溢了满溢了满溢了")
                 }
                 sbPanel.delete(0, sbPanel.length)
@@ -280,7 +282,7 @@ class YiScanFragment : BaseFragment() {
         if (true) {
             val source = ConvertUtils.bytes2Json(bytes)
 
-            if (source.startsWith("{\"o\":1204,")||weightBuilder.startsWith("{\"o\":1204,")){
+            if (source.startsWith("{\"o\":1204,") || weightBuilder.startsWith("{\"o\":1204,")) {
                 weightBuilder.append(source);
             }
             if (JsonUtil.isJsonValid(weightBuilder.toString()) && weightBuilder.contains("{\"o\":1204,")) {
@@ -414,12 +416,11 @@ class YiScanFragment : BaseFragment() {
 
         MediaPlayerHelper.getInstance(context).startPlay(R.raw.scan_qr_code_or_swipe_card)
         initTimer()
-        peelWeight()
         canScan = true
         startPanel = false
         startWeight = false
         scanCode()
-        setdelay()
+        setDelay()
         queryJifen()
 
     }
@@ -442,7 +443,7 @@ class YiScanFragment : BaseFragment() {
             })
     }
 
-    private fun setdelay() {
+    private fun setDelay() {
         if (disposable == null) {
             disposable = Observable.interval(5, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -500,16 +501,16 @@ class YiScanFragment : BaseFragment() {
 
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_DIANCHI))
-        }, 150)
-      /*  Handler().postDelayed({
+        }, 400)
+        Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_BOLI))
-        }, 300)
+        }, 500)
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_JINSHU))
-        }, 450)
+        }, 600)
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.PEEL_SULIAO))
-        }, 600)*/
+        }, 700)
 
     }
 
@@ -597,6 +598,7 @@ class YiScanFragment : BaseFragment() {
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.TIME_OUT))
         }, 300)
+        peelWeight()
 
     }
 
@@ -612,7 +614,7 @@ class YiScanFragment : BaseFragment() {
     }
 
     private fun onHide() {
-
+        isResume = false;
         MediaPlayerHelper.getInstance(context).release()
         if (timer != null) {
             timer!!.cancel()
@@ -651,14 +653,13 @@ class YiScanFragment : BaseFragment() {
     }
 
     private fun onShow() {
-
+        isResume = true;
         layoutScan.setViewVisible(true)
         layoutDump.setViewVisible(false)
         layoutLoading.setViewVisible(false)
         layoutSuccess.setViewVisible(false)
         MediaPlayerHelper.getInstance(context).startPlay(R.raw.scan_qr_code_or_swipe_card)
         initTimer()
-        peelWeight()
         btnClose.isEnabled = true
         canScan = true
         startWeight = false
@@ -668,12 +669,13 @@ class YiScanFragment : BaseFragment() {
         canGoHome = true
         setGoHome()
         recorderTime = System.currentTimeMillis()
-        setdelay()
+        setDelay()
         setSerialListener()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        isResume = false;
         MediaPlayerHelper.getInstance(context).release()
         if (timer != null) {
             timer!!.cancel()
