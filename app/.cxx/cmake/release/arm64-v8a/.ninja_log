@@ -1,3 +1,4 @@
 # ninja log v5
 0	245	747636701	CMakeFiles/SerialPort.dir/SerialPort.c.o	69a9913bd3516181
 247	483	747636702	E:/01project/Tempad/app/build/intermediates/cmake/release/obj/arm64-v8a/libSerialPort.so	b820cba1186b0938
+3	1161	756366324	E:/01project/Tempad/app/build/intermediates/cmake/release/obj/arm64-v8a/libSerialPort.so	b820cba1186b0938

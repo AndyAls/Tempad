@@ -295,7 +295,7 @@ class YiScanFragment : BaseFragment() {
                     YiMainActivity.JINSHU -> {
                         jifen = jinshu
                         status = "2,5"
-                        "金属"
+                        "纺织"
                     }
 
                     YiMainActivity.SULIAO -> {
@@ -347,6 +347,7 @@ class YiScanFragment : BaseFragment() {
         recorderTime = System.currentTimeMillis()
         if (scanStr.isEmpty()) return
         if (scanStr.length == 10 && canScan) {
+            MediaPlayerHelper.getInstance(context).startPlay(R.raw.didi)
             canScan = false
             canGoHome = false
             setGoHome()
@@ -570,7 +571,7 @@ class YiScanFragment : BaseFragment() {
                     QRUtils.getInstance()
                         .createQRCode("{\"status\":\"2,5\",\"wyid\":\"" + AppUtils.getDeviceId(getActivity()) + "\",\"fenlei\":\"可回收/金属\"}")
                 )
-                "金属"
+                "纺织"
             }
 
             YiMainActivity.SULIAO -> {
@@ -593,7 +594,7 @@ class YiScanFragment : BaseFragment() {
             mScanManager.sendBytes(ConvertUtils.hexString2Bytes("200061014AD503"))
         }, 100)
         Handler().postDelayed({
-            mScanManager.sendBytes(ConvertUtils.hexString2Bytes("20003000CF03"))
+//            mScanManager.sendBytes(ConvertUtils.hexString2Bytes("20003000CF03"))
         }, 200)
         Handler().postDelayed({
             mPanelManager.sendBytes(ConvertUtils.json2Bytes(YiConstant.TIME_OUT))

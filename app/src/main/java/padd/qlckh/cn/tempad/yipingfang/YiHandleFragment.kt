@@ -3,6 +3,8 @@ package padd.qlckh.cn.tempad.yipingfang
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
@@ -19,11 +21,13 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_yi_handle.*
 import padd.qlckh.cn.tempad.ApiService
 import padd.qlckh.cn.tempad.BaseFragment
+import padd.qlckh.cn.tempad.ConvertUtils
 import padd.qlckh.cn.tempad.MediaPlayerHelper
 import padd.qlckh.cn.tempad.R
 import padd.qlckh.cn.tempad.http.RxHttpUtils
 import padd.qlckh.cn.tempad.http.interceptor.Transformer
 import padd.qlckh.cn.tempad.http.observer.CommonObserver
+import padd.qlckh.cn.tempad.manager.OnSerialPortDataListener
 import java.util.concurrent.TimeUnit
 
 /**
@@ -40,15 +44,45 @@ class YiHandleFragment : BaseFragment() {
     var recorderTime = System.currentTimeMillis()
     private var userInfo: YiUserInfo.RowBean? = null
     private var disposable: Disposable? = null
+    var isResume = false;
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_yi_handle, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setSerialListener()
         super.onViewCreated(view, savedInstanceState)
+        isResume = true;
         checkTag = arguments?.getString(TAG) ?: ""
         initView()
         initRv()
+        initData()
+    }
+
+    private fun setSerialListener() {
+        mScanManager.setOnSerialPortDataListener(object : OnSerialPortDataListener {
+            override fun onDataReceived(bytes: ByteArray?) {
+                val message = Message.obtain()
+                message.what = YiScanFragment.SCAN_WHAT
+                message.obj = bytes
+                handler.sendMessage(message)
+            }
+
+            override fun onDataSent(bytes: ByteArray?) {
+            }
+
+        })
+    }
+
+    private fun initData() {
+
+        Handler().postDelayed({
+            mScanManager.sendBytes(ConvertUtils.hexString2Bytes("200061014AD503"))
+        }, 100)
+        Handler().postDelayed({
+//            mScanManager.sendBytes(ConvertUtils.hexString2Bytes("20003000CF03"))
+        }, 200)
     }
 
     private fun initRv() {
@@ -86,7 +120,36 @@ class YiHandleFragment : BaseFragment() {
         }
 
     }
+    var handler = Handler(Looper.getMainLooper()) {
+        if (isResume) {
+            val what = it.what
+            when (what) {
+                YiScanFragment.SCAN_WHAT -> {
+                    handScan(it.obj as ByteArray)
+                }
+            }
+        }
+        false
+    }
+    private val scanBuilder = StringBuilder()
+    private fun handScan(bytes: ByteArray) {
 
+        var append = scanBuilder.append(ConvertUtils.hexStringToAscii(ConvertUtils.bytes2HexString(bytes)))
+        if (append.length == 9) {
+            append = append.append('0').append(append)
+        }
+        val scanStr = append.toString()
+        recorderTime = System.currentTimeMillis()
+        if (scanStr.isEmpty()) return
+        if (scanStr.length == 10 && canScan) {
+            MediaPlayerHelper.getInstance(context).startPlay(R.raw.didi)
+            canScan = false
+            queryUser(scanStr)
+            scanBuilder.delete(0, scanBuilder.length)
+        } else if (scanStr.length > 10) {
+            scanBuilder.delete(0, scanBuilder.length)
+        }
+    }
     private fun initView() {
         layoutScan.setViewVisible(true)
         layoutQueryResult.setViewVisible(false)
@@ -113,6 +176,7 @@ class YiHandleFragment : BaseFragment() {
     }
 
     private fun queryUser(scanStr: String) {
+        recorderTime = System.currentTimeMillis()
         RxHttpUtils.createApi(ApiService::class.java)
                 .queryYiInfo(scanStr)
                 .compose(Transformer.switchSchedulers())
@@ -273,7 +337,7 @@ class YiHandleFragment : BaseFragment() {
     }
 
     private fun restartSelf() {
-        if (mActivity!=null){
+        if (mActivity!=null && isAdded){
             val intent = Intent(mActivity, YiMainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
@@ -293,10 +357,11 @@ class YiHandleFragment : BaseFragment() {
     }
 
     private fun show(){
+        isResume = true;
         initView()
     }
     private fun hide() {
-
+        isResume = false;
         etScan.removeTextChangedListener(watcher)
         etScan.setText("")
         etScan.isEnabled = false
@@ -311,6 +376,10 @@ class YiHandleFragment : BaseFragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        isResume = false;
+    }
     companion object {
 
         const val TAG = "tag"

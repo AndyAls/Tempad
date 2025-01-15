@@ -4,6 +4,7 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-8.6-all/6itsypff3gopqo4yna2pr643r/gradle-8.6" />
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
