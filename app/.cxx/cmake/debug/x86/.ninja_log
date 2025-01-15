@@ -1,0 +1,5 @@
+# ninja log v5
+1	25	0	clean	fa2febc325648e13
+1	371	758621526	CMakeFiles/SerialPort.dir/SerialPort.c.o	f9a52dcdb00a1b5
+373	913	758621526	E:/01project/Tempad/app/build/intermediates/cmake/debug/obj/x86/libSerialPort.so	a231f066ad4394d8
+0	13	0	clean	fa2febc325648e13
