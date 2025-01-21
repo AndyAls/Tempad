@@ -10,7 +10,7 @@ import android.support.v7.app.AlertDialog
 import android.view.KeyEvent
 import padd.qlckh.cn.tempad.setClickListener
 import padd.qlckh.cn.tempad.setViewVisible
-import kotlinx.android.synthetic.main.activity_main_yi_daping.*
+import kotlinx.android.synthetic.main.activity_main_yi.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -18,6 +18,7 @@ import padd.qlckh.cn.tempad.ApiService
 import padd.qlckh.cn.tempad.BaseActivity
 import padd.qlckh.cn.tempad.ConvertUtils
 import padd.qlckh.cn.tempad.JsonUtil
+import padd.qlckh.cn.tempad.MediaPlayerHelper
 import padd.qlckh.cn.tempad.R
 import padd.qlckh.cn.tempad.SettingActivity
 import padd.qlckh.cn.tempad.http.RxHttpUtils

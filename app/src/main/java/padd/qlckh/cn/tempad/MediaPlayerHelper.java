@@ -1,20 +1,13 @@
 package padd.qlckh.cn.tempad;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RawRes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.CompletableEmitter;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -29,7 +22,6 @@ public class MediaPlayerHelper {
     private Context mContext;
     private final AudioManager audioManager;
     private MediaPlayer mediaPlayer;
-    private final AudioManager.OnAudioFocusChangeListener mListener;
     private boolean isFouce;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Disposable subscribe;
@@ -40,29 +32,6 @@ public class MediaPlayerHelper {
         audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setLooping(false);
-        //音频焦点监听,录音时应用获取焦点,暂停系统音乐播放
-        mListener = new AudioManager.OnAudioFocusChangeListener() {
-            @Override
-            public void onAudioFocusChange(int focusChange) {
-                switch (focusChange) {
-
-                    case AudioManager.AUDIOFOCUS_GAIN:
-                    case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT:
-                    case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK:
-                        isFouce = true;
-                        requestAudioFocus();
-                        break;
-                    case AudioManager.AUDIOFOCUS_LOSS:
-                    case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                    case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                        onPause();
-                        isFouce = false;
-                        abandonAudioFocus();
-                        break;
-                    default:
-                }
-            }
-        };
     }
 
 
@@ -77,15 +46,12 @@ public class MediaPlayerHelper {
         return playerHelper;
     }
 
-
     public void startPlay(@RawRes final int rawId) {
-        requestAudioFocus();
         try {
             preparePlay(null, rawId);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 //        subscribe = Completable.create(new CompletableOnSubscribe() {
 //            @Override
@@ -178,7 +144,6 @@ public class MediaPlayerHelper {
     }
 
     public void release() {
-        abandonAudioFocus();
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
@@ -197,25 +162,9 @@ public class MediaPlayerHelper {
 
     }
 
-    private void requestAudioFocus() {
-        if (!isFouce) {
-            int result = audioManager.requestAudioFocus(mListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                isFouce = true;
-            }
-        }
-    }
-
-    private void abandonAudioFocus() {
-        if (isFouce) {
-            audioManager.abandonAudioFocus(mListener);
-            isFouce = false;
-        }
-    }
 
     private void stopPlay() {
         mediaPlayer.reset();
-        abandonAudioFocus();
     }
 
 }

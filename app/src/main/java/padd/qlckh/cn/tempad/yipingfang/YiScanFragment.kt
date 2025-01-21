@@ -331,7 +331,7 @@ class YiScanFragment : BaseFragment() {
                     DecimalFormat("0.00").format(BigDecimal(weight).multiply(BigDecimal(jifen)))
                 }分"
                 postData(userInfo!!, weight.toString(), jifen, status)
-                MediaPlayerHelper.getInstance(getActivity()).startPlay(R.raw.delivery_success)
+                MediaPlayerHelper.getInstance(context).startPlay(R.raw.delivery_success)
                 weightBuilder.delete(0, weightBuilder.length)
                 startWeight = false
             }
@@ -347,7 +347,7 @@ class YiScanFragment : BaseFragment() {
         recorderTime = System.currentTimeMillis()
         if (scanStr.isEmpty()) return
         if (scanStr.length == 10 && canScan) {
-            MediaPlayerHelper.getInstance(context).startPlay(R.raw.didi)
+            MediaPlayerHelper2.getInstance(context).startPlay(R.raw.didi)
             canScan = false
             canGoHome = false
             setGoHome()

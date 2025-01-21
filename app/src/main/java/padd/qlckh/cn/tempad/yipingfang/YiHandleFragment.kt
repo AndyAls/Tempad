@@ -23,6 +23,7 @@ import padd.qlckh.cn.tempad.ApiService
 import padd.qlckh.cn.tempad.BaseFragment
 import padd.qlckh.cn.tempad.ConvertUtils
 import padd.qlckh.cn.tempad.MediaPlayerHelper
+import padd.qlckh.cn.tempad.MediaPlayerHelper2
 import padd.qlckh.cn.tempad.R
 import padd.qlckh.cn.tempad.http.RxHttpUtils
 import padd.qlckh.cn.tempad.http.interceptor.Transformer
@@ -142,7 +143,7 @@ class YiHandleFragment : BaseFragment() {
         recorderTime = System.currentTimeMillis()
         if (scanStr.isEmpty()) return
         if (scanStr.length == 10 && canScan) {
-            MediaPlayerHelper.getInstance(context).startPlay(R.raw.didi)
+            MediaPlayerHelper2.getInstance(context).startPlay(R.raw.didi)
             canScan = false
             queryUser(scanStr)
             scanBuilder.delete(0, scanBuilder.length)
@@ -367,7 +368,7 @@ class YiHandleFragment : BaseFragment() {
         etScan.isEnabled = false
         etScan.inputType = 0
         canScan = false
-        MediaPlayerHelper.getInstance(mActivity).release()
+        MediaPlayerHelper.getInstance(context).release()
         if (disposable != null) {
             if (!disposable!!.isDisposed) {
                 disposable!!.dispose()
